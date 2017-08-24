@@ -24,35 +24,44 @@ class AdminController extends Controller
 
     public function index(Request $request)
     {
-    	return view('admin.home');
+    	return view('user.admin.home');
     }
 
     public function getAddFarmPage()
     {
-    	return view('admin.addFarm');
+    	return view('user.admin.addFarm');
     }
 
     public function addFarm(Request $request)
     {	
     	// dd(json_encode($request->farmtype));
 		
-		$authcode = substr(md5(uniqid(rand(),1)), 0, 6);
-		$user = new User;
-		$user->name = $request->name;
-		$user->email = $request->email;
-		$user->password = bcrypt($authcode);
-		
-		$farm = Farm::create([
-			'auth_code' => $authcode,
-			'farm_type' => json_encode($request->farmtype),
-			'mobile_no' => $request->mobile,
-			'farm_id' => $request->farm_id,
-		]);
-		$farm->save();	
-		$farm->users()->save($user);
+  		$authcode = substr(md5(uniqid(rand(),1)), 0, 6);
+  		$user = new User;
+  		$user->name = $request->name;
+  		$user->email = $request->email;
+  		$user->password = bcrypt($authcode);
+  		
+  		$farm = Farm::create([
+  			'auth_code' => $authcode,
+  			'farm_type' => json_encode($request->farmtype),
+  			'mobile_no' => $request->mobile,
+  			'farm_id' => $request->farm_id,
+  		]);
+  		$farm->save();	
+  		$farm->users()->save($user);
 
-		$user->assignRole(Role::find(2));
-
-    	return view('admin.addFarm');
+		  $user->assignRole(Role::find(2));
+      $request->session()->flash('alert-added', 'User Accepted');
+    	return back();
     }
+
+    public function viewFarmList()
+    {
+
+      $farms = Farm::all();
+      return view('user.admin.viewFarms', compact('farms'));
+    }
+
+    
 }

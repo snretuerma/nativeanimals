@@ -24,7 +24,10 @@ function success() {
   }
 }
 
-// home page js
 $(document).ready(function(){
-  $('.slider').slider();
+    $('.slider').slider();
+});
+
+$(document).ready(function(){
+  $('ul.tabs').tabs();
 });

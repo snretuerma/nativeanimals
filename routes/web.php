@@ -26,6 +26,7 @@ Route::group(['middleware' => ['web']], function () {
 		Route::get('/',['as' => 'admin.index', 'uses' => 'AdminController@index']);
 		Route::get('add', ['as' => 'admin.addFarmPage', 'uses' => 'AdminController@getAddFarmPage']);
 		Route::post('add', ['as' => 'admin.addFarm', 'uses' => 'AdminController@addFarm']);
+		Route::get('farms', ['as' => 'admin.farmList', 'uses' => 'AdminController@viewFarmList']);
 	});
 
 	Route::group(['prefix' => 'farm'], function(){
