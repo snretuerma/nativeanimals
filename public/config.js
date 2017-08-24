@@ -1,0 +1,1 @@
+/var/www/html/nativeanimals/resources/assets/js/config.js
