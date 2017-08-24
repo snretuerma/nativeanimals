@@ -22,9 +22,6 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/home',['as' => 'home_path', 'uses' => 'UserController@index']);
 	Route::get('/logout', 'Auth\LoginController@logout');
 
-	Route::get('login/google', 'Auth\LoginController@redirectToProvider');
-	Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
-
 	Route::group(['prefix' => 'admin'], function(){
 		Route::get('/',['as' => 'admin.index', 'uses' => 'AdminController@index']);
 		Route::get('add', ['as' => 'admin.addFarmPage', 'uses' => 'AdminController@getAddFarmPage']);
@@ -39,7 +36,8 @@ Route::group(['middleware' => ['web']], function () {
 	});
 });
 
-
+Route::get('login/google', 'Auth\LoginController@redirectToProvider');
+Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
 
 
 // Route::get('/home', 'HomeController@index')->name('home');

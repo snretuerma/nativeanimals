@@ -26,30 +26,6 @@ class LoginController extends Controller
         logout as performLogout;
     }
 
-        /**
-     * Redirect the user to the Google authentication page.
-     *
-     * @return Response
-     */
-    public function redirectToProvider()
-    {
-        return Socialite::driver('google')->redirect();
-    }
-
-    /**
-     * Obtain the user information from Google.
-     *
-     * @return Response
-     */
-    public function handleProviderCallback()
-    {
-        $user = Socialite::driver('google')->stateless()->user();
-
-        return $user->token;
-    }
-
-
-
     /**
      * Where to redirect users after login.
      *
@@ -73,4 +49,21 @@ class LoginController extends Controller
         return redirect('/');
     }
 
-}
+
+    public function redirectToProvider()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    /**
+     * Obtain the user information from google.
+     *
+     * @return Response
+     */
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('google')->user();
+
+        return $user->token;
+    }
+

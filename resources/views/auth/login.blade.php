@@ -1,10 +1,13 @@
 @extends('layouts.default')
 
+<<<<<<< HEAD
 @section('initScripts')
     
 
 @endsection
 
+=======
+>>>>>>> upstream/master
 @section('title')
     Login - Native Animals PH
 @endsection
@@ -62,6 +65,7 @@
                             <a class="green-text text-darken-4" href="{{ route('password.request') }}">
                                 Forgot Your Password?
                             </a>
+<<<<<<< HEAD
                             <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
 
@@ -69,6 +73,11 @@
                     </div>
                 </form>
 
+=======
+                        </div>
+                    </div>
+                </form>
+>>>>>>> upstream/master
             </div>
         </div>
     </div>
