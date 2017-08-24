@@ -31,5 +31,17 @@ class Farm extends Model
     {
         return $this->morphMany(User::class, 'userable');
     }
+    
+    public function getName()
+    {   
+        $user = User::where('userable_id', '=', $this->id)->where('userable_type', '=', 'App\Models\Farm')->firstOrFail()->name;
+        return $user;
+    }
+
+     public function getEmail()
+    {   
+        $user = User::where('userable_id', '=', $this->id)->where('userable_type', '=', 'App\Models\Farm')->firstOrFail()->email;
+        return $user;
+    }
 
 }

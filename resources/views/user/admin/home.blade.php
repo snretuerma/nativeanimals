@@ -14,6 +14,10 @@
             <div class="buttons">
               <a onclick="addDetails()" class="btn green waves-effect">Add farm</a><br>
             </div>
+
+            <div>
+              <a href="{{route('admin.farmList')}}" class="btn green waves-effect">View Farms</a><br>
+            </div>
           </div>
         </div>
         <div id="farmdetails" style="display:none;">
@@ -57,12 +61,20 @@
                   </div>
                 </div>
                 <div class="col s6 offset-s3 center">
-        					<button class="btn waves-effect waves-light green darken-4" type="submit" name="action">Add<i class="material-icons right">add</i>
-        					</button>
+					<button class="btn waves-effect waves-light" type="submit" name="action">Add<i class="material-icons right">add</i>
+					</button>
                 </div>
               </div>
             </div>
           </form>
         </div>
       </div>
+@endsection
+
+@section('scripts')
+  @if(Session::has('alert-added'))
+      <script type="text/javascript">
+           Materialize.toast('Farm Added', 4000)
+      </script>
+  @endif
 @endsection
