@@ -7,6 +7,7 @@
 
 	    <!-- CSRF Token -->
 	    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	    <link type="text/css" rel="stylesheet" href="{{asset('materialize/css/materialize.min.css')}}"  media="screen,projection"/>
 	    <link type="text/css" rel="stylesheet" href="{{asset('materialize/css/materialize-social.css')}}"  media="screen,projection"/>
@@ -24,13 +25,15 @@
           <a href="{{ url('/') }}" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             @if (Auth::check())
-            	<li><a href="{{url('/home')}}">{{ Auth::user()->name }}</a> </li>
-                <li><a href="{{ url('/home') }}">Home</a></li>
-            	<li><a href="{{ url('logout') }}">Logout</a></li>
-	            
-	            {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-	                {{ csrf_field() }}
-	            </form> --}}
+            	@if(Auth::user()->userable_type == 'App\Models\Farm')
+					{{-- <li><a href="{{url('/home')}}">{{ Auth::user()->name }}</a> </li>
+	                <li><a href="{{ url('/home') }}">Home</a></li> --}}
+	            	<li><a href="{{ url('logout') }}">Logout</a></li>
+				@elseif(Auth::user()->userable_type == 'App\Models\Administrator')
+					<li><a href="{{url('/home')}}">{{ Auth::user()->name }}</a> </li>
+	                <li><a href="{{ url('/home') }}">Home</a></li>
+	            	<li><a href="{{ url('logout') }}">Logout</a></li>
+            	@endif     	
 	        @else
                 <li><a href="{{ url('/login') }}">Login</a></li>
                 <li><a href="{{ url('/register') }}">Register</a></li>

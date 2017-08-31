@@ -51,7 +51,7 @@
                     </div>
 
                     <div class="row center">
-                        <a class="waves-effect waves-light btn social google">
+                        <a href="{{route('login.google')}}" class="waves-effect waves-light btn social google">
                         <i class="fa fa-google"></i> Sign in with google</a>
                     </div>
                 
@@ -73,7 +73,7 @@
                             </a>
                         </div>
                     </div>
-                </form>
+                </form> 
             </div>
         </div>
     </div>

@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
+use Auth;   
 
 
 class LoginController extends Controller
@@ -62,9 +63,28 @@ class LoginController extends Controller
      */
     public function handleProviderCallback()
     {
-        $user = Socialite::driver('google')->user();
+        $user = Socialite::driver('google')->stateless()->user();
+       
+        $email = $user->getEmail();
+        
+        $admins = User::where('userable_type', 'App\Models\Administrator')->get();
+        $farms = User::where('userable_type', 'App\Models\Farm')->get();
+        foreach ($admins as $admin) {
+            if($admin->email === $email){
+                Auth::login($admin);
 
-        return $user->name;
+            }
+        }
+
+        foreach ($farms as $farm) {
+            if($farm->email === $email){
+                Auth::login($farm);
+
+            }
+        }
+
+        return redirect('/');
+        
     }
-
 }
+
