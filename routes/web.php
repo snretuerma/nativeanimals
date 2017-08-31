@@ -36,7 +36,7 @@ Route::group(['middleware' => ['web']], function () {
 	});
 });
 
-Route::get('login/google', 'Auth\LoginController@redirectToProvider');
+Route::get('login/google', ['as'=>'login.google', 'uses' => 'Auth\LoginController@redirectToProvider']);
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
 
 

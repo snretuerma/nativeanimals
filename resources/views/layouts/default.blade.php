@@ -10,6 +10,9 @@
 
 	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	    <link type="text/css" rel="stylesheet" href="{{asset('materialize/css/materialize.min.css')}}"  media="screen,projection"/>
+	    <link type="text/css" rel="stylesheet" href="{{asset('materialize/css/materialize-social.css')}}"  media="screen,projection"/>
+	    <link type="text/css" rel="stylesheet" href="{{asset('materialize/css/font-awesome.css')}}"  media="screen,projection"/>
+	   	<script src="https://use.fontawesome.com/62579facae.js"></script>
 	    <link type="text/css" rel="stylesheet" href="{{asset('css/custom.css')}}"  media="screen,projection"/>
 	    @yield('initScripts')
 	<title>@yield('title')</title>

@@ -42,6 +42,20 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col s8 offset-s2">
+                            <div class="strike">
+                                <span>OR</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row center">
+                        <a href="{{route('login.google')}}" class="waves-effect waves-light btn social google">
+                        <i class="fa fa-google"></i> Sign in with google</a>
+                    </div>
+                
+
                     <div class="row form-group">
                         <div class="col s12 center">
                             <input id="rememberme" type="checkbox" class="filled-in" name="remember" {{ old('remember') ? 'checked' : '' }} /><label for="rememberme">Remember Me</label>
