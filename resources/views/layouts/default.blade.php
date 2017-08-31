@@ -7,11 +7,7 @@
 
 	    <!-- CSRF Token -->
 	    <meta name="csrf-token" content="{{ csrf_token() }}">
-<<<<<<< HEAD
-    	<script src="https://apis.google.com/js/platform.js" async defer></script>
-    	<meta name="google-signin-client_id" content="92022811472-85hinv3paf9m1mp7k6aoqqg5mil0knal.apps.googleusercontent.com">	
-=======
->>>>>>> upstream/master
+
 	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	    <link type="text/css" rel="stylesheet" href="{{asset('materialize/css/materialize.min.css')}}"  media="screen,projection"/>
 	    <link type="text/css" rel="stylesheet" href="{{asset('css/custom.css')}}"  media="screen,projection"/>
@@ -26,8 +22,6 @@
           <a href="{{ url('/') }}" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             @if (Auth::check())
-<<<<<<< HEAD
-            	
             	@if(Auth::user()->userable_type == 'App\Models\Farm')
 					{{-- <li><a href="{{url('/home')}}">{{ Auth::user()->name }}</a> </li>
 	                <li><a href="{{ url('/home') }}">Home</a></li> --}}
@@ -36,17 +30,7 @@
 					<li><a href="{{url('/home')}}">{{ Auth::user()->name }}</a> </li>
 	                <li><a href="{{ url('/home') }}">Home</a></li>
 	            	<li><a href="{{ url('logout') }}">Logout</a></li>
-            	@endif
-            	
-=======
-            	<li><a href="{{url('/home')}}">{{ Auth::user()->name }}</a> </li>
-                <li><a href="{{ url('/home') }}">Home</a></li>
-            	<li><a href="{{ url('logout') }}">Logout</a></li>
-	            
-	            {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-	                {{ csrf_field() }}
-	            </form> --}}
->>>>>>> upstream/master
+            	@endif     	
 	        @else
                 <li><a href="{{ url('/login') }}">Login</a></li>
                 <li><a href="{{ url('/register') }}">Register</a></li>
