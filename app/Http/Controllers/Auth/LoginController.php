@@ -64,7 +64,21 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('google')->user();
 
-        return $user->name;
+        $email = $user->getEmail();
+        
+        $admins = User::where('userable_type', 'App\Models\Administrator')->get();
+        $farms = User::where('userable_type', 'App\Models\Farm')->get();
+        foreach ($admins as $admin) {
+            if($admin->email === $email){
+                Auth::login($admin);
+            }
+        }
+        foreach ($farms as $farm) {
+            if($farm->email === $email){
+                Auth::login($farm);
+            }
+        }
+        return redirect('/');
     }
 
 }
