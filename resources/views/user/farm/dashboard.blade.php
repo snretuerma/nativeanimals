@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.farm')
 
 @section('title')
 	Native Animals PH | Home
@@ -14,7 +14,7 @@
 =======
 
 <div class="row">
-	<div class="col s10 offset-s1 center">
+	<div class="col s10 center">
 		<h3>Welcome, {{ Auth::user()->name }}!</h3>
 
 		

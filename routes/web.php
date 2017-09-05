@@ -31,7 +31,7 @@ Route::group(['middleware' => ['web']], function () {
 
 	Route::group(['prefix' => 'farm'], function(){
 		Route::get('/',['as' => 'farm.index', 'uses' => 'FarmController@index']);
-		Route::post('/authenticate',['as' => 'farm.confirmAuthenticationCode', 'uses' => 'FarmController@authenticateUser']);
+		// Route::post('/',['as' => 'farm.confirmAuthenticationCode', 'uses' => 'FarmController@authenticateUser']);
 		
 	});
 });

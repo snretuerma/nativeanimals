@@ -1,14 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
-use Auth;   
-
+use Auth;
 
 class LoginController extends Controller
 {
@@ -22,23 +20,22 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
     use AuthenticatesUsers{
         logout as performLogout;
     }
-
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
 
+    protected $redirectTo = '/home';
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -50,17 +47,16 @@ class LoginController extends Controller
         return redirect('/');
     }
 
-
     public function redirectToProvider()
     {
         return Socialite::driver('google')->redirect();
     }
-
     /**
      * Obtain the user information from google.
      *
      * @return Response
      */
+    
     public function handleProviderCallback()
     {
         $user = Socialite::driver('google')->stateless()->user();
@@ -72,19 +68,14 @@ class LoginController extends Controller
         foreach ($admins as $admin) {
             if($admin->email === $email){
                 Auth::login($admin);
-
             }
         }
-
         foreach ($farms as $farm) {
             if($farm->email === $email){
                 Auth::login($farm);
-
             }
         }
-
         return redirect('/');
         
     }
 }
-

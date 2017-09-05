@@ -1,26 +1,26 @@
-@extends('layouts.default')
+@extends('layouts.farm')
 
 @section('title')
-	Native Animals PH | Authenticate
+	Native Animals PH | Home
 @endsection
 
 @section('content')
-	<div class="row">
-		<div class="col s12 m12 l12">
-			<div class="card-panel center">
-				<h4>Authentication Code</h4>
-				<form method="POST" action="{{route('farm.confirmAuthenticationCode')}}">
-					{{ csrf_field() }}
-					<div class="row">
-						<div class="input-field col s12 m8 l6 offset-l3 offset-m2">
-							<i class="material-icons prefix">vpn_key</i>
-							<input id="auth_code" type="password" class="validate" name="auth_code">
-							<label for="auth_code">Authentication Code</label>
-						</div>
-					</div>
-					<button class="btn waves-effect waves-light" type="submit" name="action">Authenticate</button>
-				</form>
-			</div>
-		</div>
+
+<div class="row">
+	<div class="col s10 center">
+		<h3>Welcome, {{ Auth::user()->name }}!</h3>
+
+		<div class="row center">
+			<div class="col s4 card-panel">
+				<img src="images/pigbody.png" height="90" width="90" />
+		        <a href="#!" class="btn btn-flat waves-effect waves-light">Pigs</a>
+		    </div>
+		    <div class="col s4 card-panel">
+				<img src="images/duckbody.png" height="90" width="90" />
+		        <a href="#!" class="btn btn-flat waves-effect waves-light">Ducks</a>
+		    </div>
+        </div>
+
 	</div>
+</div>
 @endsection
