@@ -13,26 +13,41 @@
 	    <link type="text/css" rel="stylesheet" href="{{asset('materialize/css/font-awesome.css')}}"  media="screen,projection"/>
 	   	<script src="https://use.fontawesome.com/62579facae.js"></script>
 	    <link type="text/css" rel="stylesheet" href="{{asset('css/custom.css')}}"  media="screen,projection"/>
+	    <link type="text/css" rel="stylesheet" href="{{asset('css/farm.css')}}"  media="screen,projection"/>
 	    @yield('initScripts')
 	<title>@yield('title')</title>
 </head>
 <body @yield('page-id')>
 	<div class="navbar-fixed">
       <nav class="green darken-4">
+      	<div id="slide-out" class="side-nav green darken-4 fixed">
+          <img src="images/farmicon.png" height="80" style="float:left;"/>
+          <h3 class="center">{{ Auth::user()->name }}</h3>
+          <div class="collection">
+            <a href="{{url('/home')}}" class="white-text indent">Home</a>
+            <ul class="collapsible green darken-4" data-collapsible="expandable">
+              <li>
+                <div class="collapsible-header active">Dashboard</div>
+                <div class="collapsible-body green lighten-1">
+                  <div class="collection green darken-4" style="text-align:right;">
+                    <a href="#!" class="white-text">Farm Details</a>
+                    <a href="#!" class="white-text">Individual Records</a>
+                    <a href="#!" class="white-text">Open Records</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <a href="{{ url('logout') }}" class="white-text indent">Logout</a>
+          </div>
+        </div>
         <div class="nav-wrapper container">
           <a href="{{ url('/') }}" class="brand-logo"><img src="{{asset('images/pig.png')}}" height="60" width="60" /><img src="{{asset('images/chicken.png')}}" height="60" width="60" / ></a>
           <a href="{{ url('/') }}" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             @if (Auth::check())
-            	@if(Auth::user()->userable_type == 'App\Models\Farm')
-					<li><a href="{{url('/home')}}">{{ Auth::user()->name }}</a> </li>
-	                <li><a href="{{ url('/home') }}">Home</a></li>
-	            	<li><a href="{{ url('logout') }}">Logout</a></li>
-				@elseif(Auth::user()->userable_type == 'App\Models\Administrator')
-					<li><a href="{{url('/home')}}">{{ Auth::user()->name }}</a> </li>
-	                <li><a href="{{ url('/home') }}">Home</a></li>
-	            	<li><a href="{{ url('logout') }}">Logout</a></li>
-            	@endif     	
+				<li><a href="{{url('/home')}}">{{ Auth::user()->name }}</a> </li>
+	            <li><a href="{{ url('/home') }}">Home</a></li>
+	            <li><a href="{{ url('logout') }}">Logout</a></li>     	
 	        @else
                 <li><a href="{{ url('/login') }}">Login</a></li>
                 <li><a href="{{ url('/register') }}">Register</a></li>
