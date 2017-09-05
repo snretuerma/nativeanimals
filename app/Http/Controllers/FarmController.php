@@ -28,16 +28,16 @@ class FarmController extends Controller
   	return view('user.farm.home');
   }
 
-  public function authenticateUser(Request $request)
-  {	
-  	$auth_code = Farm::find($this->user->userable_id)->auth_code;
+  // public function authenticateUser(Request $request)
+  // {	
+  // 	$auth_code = Farm::find($this->user->userable_id)->auth_code;
   	
-  	if($auth_code == $request->auth_code){
-  		return view('user.farm.dashboard');
-  	}else{
-  		return back();
-  	}
-  }
+  // 	if($auth_code == $request->auth_code){
+  // 		return view('user.farm.dashboard');
+  // 	}else{
+  // 		return back();
+  // 	}
+  // }
 
   public function authenticatedIndex()
   {
