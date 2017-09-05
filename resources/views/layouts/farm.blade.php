@@ -30,7 +30,7 @@
                 <div class="collapsible-header active">Dashboard</div>
                 <div class="collapsible-body green lighten-1">
                   <div class="collection green darken-4" style="text-align:right;">
-                    <a href="#!" class="white-text">Farm Details</a>
+					<a href="#!" class="white-text">Farm Details</a>
                     <a href="#!" class="white-text">Individual Records</a>
                     <a href="#!" class="white-text">Open Records</a>
                   </div>
