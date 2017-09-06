@@ -21,13 +21,13 @@
 	<div class="navbar-fixed">
       <nav class="green darken-4">
         <div class="nav-wrapper container">
-          <a href="{{ url('/') }}" class="brand-logo"><img src="{{asset('images/pig.png')}}" height="60" width="60" /><img src="{{asset('images/chicken.png')}}" height="60" width="60" / ></a>
+          <a href="{{ url('/') }}" class="brand-logo indent"><img src="{{asset('images/logo1.png')}}" height="65"/></a>
           <a href="{{ url('/') }}" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             @if (Auth::check())
             	@if(Auth::user()->userable_type == 'App\Models\Farm')
-					{{-- <li><a href="{{url('/home')}}">{{ Auth::user()->name }}</a> </li>
-	                <li><a href="{{ url('/home') }}">Home</a></li> --}}
+					<li><a href="{{url('/home')}}">{{ Auth::user()->name }}</a> </li>
+	                <li><a href="{{ url('/home') }}">Home</a></li>
 	            	<li><a href="{{ url('logout') }}">Logout</a></li>
 				@elseif(Auth::user()->userable_type == 'App\Models\Administrator')
 					<li><a href="{{url('/home')}}">{{ Auth::user()->name }}</a> </li>
@@ -39,14 +39,6 @@
                 <li><a href="{{ url('/register') }}">Register</a></li>
             @endif
           </ul>
-          {{-- <ul class="side-nav" id="mobile-demo">
-            @if (Auth::check())
-                <a href="{{ url('/home') }}">Home</a>
-            @else
-                <a href="{{ url('/login') }}">Login</a>
-                <a href="{{ url('/register') }}">Register</a>
-            @endif
-          </ul> --}}
         </div>
       </nav>
     </div>
