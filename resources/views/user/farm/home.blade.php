@@ -12,11 +12,11 @@
 
 		<div class="row center">
 			<div class="col s4 card-panel">
-				<img src="images/pigbody.png" height="90" width="90" />
+				<img src="images/pigbody.png" height="90" width="90" /><br>
 		        <a href="#!" class="btn btn-flat waves-effect waves-light">Pigs</a>
 		    </div>
 		    <div class="col s4 card-panel">
-				<img src="images/duckbody.png" height="90" width="90" />
+				<img src="images/duckbody.png" height="90" width="90" /><br>
 		        <a href="#!" class="btn btn-flat waves-effect waves-light">Ducks</a>
 		    </div>
         </div>
