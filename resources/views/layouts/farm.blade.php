@@ -32,7 +32,7 @@
                   <div class="collection green darken-4" style="text-align:right;">
 					<a href="#!" class="white-text">Farm Details</a>
                     <a href="#!" class="white-text">Individual Records</a>
-                    <a href="#!" class="white-text">Open Records</a>
+                    <a href="#!" class="white-text">Open Reports</a>
                   </div>
                 </div>
               </li>
@@ -41,7 +41,7 @@
           </div>
         </div>
         <div class="nav-wrapper container">
-          <a href="{{ url('/') }}" class="brand-logo"><img src="{{asset('images/pig.png')}}" height="60" width="60" /><img src="{{asset('images/chicken.png')}}" height="60" width="60" / ></a>
+          <a href="{{ url('/') }}" class="brand-logo"><img src="{{asset('images/logo1.png')}}" height="65" /></a>
           <a href="{{ url('/') }}" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             @if (Auth::check())
@@ -52,7 +52,7 @@
                 <li><a href="{{ url('/login') }}">Login</a></li>
                 <li><a href="{{ url('/register') }}">Register</a></li>
             @endif
-          </ul>
+          </ul> 
         </div>
       </nav>
     </div>

@@ -1,1 +1,1 @@
-/var/www/html/nativeanimals/resources/assets/js/config.js
+/home/laubs/Desktop/nativeanimals/resources/assets/js/config.js

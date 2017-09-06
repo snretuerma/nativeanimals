@@ -21,7 +21,7 @@
 	<div class="navbar-fixed">
       <nav class="green darken-4">
         <div class="nav-wrapper container">
-          <a href="{{ url('/') }}" class="brand-logo"><img src="{{asset('images/pig.png')}}" height="60" width="60" /><img src="{{asset('images/chicken.png')}}" height="60" width="60" / ></a>
+          <a href="{{ url('/') }}" class="brand-logo indent"><img src="{{asset('images/logo1.png')}}" height="65"/></a>
           <a href="{{ url('/') }}" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             @if (Auth::check())
