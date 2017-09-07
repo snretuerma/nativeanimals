@@ -1,5 +1,9 @@
 @extends('layouts.default')
 
+@section('title')
+    Native Animals PH
+@endsection
+
 @section('content')
 <div class="fullscreen slider">
     <ul class="slides">

@@ -39,6 +39,16 @@ class FarmController extends Controller
   // 	}
   // }
 
+  public function getFarmDetailsPage()
+  {
+    return view('user.farm.farmDetails');
+  }
+
+  public function getPigRecords()
+  {
+    return view('user.farm.pigRecord');
+  }
+
   public function authenticatedIndex()
   {
 
