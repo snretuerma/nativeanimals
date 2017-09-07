@@ -32,7 +32,11 @@ Route::group(['middleware' => ['web']], function () {
 	Route::group(['prefix' => 'farm'], function(){
 		Route::get('/',['as' => 'farm.index', 'uses' => 'FarmController@index']);
 		// Route::post('/',['as' => 'farm.confirmAuthenticationCode', 'uses' => 'FarmController@authenticateUser']);
-		
+		Route::get('details', ['as' => 'farm.details', 'uses' => 'FarmController@getFarmDetailsPage']);
+		Route::get('pigrecords', ['as' => 'farm.pigrecords', 'uses' => 'FarmController@getPigRecords']);
+		Route::get('addsow', ['as' => 'farm.addsow', 'uses' => 'FarmController@getAddSowPage']);
+		Route::get('addboar', ['as' => 'farm.addboar', 'uses' => 'FarmController@getAddBoarPage']);
+		Route::get('editrecord', ['as' => 'farm.editrecord', 'uses' => 'FarmController@getEditRecord']);
 	});
 });
 

@@ -77,3 +77,16 @@ main {
     left: 100%;
     margin-left: 15px;
 }
+
+.library > img {
+  margin-top: 30px; 
+  border: 1px solid black;
+}
+
+.library > a {
+  margin-bottom: 20px;
+}
+
+.pagination li.active {
+  background-color: #1B5E20;
+}
