@@ -49,6 +49,21 @@ class FarmController extends Controller
     return view('user.farm.pigRecord');
   }
 
+  public function getAddSowPage()
+  {
+    return view('user.farm.addSow');
+  }
+
+  public function getAddBoarPage()
+  {
+    return view('user.farm.addBoar');
+  }
+
+  public function getEditRecord()
+  {
+    return view('user.farm.editRecord');
+  }
+
   public function authenticatedIndex()
   {
 

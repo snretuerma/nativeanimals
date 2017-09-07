@@ -19,8 +19,8 @@
                 <img src="{{asset('images/sow.jpg')}}" height="200" width="200" style="border:1px solid black" />
                 <div class="overlay"></div>
                 <div class="buttons">
-                  <a href="#!" class="btn-floating waves-effect waves-light green"><i class="material-icons">add</i></a>
-                  <a class="btn-floating waves-effect waves-light yellow"><i class="material-icons">edit</i></a>
+                  <a href="{{ route('farm.addsow') }}" class="btn-floating waves-effect waves-light green"><i class="material-icons">add</i></a>
+                  <a href="{{ route('farm.editrecord') }}" class="btn-floating waves-effect waves-light yellow"><i class="material-icons">edit</i></a>
                 </div>
               </div>
               <h5 class="center">Sow</h5>
@@ -30,8 +30,8 @@
                 <img src="{{asset('images/boar.jpg')}}" height="200" width="200" style="border:1px solid black" />
                 <div class="overlay"></div>
                 <div class="buttons">
-                  <a href="#!" class="btn-floating waves-effect waves-light green"><i class="material-icons">add</i></a>
-                  <a class="btn-floating waves-effect waves-light yellow"><i class="material-icons">edit</i></a>
+                  <a href="{{ route('farm.addboar') }}" class="btn-floating waves-effect waves-light green"><i class="material-icons">add</i></a>
+                  <a href="{{ route('farm.editrecord') }}" class="btn-floating waves-effect waves-light yellow"><i class="material-icons">edit</i></a>
                 </div>
               </div>
               <h5 class="center">Boar</h5>
