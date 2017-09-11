@@ -32,7 +32,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::group(['prefix' => 'farm'], function(){
 		Route::get('/',['as' => 'farm.index', 'uses' => 'FarmController@index']);
 		// Route::post('/',['as' => 'farm.confirmAuthenticationCode', 'uses' => 'FarmController@authenticateUser']);
-		
+		Route::get('details',['as' => 'farm.duckdetails', 'uses' => 'FarmController@getDuckIndividualRecord']);
+		Route::get('family_details',['as' => 'farm.duckfamilydetails', 'uses' => 'FarmController@getDuckFamilyRecord']);
 	});
 });
 

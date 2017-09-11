@@ -31,7 +31,8 @@
                 <div class="collapsible-body green lighten-1">
                   <div class="collection green darken-4" style="text-align:right;">
 					<a href="#!" class="white-text">Farm Details</a>
-                    <a href="#!" class="white-text">Individual Records</a>
+                    <a href="{{ route('farm.duckdetails') }}" class="white-text">Individual Records</a>
+                    <a href="{{ route('farm.duckfamilydetails') }}" class="white-text">Family Records</a>
                     <a href="#!" class="white-text">Open Reports</a>
                   </div>
                 </div>

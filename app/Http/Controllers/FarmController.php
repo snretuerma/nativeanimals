@@ -39,8 +39,13 @@ class FarmController extends Controller
   // 	}
   // }
 
-  public function authenticatedIndex()
+  public function getDuckIndividualRecord()
   {
+    return view('user.farm.duckindividualrecord');
+  }
 
+  public function getDuckFamilyRecord()
+  {
+    return view('user.farm.duckfamilyrecord');
   }
 }
