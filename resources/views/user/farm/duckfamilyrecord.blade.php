@@ -13,6 +13,29 @@
 		<div class="col s12 m12 l12 xl12">
 			<h4>Family Record</h4>
 			<div class="row">
+				<div class="col s12 m12 l12">
+					<div class="row">
+						<div class="col s12 m12 l12">
+							<ul class="collapsible" data-collapsible="accordion">
+								<li>
+									<div class="collapsible-header"><h5>Family #</h5></div>
+									<div class="collapsible-body">
+											<ul class="collection">
+												<li class="collection-item">Generation</li>
+												<li class="collection-item">Pen No.</li>
+												<li class="collection-item">Drakes ID No.</li>
+												<li class="collection-item">Ducks ID No.</li>
+												<li class="collection-item">Birthdate</li>
+											</ul>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
 				<div class="col s12">
 					<ul class="tabs">
 						<li class="tab col s4"><a href="#eggproduction">Egg Production</a></li>
@@ -25,23 +48,7 @@
 					<div class="row">
 						<div class="col s12 m12 l12">
 							<div class="row">
-								<div class="col s12 m4 l4">
-									<div class="row">
-										<div class="col s12 m12 l12">
-											
-											<ul class="collection with-header">
-												<li class="collection-header"><h4>Family #</h4></li>
-												<li class="collection-item">Generation</li>
-												<li class="collection-item">Pen No.</li>
-												<li class="collection-item">Drakes ID No.</li>
-												<li class="collection-item">Ducks ID No.</li>
-												<li class="collection-item">Birthdate</li>
-											</ul>
-											
-										</div>
-									</div>
-								</div>
-								<div class="col s12 m8 l8">
+								<div class="col s12 m12 l12">
 									<div class="row">
 										<div class="col s12 m12 l12">
 											<h4>Weekly Data</h4>
