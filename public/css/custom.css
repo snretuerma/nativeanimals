@@ -80,7 +80,6 @@ main {
 
 .library > img {
   margin-top: 30px; 
-  border: 1px solid black;
 }
 
 .library > a {
@@ -88,5 +87,29 @@ main {
 }
 
 .pagination li.active {
-  background-color: #1B5E20;
+  background-color: #009688;
+}
+
+.farmtypes > a {
+  margin-bottom: 20px;
+}
+
+.tabs .indicator {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  background-color: #009688;
+  will-change: left, right;
+}
+
+.picker__date-display, .picker__weekday-display{
+  background-color: #009688;
+}
+
+div.picker__day.picker__day--infocus.picker__day--selected.picker__day--highlighted {
+  background-color: #009688;
+}
+
+button.picker__today, button.picker__close {
+  color: #009688;
 }

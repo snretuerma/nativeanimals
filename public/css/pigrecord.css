@@ -34,17 +34,17 @@ label {
 }
 
 .tabs .indicator {
-  background-color: #1b5e20 !important;
+  background-color: #009688 !important;
 }
 
 .picker__date-display, .picker__weekday-display{
-  background-color: #1b5e20;
+  background-color: #009688;
 }
 
 div.picker__day.picker__day--infocus.picker__day--selected.picker__day--highlighted {
-  background-color: #1b5e20;
+  background-color: #009688;
 }
 
 button.picker__today, button.picker__close {
-  color: #1b5e20;
+  color: #009688;
 }

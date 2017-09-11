@@ -8,7 +8,7 @@
 	    <!-- CSRF Token -->
 	    <meta name="csrf-token" content="{{ csrf_token() }}">
 	    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	    <link type="text/css" rel="stylesheet" href="{{asset('materialize/css/materialize.min.css')}}"  media="screen,projection"/>
+	    <link type="text/css" rel="stylesheet" href="{{asset('materialize/css/materialize.css')}}"  media="screen,projection"/>
 	    <link type="text/css" rel="stylesheet" href="{{asset('materialize/css/materialize-social.css')}}"  media="screen,projection"/>
 	    <link type="text/css" rel="stylesheet" href="{{asset('materialize/css/font-awesome.css')}}"  media="screen,projection"/>
 	   	<script src="https://use.fontawesome.com/62579facae.js"></script>
@@ -19,17 +19,17 @@
 </head>
 <body @yield('page-id')>
 	<div class="navbar-fixed">
-      <nav class="green darken-4">
-      	<div id="slide-out" class="side-nav green darken-4 fixed">
+      <nav class="blue-grey">
+      	<div id="slide-out" class="side-nav blue-grey fixed">
           <img src="{{asset('images/farmicon.png')}}" height="80" style="float:left;"/>
           <h3 class="center">{{ Auth::user()->name }}</h3>
           <div class="collection">
             <a href="{{url('/home')}}" class="white-text indent">Home</a>
-            <ul class="collapsible green darken-4" data-collapsible="expandable">
+            <ul class="collapsible blue-grey" data-collapsible="expandable">
               <li>
                 <div class="collapsible-header active">Dashboard</div>
                 <div class="collapsible-body green lighten-1">
-                  <div class="collection green darken-4" style="text-align:right;">
+                  <div class="collection blue-grey" style="text-align:right;">
 					<a href="{{ route('farm.details') }}" class="white-text">Farm Details</a>
                     <a href="{{ route('farm.pigrecords') }}" class="white-text">Records</a>
                     <a href="#!" class="white-text">Open Reports</a>
@@ -69,7 +69,7 @@
 	</main>
 	
 	
-	<footer class="page-footer green darken-4">
+	<footer class="page-footer blue-grey">
 		<div class="container">
 			<div class="row">
 				<div class="col l6 s12">

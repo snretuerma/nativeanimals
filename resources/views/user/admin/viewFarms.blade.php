@@ -13,8 +13,8 @@
       <div class="row">
         <div class="col s4 offset-s4">
           <ul class="tabs">
-            <li class="tab col s6"><a href="#grid"><i class="material-icons green-text text-darken-4">view_module</i></a></li>
-            <li class="tab col s6"><a href="#list"><i class="material-icons green-text text-darken-4">list</i></a></li>
+            <li class="tab col s6"><a href="#grid"><i class="material-icons teal-text">view_module</i></a></li>
+            <li class="tab col s6"><a href="#list"><i class="material-icons teal-text">list</i></a></li>
           </ul>
         </div>
         <div id="grid" class="col s12">

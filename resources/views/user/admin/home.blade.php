@@ -12,11 +12,11 @@
             <img src="images/farm.png" height="40%" width="40%"/>
             <div class="overlay"></div>
             <div class="buttons">
-              <a onclick="addDetails()" class="btn green waves-effect">Add farm</a><br>
+              <a onclick="addDetails()" class="btn teal waves-effect">Add farm</a><br>
             </div>
 
             <div>
-              <a href="{{route('admin.farmList')}}" class="btn green waves-effect">View Farms</a><br>
+              <a href="{{route('admin.farmList')}}" class="btn teal waves-effect">View Farms</a><br>
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@
                   </div>
                 </div>
                 <div class="col s6 offset-s3 center">
-					<button class="btn waves-effect waves-light" type="submit" name="action">Add<i class="material-icons right">add</i>
+					<button class="btn waves-effect waves-light teal" type="submit" name="action">Add<i class="material-icons right">add</i>
 					</button>
                 </div>
               </div>

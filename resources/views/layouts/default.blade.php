@@ -19,7 +19,7 @@
 </head>
 <body @yield('page-id')>
 	<div class="navbar-fixed">
-      <nav class="green darken-4">
+      <nav class="blue-grey">
         <div class="nav-wrapper container">
           <a href="{{ url('/') }}" class="brand-logo indent"><img src="{{asset('images/logo1.png')}}" height="65"/></a>
           <a href="{{ url('/') }}" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -55,7 +55,7 @@
 	</main>
 	
 	
-	<footer class="page-footer green darken-4">
+	<footer class="page-footer blue-grey">
 		<div class="container">
 			<div class="row">
 				<div class="col l6 s12">
