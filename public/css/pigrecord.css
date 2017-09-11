@@ -1,0 +1,50 @@
+.imgoverlay {
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  transition: background 0.5s ease;
+}
+
+.imgoverlay:hover .overlay {
+  display: block;
+}
+
+.buttons {
+  position: absolute;
+  left: 33%;
+  top: 37%;
+  text-align: center;
+  opacity: 0;
+  transition: opacity .35s ease;
+  z-index: 1;
+}
+
+.imgoverlay:hover .buttons {
+  opacity: 1;
+}
+
+.collapsible-body {
+  background: #4caf50;
+}
+
+label {
+  color: black;
+}
+
+.tabs .indicator {
+  background-color: #1b5e20 !important;
+}
+
+.picker__date-display, .picker__weekday-display{
+  background-color: #1b5e20;
+}
+
+div.picker__day.picker__day--infocus.picker__day--selected.picker__day--highlighted {
+  background-color: #1b5e20;
+}
+
+button.picker__today, button.picker__close {
+  color: #1b5e20;
+}

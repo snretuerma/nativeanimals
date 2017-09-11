@@ -21,7 +21,7 @@
 	<div class="navbar-fixed">
       <nav class="green darken-4">
       	<div id="slide-out" class="side-nav green darken-4 fixed">
-          <img src="images/farmicon.png" height="80" style="float:left;"/>
+          <img src="{{asset('images/farmicon.png')}}" height="80" style="float:left;"/>
           <h3 class="center">{{ Auth::user()->name }}</h3>
           <div class="collection">
             <a href="{{url('/home')}}" class="white-text indent">Home</a>
@@ -30,9 +30,10 @@
                 <div class="collapsible-header active">Dashboard</div>
                 <div class="collapsible-body green lighten-1">
                   <div class="collection green darken-4" style="text-align:right;">
-					<a href="#!" class="white-text">Farm Details</a>
+					<a href="{{ route('farm.details') }}" class="white-text">Farm Details</a>
                     <a href="{{ route('farm.duckdetails') }}" class="white-text">Individual Records</a>
                     <a href="{{ route('farm.duckfamilydetails') }}" class="white-text">Family Records</a>
+                    <a href="{{ route('farm.pigrecords') }}" class="white-text">Records</a>
                     <a href="#!" class="white-text">Open Reports</a>
                   </div>
                 </div>

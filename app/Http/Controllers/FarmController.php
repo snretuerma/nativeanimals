@@ -39,7 +39,37 @@ class FarmController extends Controller
   // 	}
   // }
 
-  public function getDuckIndividualRecord()
+  public function getDuckIndividualRecord(){
+    return view('user.farm.duckindividualrecord');
+  }
+
+  public function getFarmDetailsPage()
+  {
+    return view('user.farm.farmDetails');
+  }
+
+  public function getPigRecords()
+  {
+    return view('user.farm.pigRecord');
+  }
+
+  public function getAddSowPage()
+  {
+    return view('user.farm.addSow');
+  }
+
+  public function getAddBoarPage()
+  {
+    return view('user.farm.addBoar');
+  }
+
+  public function getEditRecord()
+  {
+    return view('user.farm.editRecord');
+  }
+
+  public function authenticatedIndex()
+
   {
     return view('user.farm.duckindividualrecord');
   }
