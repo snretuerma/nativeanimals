@@ -64,11 +64,11 @@
 
                     <div class="form-group">
                         <div class="col s12">
-                            <button type="submit" class="btn waves-effect waves-light green darken-4">
+                            <button type="submit" class="btn waves-effect waves-light teal">
                                 Login
                             </button>
 
-                            <a class="green-text text-darken-4" href="{{ route('password.request') }}">
+                            <a class="teal-text" href="{{ route('password.request') }}">
                                 Forgot Your Password?
                             </a>
                         </div>

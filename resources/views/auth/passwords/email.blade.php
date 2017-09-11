@@ -36,7 +36,7 @@
 
                     <div class="row form-group">
                         <div class="col s12 center">
-                            <button type="submit" class="btn waves-effect waves-light green darken-4">
+                            <button type="submit" class="btn waves-effect waves-light teal">
                                 Send Password Reset Link
                             </button>
                         </div>
@@ -46,8 +46,4 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
 @endsection
-=======
-@endsection
->>>>>>> upstream/master

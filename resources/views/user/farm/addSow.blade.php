@@ -230,7 +230,7 @@
                 </div>
                 <div class="row">
                   <div class="col s3 offset-s4">
-                    <a href="#!" class="btn waves-effect waves-light green darken-4"><i class="material-icons left">save</i>Save</a>
+                    <a href="#!" class="btn waves-effect waves-light teal"><i class="material-icons left">save</i>Save</a>
                   </div>
                 </div>
               </form>
@@ -328,7 +328,7 @@
                 </div>
                 <div class="row">
                   <div class="col s3 offset-s4">
-                    <a href="#!" class="btn waves-effect waves-light green darken-4"><i class="material-icons left">save</i>Save</a>
+                    <a href="#!" class="btn waves-effect waves-light teal"><i class="material-icons left">save</i>Save</a>
                   </div>
                 </div>
               </form>
@@ -346,19 +346,19 @@
                       <li>
                         <div class="collapsible-header">Date bred</div>
                         <div class="collapsible-body">
-                          <input type="date" placeholder="Pick a date" class="datepicker green" id="datebred" />
+                          <input type="date" placeholder="Pick a date" class="datepicker white" id="datebred" />
                         </div>
                       </li>
                       <li>
                         <div class="collapsible-header">Date Farrowed</div>
                         <div class="collapsible-body">
-                          <input type="date" placeholder="Pick a date" class="datepicker green" id="datefarrowed" />
+                          <input type="date" placeholder="Pick a date" class="datepicker white" id="datefarrowed" />
                         </div>
                       </li>
                       <li>
                         <div class="collapsible-header">Date weaned</div>
                         <div class="collapsible-body">
-                          <input type="date" placeholder="Pick a date" class="datepicker green" id="dateweaned" />
+                          <input type="date" placeholder="Pick a date" class="datepicker white" id="dateweaned" />
                         </div>
                       </li>
                     </ul>
@@ -373,7 +373,7 @@
                 </div>
                 <div class="row">
                   <div class="col s3 offset-s4">
-                    <a href="#!" class="btn waves-effect waves-light green darken-4"><i class="material-icons left">save</i>Save</a>
+                    <a href="#!" class="btn waves-effect waves-light teal"><i class="material-icons left">save</i>Save</a>
                   </div>
                 </div>
               </form>

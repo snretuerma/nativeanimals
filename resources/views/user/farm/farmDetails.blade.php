@@ -66,7 +66,7 @@
                   <label for="emailadd">Email address</label>
                 </div>
                 <div class="file-field input-field col s4">
-                  <div class="btn green darken-4 waves-effect waves-light">
+                  <div class="btn teal waves-effect waves-light">
                     <i class="material-icons left">file_upload</i>Upload
                     <input type="file">
                   </div>
@@ -77,8 +77,8 @@
               </div>
               <div class="row">
                 <div class="col s6 offset-s4">
-                  <a href="#!" class="btn waves-effect waves-light green darken-4"><i class="material-icons left">edit</i>Edit</a>
-                  <a href="#!" class="btn waves-effect waves-light green darken-4"><i class="material-icons left">save</i>Save</a>
+                  <a href="#!" class="btn waves-effect waves-light teal"><i class="material-icons left">edit</i>Edit</a>
+                  <a href="#!" class="btn waves-effect waves-light teal"><i class="material-icons left">save</i>Save</a>
                 </div>
               </div>
             </form>

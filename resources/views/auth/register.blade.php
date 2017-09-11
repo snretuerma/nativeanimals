@@ -65,7 +65,7 @@
 
                     <div class="row form-group">
                         <div class="col s12">
-                            <button type="submit" class="btn waves-effect waves-light green darken-4">
+                            <button type="submit" class="btn waves-effect waves-light teal">
                                 Register
                             </button>
                         </div>

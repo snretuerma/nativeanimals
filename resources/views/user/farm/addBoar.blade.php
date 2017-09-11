@@ -229,7 +229,7 @@
                 </div>
                 <div class="row">
                   <div class="col s3 offset-s4">
-                    <a href="#!" class="btn waves-effect waves-light green darken-4"><i class="material-icons left">save</i>Save</a>
+                    <a href="#!" class="btn waves-effect waves-light teal"><i class="material-icons left">save</i>Save</a>
                   </div>
                 </div>
               </form>
@@ -327,7 +327,7 @@
                 </div>
                 <div class="row">
                   <div class="col s3 offset-s4">
-                    <a href="#!" class="btn waves-effect waves-light green darken-4"><i class="material-icons left">save</i>Save</a>
+                    <a href="#!" class="btn waves-effect waves-light teal"><i class="material-icons left">save</i>Save</a>
                   </div>
                 </div>
               </form>
