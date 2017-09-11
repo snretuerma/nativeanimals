@@ -28,16 +28,6 @@ class FarmController extends Controller
   	return view('user.farm.home');
   }
 
-  // public function authenticateUser(Request $request)
-  // {	
-  // 	$auth_code = Farm::find($this->user->userable_id)->auth_code;
-  	
-  // 	if($auth_code == $request->auth_code){
-  // 		return view('user.farm.dashboard');
-  // 	}else{
-  // 		return back();
-  // 	}
-  // }
 
   public function getDuckIndividualRecord(){
     return view('user.farm.duckindividualrecord');
@@ -69,7 +59,6 @@ class FarmController extends Controller
   }
 
   public function authenticatedIndex()
-
   {
     return view('user.farm.duckindividualrecord');
   }
