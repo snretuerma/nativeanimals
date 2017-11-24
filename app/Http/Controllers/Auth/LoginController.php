@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Laravel\Socialite\Facades\Socialite;
 use Auth;
+use Socialite;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -20,62 +20,69 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-    use AuthenticatesUsers{
-        logout as performLogout;
-    }
+
+    use AuthenticatesUsers;
+
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-
     protected $redirectTo = '/home';
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
 
-    public function logout(Request $request)
-    {
-        $this->performLogout($request);
-        return redirect('/');
-    }
-
+    /**
+     * Redirect the user to the Google authentication page.
+     *
+     * @return Response
+     */
     public function redirectToProvider()
     {
         return Socialite::driver('google')->redirect();
     }
+
     /**
-     * Obtain the user information from google.
+     * Obtain the user information from Google.
      *
      * @return Response
      */
-    
     public function handleProviderCallback()
     {
         $user = Socialite::driver('google')->stateless()->user();
-       
-        $email = $user->getEmail();
-        
-        $admins = User::where('userable_type', 'App\Models\Administrator')->get();
-        $farms = User::where('userable_type', 'App\Models\Farm')->get();
-        foreach ($admins as $admin) {
-            if($admin->email === $email){
-                Auth::login($admin);
-            }
+        $findUser = User::where('email', $user->email)->first();
+        Auth::login($findUser, false);
+        if(!is_null($findUser)){
+          if($findUser->isadmin){
+            return redirect()->action('AdminController@index');
+          }else{
+            return redirect()->action('FarmController@index');
+          }
         }
-        foreach ($farms as $farm) {
-            if($farm->email === $email){
-                Auth::login($farm);
-            }
-        }
-        return redirect('/');
-        
+        // if(!is_null($findUser)){
+        //   if($findUser->isadmin){
+        //     dd("Admin Page Redirect");
+        //   }else{
+        //     if($findUser->farmprofile){
+        //       return view('home', compact('findUser'));
+        //     }else{
+        //       return("Update Profile Redirect Page");
+        //     }
+        //
+        //   }
+        // }else{
+        //    return view('loginredirect');
+        // }
     }
+
+
+
 }

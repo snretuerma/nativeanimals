@@ -1,47 +1,54 @@
 <?php
 
 namespace App\Models;
+use App\Models\AnimalType;
+use App\Models\Breed;
+use DB;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
 
 class Farm extends Model
 {
-    public $timestamps = false;
 
-	/**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'farms';
+  protected $table = 'farms';
+  public $timestamps = false;
+  protected $fillable = [
+      'name', 'code', 'address'
+  ];
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-    	'auth_code','farm_name', 'farm_id', 'farm_type', 
-    	'region', 'province', 'town', 'barangay', 
-    	'tel_no', 'mobile_no'
-    ];
+  public function animals()
+  {
+    return $this->hasMany('App\Models\Animal');
+  }
 
-    public function users()
-    {
-        return $this->morphMany(User::class, 'userable');
-    }
+  public function users()
+  {
+    return $this->hasMany('App\Models\User', 'farmable_id');
+  }
 
-    public function getName()
-    {   
-        $user = User::where('userable_id', '=', $this->id)->where('userable_type', '=', 'App\Models\Farm')->firstOrFail()->name;
-        return $user;
-    }
+  public function animaltypes()
+  {
+    return $this->belongsToMany('App\Models\AnimalType', 'farm_animaltypes', 'farm_id', 'animaltype_id')->withPivot('farm_animaltypes');
+  }
 
-     public function getEmail()
-    {   
-        $user = User::where('userable_id', '=', $this->id)->where('userable_type', '=', 'App\Models\Farm')->firstOrFail()->email;
-        return $user;
-    }
+  public function breeds()
+  {
+    return $this->hasOne('App\Models\Breed');
+  }
+
+  public function getFarmType()
+  {
+    $pivot = DB::table('farm_animaltypes')->where('farm_id', '=', $this->id)->first();
+    $animaltype = AnimalType::where('id', $pivot->animaltype_id)->first();
+    return $animaltype;
+
+  }
+
+  public function getBreed()
+  {
+    $breed = Breed::where('id', $this->breedable_id)->first();
+    return $breed;
+  }
+
 
 }

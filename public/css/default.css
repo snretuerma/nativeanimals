@@ -1,0 +1,34 @@
+/*For default application CSS*/
+#login_logo{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#login_button{
+
+}
+
+#logo_image_holder{
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+
+
+#default_top_nav{
+  padding-left: 150px;
+}
+
+/*Materialize Side-Nav CSS*/
+header, main, footer {
+    padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+}

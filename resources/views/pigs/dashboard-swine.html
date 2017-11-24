@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="css/record.css">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Farm 1 - Dashboard</title>
+  </head>
+
+  <body>
+    <div class="navbar-fixed">
+      <nav class="red darken-4" role="navigation">
+        <ul id="slide-out" class="side-nav grey lighten-2 fixed">
+          <li>
+            <div class="user-view">
+              <div class="background red darken-4"></div>
+              <a href="#!"><img class="circle" src="images/farmer.png"></a>
+              <a href="#!"><span class="white-text name">Farm 1</span></a>
+              <a href="#!"><span class="white-text email">farm1@gmail.com</span></a>
+            </div>
+          </li>
+          <li><a href="dashboard-swine.html"><i class="material-icons">dashboard</i>Dashboard</a></li>
+          <li><div class="divider red lighten-2"></div></li>
+          <li><a href="addsow.html">Add Sow Record</a></li>
+          <li><a href="addboar.html">Add Boar Record</a></li>
+          <li><a href="viewrecords.html">View Animal Records</a></li>
+          <li><a href="#!">Sow-Litter Record</a></li>
+          <li><a href="#!">Mortality and Sales</a></li>
+          <li><a href="#!">View Pedigree</a></li>
+          <li><div class="divider red lighten-2"></div></li>
+          <li><a href="#!"><i class="material-icons">settings</i>Farm Profile</a></li>
+        </ul>
+        <div class="nav-wrapper container">
+          <a href="dashboard.html" class="brand-logo"><img src="images/logo-swine.png" height="60" / ></a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="dashboard-swine.html">Home</a></li>
+            <li><a href="dashboard-swine.html">Farm 1</a></li>
+            <li><a href="#!">Logout</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <main>
+      <h4 class="headline">Dashboard</h4>
+      <div class="container">
+        <div class="row center">
+          <div class="col s12 m10 l6">
+            <div class="card">
+              <div class="card-content grey">
+                <h5>Number of Sow</h5>
+                <h3>###</h3>
+                <p>Month</p>
+              </div>
+              <div class="card-action grey darken-2">
+                <a href="#!" class="red-text text-lighten-2">Prev</a>
+                <a href="#!" class="red-text text-lighten-2">Next</a>
+              </div>
+            </div>
+          </div>
+          <div class="col s12 m10 l6">
+            <div class="card">
+              <div class="card-content grey">
+              <h5>Number of Boar</h5>
+              <h3>###</h3>
+              <p>Month</p>
+              </div>
+              <div class="card-action grey darken-2">
+                <a href="#!" class="red-text text-lighten-2">Prev</a>
+                <a href="#!" class="red-text text-lighten-2">Next</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row center">
+          <div class="col s12 m12 l8">
+            <div class="card">
+              <div class="card-content grey">
+                <h5 class="left-align">Sales</h5>
+                <div class="row center">
+                  <div class="col s6 m6 l6">
+                    <h3>##</h3>
+                  </div>
+                  <div class="col s6 m6 l6">
+                    <h4>##.##</h4>
+                    <p>Average Weight (kg)</p>
+                  </div>
+                </div>
+                <p>Month</p>
+              </div>
+              <div class="card-action grey darken-2">
+                <a href="#!" class="red-text text-lighten-2">Prev</a>
+                <a href="#!" class="red-text text-lighten-2">Next</a>
+              </div>
+            </div>
+          </div>
+          <div class="col s4 m4 l4">
+            <div class="card">
+              <div class="card-content grey">
+                <h5>Mortality</h5>
+                <div class="row">
+                  <div class="col s6 m6 l6">
+                    <h4>#</h4>
+                    <p>Sow</p>
+                  </div>
+                  <div class="col s6 m6 l6">
+                    <h4>#</h4>
+                    <p>Boar</p>
+                  </div>
+                </div>
+                <p>Month</p>
+              </div>
+              <div class="card-action grey darken-2">
+                <a href="#!" class="red-text text-lighten-2">Prev</a>
+                <a href="#!" class="red-text text-lighten-2">Next</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script>
+      $(".dropdown-button").dropdown();
+      $(document).ready(function(){
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal-trigger').leanModal();
+      });
+      $('.showSideNav').sideNav({
+        menuWidth: 100, // Default is 240
+        //edge: 'right', // Choose the horizontal origin
+        closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+      });
+    </script>
+  </body>
+</html>
