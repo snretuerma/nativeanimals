@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -16,7 +15,6 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
-
     /**
      * Redirect user to a specified controller according to role
      *
@@ -25,9 +23,20 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        if($user->hasRole('admin')) return redirect()->action('AdminController@index');
-        else if($user->hasRole('farm')) return redirect()->action('FarmController@index');
-        else redirect()->route('logout');
-
+        // if($user->hasRole('breeder')) return redirect()->action('BreederController@index');
+        // else if($user->hasRole('admin')) return redirect()->action('AdminController@index');
+        // else if($user->hasRole('spectator')) return redirect()->action('SpectatorController@index');
+        // else if($user->hasRole('customer')) {
+        //     if(!$user->email_verified){
+        //         $data = [
+        //             'email' => $user->email,
+        //             'verCode' => $user->verCode,
+        //             'type' => 'verify'
+        //         ];
+        //         return view('emails.message', $data);
+        //     }
+        //     return redirect()->action('CustomerController@index');
+        // }
+        // else redirect()->route('logout');
     }
 }

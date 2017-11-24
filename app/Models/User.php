@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Farm;
 
 class User extends Authenticatable
 {
@@ -16,8 +17,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'deleted_at'
+        'name', 'email', 'photo', 'isadmin', 'lastseen'
     ];
+
+    /**
+    * The attributes that should be mutated to dates.
+    *
+    * @var array
+    */
+
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -28,50 +37,15 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /**
-     * Get the roles that the user has
-     */
-    public function roles()
+    public function farmable()
     {
-        return $this->belongsToMany(Role::class);
+        return $this->belongsTo('App\Models\Farm', 'farmable_id');
     }
 
-    public function userable()
-    {
-
-        return $this->morphTo();
-    
+    public function getFarm(){
+      $farm = Farm::where('id', $this->farmable_id)->first();
+      return $farm;
     }
 
-    /**
-     * Assign Role to a User
-     *
-     * @param  String   $role
-     */
-    public function assignRole($role)
-    {
-        if(is_string($role)){
-            return $this->roles()->attach(
-                Role::whereTitle($role)->firstOrFail()
-            );
-        }
 
-        return $this->roles()->save($role);
-    }
-
-    /**
-     * Check User if it has a certain role
-     *
-     * @param   String  $role
-     * @return  Boolean
-     */
-    public function hasRole($role)
-    {
-        if(is_string($role)){
-            return $this->roles->contains('title',$role);
-        }
-
-        return !! $role->intersect($this->roles)->count();
-    }
-    
 }
