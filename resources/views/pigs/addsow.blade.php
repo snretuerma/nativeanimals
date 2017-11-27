@@ -44,7 +44,7 @@
                       <li class="collection-item">
                         <div class="row">
                           <input type="hidden" name="hairtypelabel" value="Hair Type">
-                          
+
                           <div class="col s6">
                             <input class="with-gap" name="hairtype1" type="radio" id="curlyhair" value="Curly"  />
                             <label for="curlyhair">Curly</label>
@@ -317,6 +317,7 @@
                       <li class="collection-header">Age at first mating, months</li>
                       <li class="collection-item">
                         <div class="input-field col s8 offset-s2">
+                          <input type="hidden" name="ageatmatelabel" value="Age at First Mating (months)">
                           <input id="agefirstmating" type="text" name="agefirstmating" class="validate">
                           <label for="agefirstmating">Age</label>
                         </div>
@@ -326,6 +327,7 @@
                       <li class="collection-header">Body weight prior to first breeding, kg</li>
                       <li class="collection-item">
                         <div class="input-field col s8 offset-s2">
+                          <input type="hidden" name="bweighttofirstlabel" value="Body weight prior to first breeding (kg)">
                           <input id="weightprior" type="text" name="weightprior" class="validate">
                           <label for="weightprior">Body weight</label>
                         </div>
@@ -335,6 +337,7 @@
                       <li class="collection-header">Final weight at 8 months, kg</li>
                       <li class="collection-item">
                         <div class="input-field col s8 offset-s2">
+                          <input type="hidden" name="bweightfinallabel" value="Final weight at 8 months (kg)">
                           <input id="weighteight" type="text" name="weighteight" class="validate">
                           <label for="weighteight">Final weight</label>
                         </div>
@@ -344,6 +347,7 @@
                       <li class="collection-header">Head length, cm</li>
                       <li class="collection-item">
                         <div class="input-field col s8 offset-s2">
+                          <input type="hidden" name="hlengthlabel" value="Head lenght (cm)">
                           <input id="headlength" type="text" name="headlength" class="validate">
                           <label for="headlength">Head length</label>
                         </div>
@@ -353,6 +357,7 @@
                       <li class="collection-header">Body length, cm</li>
                       <li class="collection-item">
                         <div class="input-field col s8 offset-s2">
+                          <input type="hidden" name="blengthlabel" value="Body lenght (cm)">
                           <input id="bodylength" type="text" name="bodylength" class="validate">
                           <label for="bodylength">Body length</label>
                         </div>
@@ -362,7 +367,8 @@
                       <li class="collection-header">Pelvic width, cm</li>
                       <li class="collection-item">
                         <div class="input-field col s8 offset-s2">
-                          <input id="pelvic" type="text" name="pelvic" class="validate">
+                          <input type="hidden" name="pwidthlabel" value="Pelvic width (cm)">
+                           <input id="pelvic" type="text" name="pelvic" class="validate">
                            <label for="pelvic">Pelvic width</label>
                         </div>
                       </li>
@@ -371,6 +377,7 @@
                       <li class="collection-header">Hearth girth, cm</li>
                       <li class="collection-item">
                         <div class="input-field col s8 offset-s2">
+                          <input type="hidden" name="hgirthlabel" value="Hearth girth (cm)">
                           <input id="hearthgirth" type="text" name="hearthgirth" class="validate">
                           <label for="hearthgirth">Hearth girth</label>
                         </div>
@@ -380,16 +387,18 @@
                       <li class="collection-header">Ponderal index, kg/m<sup>3</sup></li>
                       <li class="collection-item">
                         <div class="input-field col s8 offset-s2">
-                          <input disabled id="ponderalindex" type="text" name="ponderalindex" class="validate">
+                          <input type="hidden" name="pindexlabel" value="Ponderal index (kg)">
+                          <input id="ponderalindex" type="text" name="ponderalindex" class="validate">
                         </div>
                       </li>
                     </ul>
                     <ul class="collection with-header">
+                      <input type="hidden" name="normalteatslabel" value="Number of normal teats">
                       <li class="collection-header">Number of normal teats</li>
                       <li class="collection-item">
                         <div class="input-field col s8 offset-s2">
                           <p class="range-field">
-                          <input type="range" id="normalteats" min="8" max="12" />
+                          <input type="range" id="normalteats" name="normalteats" min="8" max="12" />
                         </p>
                         </div>
                       </li>

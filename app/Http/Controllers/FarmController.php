@@ -109,10 +109,101 @@ class FarmController extends Controller
       return view('pigs.addsow');
     }
 
+    public function morphometricCharacteristics(){
+      $agefirstmating = $request->agefirstmating;
+      $weightprior = $request->weightprior;
+      $weighteight = $request->weighteight;
+      $headlength = $request->headlength;
+      $bodylength = $request->bodylength;
+      $pelvic = $request->pelvic;
+      $hearthgirth = $request->hearthgirth;
+      $ponderalindex = $request->ponderalindex;
+      $normalteats = $request->normalteats;
+
+      if(!is_null($agefirstmating)){
+        $agefirstmatingprop = new AnimalProperty;
+        $agefirstmatingprop->animal_id = $animal->id;
+        $agefirstmatingprop->property_id = Property::where('name', $request->ageatmatelabel)->first()->id;
+        $agefirstmatingprop->value = $agefirstmating;
+        $agefirstmatingprop->save();
+      }
+
+      if(!is_null($weightprior)){
+        $weightpriorprop = new AnimalProperty;
+        $weightpriorprop->animal_id = $animal->id;
+        $weightpriorprop->property_id = Property::where('name', $request->bweighttofirstlabel)->first()->id;
+        $weightpriorprop->value = $weightprior;
+        $weightpriorprop->save();
+      }
+
+      if(!is_null($weighteight)){
+        $weighteightprop = new AnimalProperty;
+        $weighteightprop->animal_id = $animal->id;
+        $weighteightprop->property_id = Property::where('name', $request->bweightfinallabel)->first()->id;
+        $weighteightprop->value = $weighteight;
+        $weighteightprop->save();
+      }
+
+      if(!is_null($headlength)){
+        $headlengthprop = new AnimalProperty;
+        $headlengthprop->animal_id = $animal->id;
+        $headlengthprop->property_id = Property::where('name', $request->hlengthlabel)->first()->id;
+        $headlengthprop->value = $headlength;
+        $headlengthprop->save();
+      }
+
+      if(!is_null($bodylength)){
+        $bodylengthprop = new AnimalProperty;
+        $bodylengthprop->animal_id = $animal->id;
+        $bodylengthprop->property_id = Property::where('name', $request->blengthlabel)->first()->id;
+        $bodylengthprop->value = $bodylength;
+        $bodylengthprop->save();
+      }
+
+      if(!is_null($pelvic)){
+        $pelvicprop = new AnimalProperty;
+        $pelvicprop->animal_id = $animal->id;
+        $pelvicprop->property_id = Property::where('name', $request->pwidthlabel)->first()->id;
+        $pelvicprop->value = $pelvic;
+        $pelvicprop->save();
+      }
+
+      if(!is_null($hearthgirth)){
+        $hearthgirthprop = new AnimalProperty;
+        $hearthgirthprop->animal_id = $animal->id;
+        $hearthgirthprop->property_id = Property::where('name', $request->hgirthlabel)->first()->id;
+        $hearthgirthprop->value = $hearthgirth;
+        $hearthgirthprop->save();
+      }
+
+      if(!is_null($ponderalindex)){
+        $ponderalindexprop = new AnimalProperty;
+        $ponderalindexprop->animal_id = $animal->id;
+        $ponderalindexprop->property_id = Property::where('name', $request->pindexlabel)->first()->id;
+        $ponderalindexprop->value = $ponderalindex;
+        $ponderalindexprop->save();
+      }
+
+      if(!is_null($normalteats)){
+        $normalteatsprop = new AnimalProperty;
+        $normalteatsprop->animal_id = $animal->id;
+        $normalteatsprop->property_id = Property::where('name', $request->normalteatslabel)->first()->id;
+        $normalteatsprop->value = $normalteats;
+        $normalteatsprop->save();
+      }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Farm  $farm
+     * @return \Illuminate\Http\Response
+     */
     public function addSowRecord(Request $request){
       $hairtype1 = $request->hairtype1;
       $hairtype2 = $request->hairtype2;
       $hairtype2 = $request->hairtype3;
+
       $hairtype = $hairtype1.','.$hairtype2.','.$hairtype2;
       $tusks = $request->tusks;
       $snout = $request->snout;
@@ -125,9 +216,20 @@ class FarmController extends Controller
       $tailtype = $request->tailtype;
       $backline = $request->backline;
       $othermarks = $request->othermarks;
-      // dd($hairtype.$tusks.$snout.$coat.$pattern.$headshape.$skintype.$eartype.$earorientation.$tailtype.$backline.$othermarks);
-      $animal = new Animal;
 
+      $agefirstmating = $request->agefirstmating;
+      $weightprior = $request->weightprior;
+      $weighteight = $request->weighteight;
+      $headlength = $request->headlength;
+      $bodylength = $request->bodylength;
+      $pelvic = $request->pelvic;
+      $hearthgirth = $request->hearthgirth;
+      $ponderalindex = $request->ponderalindex;
+      $normalteats = $request->normalteats;
+      // dd($hairtype.$tusks.$snout.$coat.$pattern.$headshape.$skintype.$eartype.$earorientation.$tailtype.$backline.$othermarks);
+      // dd(!is_null($hairtype) , !is_null($tusks), !is_null($snout), !is_null($normalteats));
+      
+      $animal = new Animal;
       $farm = $this->user->getFarm();
       $animaltype = $farm->getFarmType();
       $breed = $farm->getBreed();
@@ -231,6 +333,78 @@ class FarmController extends Controller
         $othermarksprop->property_id = Property::where('name', $request->othermarkslabel)->first()->id;
         $othermarksprop->value = $othermarks;
         $othermarksprop->save();
+      }
+
+      if(!is_null($agefirstmating)){
+        $agefirstmatingprop = new AnimalProperty;
+        $agefirstmatingprop->animal_id = $animal->id;
+        $agefirstmatingprop->property_id = Property::where('name', $request->ageatmatelabel)->first()->id;
+        $agefirstmatingprop->value = $agefirstmating;
+        $agefirstmatingprop->save();
+      }
+
+      if(!is_null($weightprior)){
+        $weightpriorprop = new AnimalProperty;
+        $weightpriorprop->animal_id = $animal->id;
+        $weightpriorprop->property_id = Property::where('name', $request->bweighttofirstlabel)->first()->id;
+        $weightpriorprop->value = $weightprior;
+        $weightpriorprop->save();
+      }
+
+      if(!is_null($weighteight)){
+        $weighteightprop = new AnimalProperty;
+        $weighteightprop->animal_id = $animal->id;
+        $weighteightprop->property_id = Property::where('name', $request->bweightfinallabel)->first()->id;
+        $weighteightprop->value = $weighteight;
+        $weighteightprop->save();
+      }
+
+      if(!is_null($headlength)){
+        $headlengthprop = new AnimalProperty;
+        $headlengthprop->animal_id = $animal->id;
+        $headlengthprop->property_id = Property::where('name', $request->hlengthlabel)->first()->id;
+        $headlengthprop->value = $headlength;
+        $headlengthprop->save();
+      }
+
+      if(!is_null($bodylength)){
+        $bodylengthprop = new AnimalProperty;
+        $bodylengthprop->animal_id = $animal->id;
+        $bodylengthprop->property_id = Property::where('name', $request->blengthlabel)->first()->id;
+        $bodylengthprop->value = $bodylength;
+        $bodylengthprop->save();
+      }
+
+      if(!is_null($pelvic)){
+        $pelvicprop = new AnimalProperty;
+        $pelvicprop->animal_id = $animal->id;
+        $pelvicprop->property_id = Property::where('name', $request->pwidthlabel)->first()->id;
+        $pelvicprop->value = $pelvic;
+        $pelvicprop->save();
+      }
+
+      if(!is_null($hearthgirth)){
+        $hearthgirthprop = new AnimalProperty;
+        $hearthgirthprop->animal_id = $animal->id;
+        $hearthgirthprop->property_id = Property::where('name', $request->hgirthlabel)->first()->id;
+        $hearthgirthprop->value = $hearthgirth;
+        $hearthgirthprop->save();
+      }
+
+      if(!is_null($ponderalindex)){
+        $ponderalindexprop = new AnimalProperty;
+        $ponderalindexprop->animal_id = $animal->id;
+        $ponderalindexprop->property_id = Property::where('name', $request->pindexlabel)->first()->id;
+        $ponderalindexprop->value = $ponderalindex;
+        $ponderalindexprop->save();
+      }
+
+      if(!is_null($normalteats)){
+        $normalteatsprop = new AnimalProperty;
+        $normalteatsprop->animal_id = $animal->id;
+        $normalteatsprop->property_id = Property::where('name', $request->normalteatslabel)->first()->id;
+        $normalteatsprop->value = $normalteats;
+        $normalteatsprop->save();
       }
 
       return Redirect::back()->with('message','Sow record successfully saved');

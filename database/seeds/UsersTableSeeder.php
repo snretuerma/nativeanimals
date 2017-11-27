@@ -138,6 +138,51 @@ class UsersTableSeeder extends Seeder
         $othermarksprop->save();
         $this->command->info('Property seeded');
 
+        $agefirstmateprop = new Property;
+        $agefirstmateprop->name = "Age at First Mating (months)";
+        $agefirstmateprop->description = "Age at first mating";
+        $agefirstmateprop->save();
+
+        $wfirstbreedprop = new Property;
+        $wfirstbreedprop->name = "Body weight prior to first breeding (kg)";
+        $wfirstbreedprop->description = "Body weight prior to first breeding in kilogram";
+        $wfirstbreedprop->save();
+
+        $wfinalprop = new Property;
+        $wfinalprop->name = "Final weight at 8 months (kg)";
+        $wfinalprop->description = "Body weight at eight months";
+        $wfinalprop->save();
+
+        $hlengthprop = new Property;
+        $hlengthprop->name = "Head lenght (cm)";
+        $hlengthprop->description = "Head lenght";
+        $hlengthprop->save();
+
+        $blengthprop = new Property;
+        $blengthprop->name = "Body lenght (cm)";
+        $blengthprop->description = "Body lenght in centimeters";
+        $blengthprop->save();
+
+        $pwidthprop = new Property;
+        $pwidthprop->name = "Pelvic width (cm)";
+        $pwidthprop->description = "Pelvic width in centimeters";
+        $pwidthprop->save();
+
+        $hgirthprop = new Property;
+        $hgirthprop->name = "Hearth girth (cm)";
+        $hgirthprop->description = "Hearth girth in centimeters";
+        $hgirthprop->save();
+
+        $pindexprop = new Property;
+        $pindexprop->name = "Ponderal index (kg)";
+        $pindexprop->description = "Ponderal index in kilogram";
+        $pindexprop->save();
+
+        $nnteatsprop = new Property;
+        $nnteatsprop->name = "Number of normal teats";
+        $nnteatsprop->description = "Number of normal teats";
+        $nnteatsprop->save();
+
         $animalproperty = new AnimalProperty;
         $animalproperty->animal_id = $animal->id;
         $animalproperty->property_id = $hairtypeprop->id;
