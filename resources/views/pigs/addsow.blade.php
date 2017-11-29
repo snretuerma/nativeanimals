@@ -374,7 +374,7 @@
                       </li>
                     </ul>
                     <ul class="collection with-header">
-                      <li class="collection-header">Hearth girth, cm</li>
+                      <li class="collection-header">Heart girth, cm</li>
                       <li class="collection-item">
                         <div class="input-field col s8 offset-s2">
                           <input type="hidden" name="hgirthlabel" value="Hearth girth (cm)">
@@ -419,5 +419,5 @@
 @endsection
 
 @section('scripts')
-  <script type="text/javascript" src="{{asset('js/global.js')}}"></script>
+  {{-- <script type="text/javascript" src="{{asset('js/global.js')}}"></script> --}}
 @endsection
