@@ -30,6 +30,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('submit_boar_record', ['as' => 'farm.pig.submit_boar_record', 'uses' => 'FarmController@addBoarRecord']);
     Route::get('add_sowlitter_record', ['as' => 'farm.pig.add_sowlitter_record', 'uses' => 'FarmController@getAddSowLitterRecordPage']);
     Route::get('animal_record', ['as' => 'farm.pig.animal_record', 'uses' => 'FarmController@getAnimalRecordPage']);
+    Route::get('test_page', ['as' => 'farm.test', 'uses' => 'FarmController@getTestPage']);
     // Chicken and Duck Routes
   });
 
@@ -43,3 +44,4 @@ Route::group(['middleware' => ['web']], function () {
 // Socialite Routes
 Route::get('login/google', 'Auth\LoginController@redirectToProvider');
 Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('logout', 'Auth\LoginController@logout');
