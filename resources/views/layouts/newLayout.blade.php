@@ -56,12 +56,11 @@
       <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
           <li>
-            <a class="collapsible-header">Monthly Sales<i class="material-icons">monetization_on</i></a>
+            <a class="collapsible-header">Others<i class="material-icons">trending_up</i></a>
             <div class="collapsible-body">
               <ul class="yellow lighten-3">
-                <li><a href="#!">Overall</a></li>
-                <li><a href="#!">Breeder</a></li>
-                <li><a href="#!">Replacement</a></li>
+                <li><a href="#!">Feeding Records</a></li>
+                <li><a href="#!">Monthly Sales</a></li>
               </ul>
             </div>
           </li>

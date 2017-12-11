@@ -361,7 +361,7 @@ class FarmController extends Controller
 
     public function getTestPage()
     {
-      return view('poultry.chicken.eggquality');
+      return view('poultry.chicken.feeding');
     }
 
 
