@@ -30,8 +30,24 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('submit_boar_record', ['as' => 'farm.pig.submit_boar_record', 'uses' => 'FarmController@addBoarRecord']);
     Route::get('add_sowlitter_record', ['as' => 'farm.pig.add_sowlitter_record', 'uses' => 'FarmController@getAddSowLitterRecordPage']);
     Route::get('animal_record', ['as' => 'farm.pig.animal_record', 'uses' => 'FarmController@getAnimalRecordPage']);
-    Route::get('test_page', ['as' => 'farm.test', 'uses' => 'FarmController@getTestPage']);
     // Chicken and Duck Routes
+    Route::get('test_page', ['as' => 'farm.test', 'uses' => 'FarmController@getTestPage']);
+    Route::get('family_record', ['as' => 'farm.poultry.page_family_record', 'uses' => 'FarmController@getPageFamilyRecord']);
+    Route::get('egg_production', ['as' => 'farm.poultry.page_egg_production', 'uses' => 'FarmController@getPageEggProduction']);
+    Route::get('egg_quality', ['as' => 'farm.poultry.page_egg_quality', 'uses' => 'FarmController@getPageEggQuality']);
+    Route::get('hatchery_parameters', ['as' => 'farm.poultry.page_hatchery_parameters', 'uses' => 'FarmController@getPageHatcheryParameter']);
+    Route::get('morphometric_characteristics', ['as' => 'farm.poultry.page_morphometric_characteristics', 'uses' => 'FarmController@getPageMorphometricCharacteristic']);
+    Route::get('phenotypic_characteristics', ['as' => 'farm.poultry.page_phenotypic_characteristics', 'uses' => 'FarmController@getPagePhenotypicCharacteristic']);
+
+    Route::get('replacement_individual_record', ['as' => 'farm.poultry.page_replacement_individual_record', 'uses' => 'FarmController@getPageReplacementIndividualRecord']);
+    Route::get('replacement_growth_performance', ['as' => 'farm.poultry.page_replacement_growth_performance', 'uses' => 'FarmController@getPageReplacementGrowthPerformance']);
+    Route::get('replacement_phenotypic_characteristics', ['as' => 'farm.poultry.page_replacement_phenotypic', 'uses' => 'FarmController@getPageReplacementPhenotypic']);
+    Route::get('replacement_morphometric_characteristics', ['as' => 'farm.poultry.page_replacement_morphometric', 'uses' => 'FarmController@getPageReplacementMorphometric']);
+
+    Route::get('feeding_records', ['as' => 'farm.poultry.page_feeding_records', 'uses' => 'FarmController@getPageFeedingRecords']);
+    Route::get('monthly_sales', ['as' => 'farm.poultry.page_monthly_sales', 'uses' => 'FarmController@getPageMonthlySales']);
+
+    Route::post('fetch_family_record', ['as' => 'farm.chicken.submit_family_record', 'uses' => 'FarmController@getFamilyRecord']);
   });
 
   // Route::group(['prefix' => 'admin'], function(){

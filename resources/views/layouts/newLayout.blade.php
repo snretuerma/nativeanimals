@@ -25,12 +25,12 @@
             <a class="collapsible-header">Breeder Record<i class="material-icons">add_circle</i></a>
             <div class="collapsible-body">
               <ul class="yellow lighten-3">
-                <li><a href="#!">Family Record</a></li>
-                <li><a href="#!">Phenotypic Characteristics</a></li>
-                <li><a href="#!">Morphometric Characteristics</a></li>
-                <li><a href="#!">Egg Production and Daily Records</a></li>
-                <li><a href="#!">Hatchery Parameters</a></li>
-                <li><a href="#!">Egg Quality Characteristics</a></li>
+                <li><a href="{{route('farm.poultry.page_family_record')}}">Family Record</a></li>
+                <li><a href="{{route('farm.poultry.page_phenotypic_characteristics')}}">Phenotypic Characteristics</a></li>
+                <li><a href="{{route('farm.poultry.page_morphometric_characteristics')}}">Morphometric Characteristics</a></li>
+                <li><a href="{{route('farm.poultry.page_egg_production')}}">Egg Production and Daily Records</a></li>
+                <li><a href="{{route('farm.poultry.page_hatchery_parameters')}}">Hatchery Parameters</a></li>
+                <li><a href="{{route('farm.poultry.page_egg_quality')}}">Egg Quality Characteristics</a></li>
               </ul>
             </div>
           </li>
@@ -43,10 +43,10 @@
             <a class="collapsible-header">Replacement Stocks Record<i class="material-icons">add_circle_outline</i></a>
             <div class="collapsible-body">
               <ul class="yellow lighten-3">
-                <li><a href="#!">Individual Record</a></li>
-                <li><a href="#!">Growth Performance</a></li>
-                <li><a href="#!">Phenotypic Characteristics</a></li>
-                <li><a href="#!">Morphometric Characteristics</a></li>
+                <li><a href="{{route('farm.poultry.page_replacement_individual_record')}}">Individual Record</a></li>
+                <li><a href="{{route('farm.poultry.page_replacement_growth_performance')}}">Growth Performance</a></li>
+                <li><a href="{{route('farm.poultry.page_replacement_phenotypic')}}">Phenotypic Characteristics</a></li>
+                <li><a href="{{route('farm.poultry.page_replacement_morphometric')}}">Morphometric Characteristics</a></li>
               </ul>
             </div>
           </li>
@@ -59,8 +59,8 @@
             <a class="collapsible-header">Others<i class="material-icons">trending_up</i></a>
             <div class="collapsible-body">
               <ul class="yellow lighten-3">
-                <li><a href="#!">Feeding Records</a></li>
-                <li><a href="#!">Monthly Sales</a></li>
+                <li><a href="{{route('farm.poultry.page_feeding_records')}}">Feeding Records</a></li>
+                <li><a href="{{route('farm.poultry.page_monthly_sales')}}"">Monthly Sales</a></li>
               </ul>
             </div>
           </li>

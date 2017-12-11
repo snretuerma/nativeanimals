@@ -17,7 +17,7 @@
         <div class="row">
           <div class="col s12 m12 l12">
             <div class="card-panel">
-              {!! Form::open([ 'method' => 'post']) !!}
+              {!! Form::open(['route' => 'farm.chicken.submit_family_record', 'method' => 'post']) !!}
                 <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="input-field col s12 m6 l6">
@@ -33,7 +33,7 @@
                       <label for="breed_name">Breed Name</label>
                     </div>
                     <div class="input-field col s12 m6 l6">
-                      <input id="date_transferred" type="text" class="validate" name="date_transferred">
+                      <input id="date_transferred" type="text" class="datepicker" name="date_transferred">
                       <label for="date_transferred">Date Transferred to Breeder Area</label>
                     </div>
                   </div>
@@ -45,7 +45,7 @@
                       <label for="generation">Generation</label>
                     </div>
                     <div class="input-field col s12 m6 l6">
-                      <input id="date_hatched" type="text" class="validate" name="date_hatched">
+                      <input id="date_hatched" type="text" class="datepicker" name="date_hatched">
                       <label for="date_hatched">Date Hatched</label>
                     </div>
                   </div>
@@ -65,13 +65,20 @@
                 <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="input-field col s12 m6 l6">
-                      <input disabled id="no_male" type="text" class="validate">
+                      <input disabled id="no_male" type="text">
                       <label for="no_male">No. of Males in the Family</label>
                     </div>
                     <div class="input-field col s12 m6 l6">
-                      <input disabled id="no_female" type="text" class="validate">
+                      <input disabled id="no_female" type="text">
                       <label for="no_female">No. of Females in the Family</label>
                     </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12 m12 l12 center">
+                    <button class="btn waves-effect waves-light yellow darken-3" type="submit">Submit
+                      <i class="material-icons right">send</i>
+                    </button>
                   </div>
                 </div>
               {!!Form::close()!!}

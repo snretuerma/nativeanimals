@@ -10,6 +10,7 @@ use App\Models\AnimalType;
 use App\Models\AnimalProperty;
 use App\Models\Breed;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -361,8 +362,65 @@ class FarmController extends Controller
 
     public function getTestPage()
     {
+      return view('poultry.chicken.breeder.familyrecord');
+    }
+
+    public function getPageFamilyRecord(){
+      return view('poultry.chicken.breeder.familyrecord');
+    }
+
+    public function getPageEggProduction(){
+      return view('poultry.chicken.breeder.eggproductionanddaily');
+    }
+
+    public function getPageEggQuality(){
+      return view('poultry.chicken.breeder.eggquality');
+    }
+
+    public function getPageHatcheryParameter(){
+      return view('poultry.chicken.breeder.hatcheryparameters');
+    }
+
+    public function getPagePhenotypicCharacteristic(){
+      return view('poultry.chicken.breeder.phenotypic');
+    }
+
+    public function getPageMorphometricCharacteristic(){
+      return view('poultry.chicken.breeder.morphometric');
+    }
+
+    public function getPageReplacementIndividualRecord(){
+      return view('poultry.chicken.replacement.individualrecord');
+    }
+    public function getPageReplacementGrowthPerformance(){
+      return view('poultry.chicken.replacement.growthperformance');
+    }
+
+    public function getPageReplacementPhenotypic(){
+      return view('poultry.chicken.breeder.phenotypic');
+    }
+
+    public function getPageReplacementMorphometric(){
+      return view('poultry.chicken.breeder.morphometric');
+    }
+
+    public function getPageFeedingRecords(){
       return view('poultry.chicken.feeding');
     }
 
+    public function getPageMonthlySales(){
+      return view('poultry.chicken.monthlysales');
+    }
+
+
+    public function getFamilyRecord(Request $request){
+      $farm = $this->user->getFarm();
+      // $animaltype = $farm->getFarmType();
+      // $breed = $farm->getBreed();
+      $date_transferred = new Carbon($request->date_transferred);
+      $date_hatched = new Carbon($request->date_hatched);
+      $registry_id = $farm->code."-".$date_transferred->year."-".$request->family_id;
+
+    }
 
 }

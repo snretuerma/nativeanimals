@@ -163,6 +163,13 @@
                     </div>
                   </div>
                 </div>
+                <div class="row">
+                  <div class="col s12 m12 l12 center">
+                    <button class="btn waves-effect waves-light yellow darken-3" type="submit">Submit
+                      <i class="material-icons right">send</i>
+                    </button>
+                  </div>
+                </div>
               {!!Form::close()!!}
             </div>
           </div>

@@ -44,9 +44,9 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col s12 m6 l6">
+                    {{-- <div class="col s12 m6 l6">
                       Date Collected: <strong><u></u></strong>
-                    </div>
+                    </div> --}}
                     <div class="col s12 m6 l6">
                       Animal Type: <strong><u>Chicken</u></strong>
                     </div>
@@ -385,6 +385,13 @@
                         <input id="other_features" type="text" class="validate" name="other_features" placeholder="e.g. Frizzly, Silky">
                       </div>
                     </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12 m12 l12 center">
+                    <button class="btn waves-effect waves-light yellow darken-3" type="submit">Submit
+                      <i class="material-icons right">send</i>
+                    </button>
                   </div>
                 </div>
               {!!Form::close()!!}
