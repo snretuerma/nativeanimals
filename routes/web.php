@@ -32,8 +32,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('animal_record', ['as' => 'farm.pig.animal_record', 'uses' => 'FarmController@getAnimalRecordPage']);
     // Chicken and Duck Routes
     Route::get('test_page', ['as' => 'farm.test', 'uses' => 'FarmController@getTestPage']);
+
+    Route::get('dashboard', ['as' => 'farm.poultry.dashboard', 'uses' => 'FarmController@getIndex']); // Make as landing page after login when doing backend for Native Chicken
     Route::get('family_record', ['as' => 'farm.poultry.page_family_record', 'uses' => 'FarmController@getPageFamilyRecord']);
-    Route::get('egg_production', ['as' => 'farm.poultry.page_egg_production', 'uses' => 'FarmController@getPageEggProduction']);
+    Route::get('add_to_family', ['as' => 'farm.poultry.page_add_to_family', 'uses' => 'FarmController@getPageAddToFamily']);
+    Route::get('daily_records', ['as' => 'farm.poultry.page_daily_records', 'uses' => 'FarmController@getDailyRecords']);
     Route::get('egg_quality', ['as' => 'farm.poultry.page_egg_quality', 'uses' => 'FarmController@getPageEggQuality']);
     Route::get('hatchery_parameters', ['as' => 'farm.poultry.page_hatchery_parameters', 'uses' => 'FarmController@getPageHatcheryParameter']);
     Route::get('morphometric_characteristics', ['as' => 'farm.poultry.page_morphometric_characteristics', 'uses' => 'FarmController@getPageMorphometricCharacteristic']);

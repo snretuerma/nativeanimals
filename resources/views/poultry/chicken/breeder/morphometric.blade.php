@@ -76,13 +76,9 @@
                 <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="row">
-                      <div class="col s12 m12 1l2">
-                        Date of Hatch
-                      </div>
-                    </div>
-                    <div class="row">
                       <div class="input-field col s12 m12 l12">
-                        <input type="text" class="datepicker" name="date_hatched">
+                        <input id="date_hatched" type="text" class="datepicker" name="date_hatched">
+                        <label for="date_hatched">Date Hatched</label>
                       </div>
                     </div>
                   </div>
@@ -150,13 +146,9 @@
                 <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="row">
-                      <div class="col s12 m12 1l2">
-                        Date at First Lay
-                      </div>
-                    </div>
-                    <div class="row">
                       <div class="input-field col s12 m12 l12">
-                        <input type="text" class="datepicker" name="date_first_lay">
+                        <input id="date_first_lay" type="text" class="datepicker" name="date_first_lay">
+                        <label for="date_first_lay">Date at First Lay</label>
                       </div>
                     </div>
                   </div>

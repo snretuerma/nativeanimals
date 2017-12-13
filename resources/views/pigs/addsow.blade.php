@@ -66,54 +66,8 @@
                         </div>
                         <div class="row">
                           <div class="col s6">
-                            <input class="with-gap" name="hairtype3" type="radio" id="dense"  value="Dense" />
-                            <label for="dense">Dense</label>
-                          </div>
-                          <div class="col s6">
                             <input class="with-gap" name="hairtype3" type="radio" id="sparse"  value="Sparse" />
                             <label for="sparse">Sparse</label>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                    <ul class="collection with-header">
-                      <li class="collection-header">Tusks</li>
-                      <input type="hidden" name="tusklabel" value="Tusks">
-                      <li class="collection-item">
-                        <div class="row">
-                          <div class="col s6">
-                            <input class="with-gap" name="tusks" type="radio" id="present" value="Present" />
-                            <label for="present">Present</label>
-                          </div>
-                          <div class="col s6">
-                            <input class="with-gap" name="tusks" type="radio" id="absent"  value="Absent" />
-                            <label for="absent">Absent</label>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                    <ul class="collection with-header">
-                      <li class="collection-header">Snout shape</li>
-                      <input type="hidden" name="snoutshapelabel" value="Snout Shape">
-                      <li class="collection-item">
-                        <div class="row">
-                          <div class="col s6">
-                            <input class="with-gap" name="snout" type="radio" id="curve" value="Curve" />
-                            <label for="curve">Curve</label>
-                          </div>
-                          <div class="col s6">
-                            <input class="with-gap" name="snout" type="radio" id="straightsnout"  value="Straight" />
-                            <label for="straightsnout">Straight</label>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col s6">
-                            <input class="with-gap" name="snout" type="radio" id="shortcyl"  value="Short and Cylindrical" />
-                            <label for="shortcyl">Short and cylindrical</label>
-                          </div>
-                          <div class="col s6">
-                            <input class="with-gap" name="snout" type="radio" id="longthin"  value="Long and Thin" />
-                            <label for="longthin">Long and thin</label>
                           </div>
                         </div>
                       </li>
@@ -124,32 +78,12 @@
                       <li class="collection-item">
                         <div class="row">
                           <div class="col s6">
-                            <input class="with-gap" name="coat" type="radio" id="whitecoat"  value="White" />
-                            <label for="whitecoat">White</label>
-                          </div>
-                          <div class="col s6">
                             <input class="with-gap" name="coat" type="radio" id="blackcoat"  value="Black" />
                             <label for="blackcoat">Black</label>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col s6">
-                            <input class="with-gap" name="coat" type="radio" id="redcoat"  value="Red" />
-                            <label for="redcoat">Red</label>
-                          </div>
-                          <div class="col s6">
-                            <input class="with-gap" name="coat" type="radio" id="fawncoat"  value="Fawn" />
-                            <label for="fawncoat">Fawn</label>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col s6">
-                            <input class="with-gap" name="coat" type="radio" id="graycoat"  value="Gray"/>
-                            <label for="graycoat">Gray</label>
-                          </div>
-                          <div class="col s6">
-                            <input class="with-gap" name="coat" type="radio" id="othercoat"  value="Othercoat" />
-                            <label for="othercoat">Others</label>
+                            <div class="col s6">
+                              <input class="with-gap" name="coat" type="radio" id="othercoat"  value="Othercoat" />
+                              <label for="othercoat">Others</label>
+                            </div>
                           </div>
                         </div>
                       </li>
@@ -164,18 +98,8 @@
                             <label for="plain">Plain</label>
                           </div>
                           <div class="col s6">
-                            <input class="with-gap" name="pattern" type="radio" id="socksbelt" value="Socks and Belt" />
-                            <label for="socksbelt">Socks and belt</label>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col s6">
-                            <input class="with-gap" name="pattern" type="radio" id="spotted" value="Spotted" />
-                            <label for="spotted">Spotted</label>
-                          </div>
-                          <div class="col s6">
-                            <input class="with-gap" name="pattern" type="radio" id="patchy" value="Patchy" />
-                            <label for="patchy">Patchy</label>
+                            <input class="with-gap" name="pattern" type="radio" id="socksbelt" value="Socks" />
+                            <label for="socksbelt">Socks</label>
                           </div>
                         </div>
                       </li>
@@ -190,18 +114,8 @@
                             <label for="concave">Concave</label>
                           </div>
                           <div class="col s6">
-                            <input class="with-gap" name="headshape" type="radio" id="convex"  value="Convex"/>
-                            <label for="convex">Convex</label>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col s6">
                             <input class="with-gap" name="headshape" type="radio" id="straighthead" value="Straight" />
                             <label for="straighthead">Straight</label>
-                          </div>
-                          <div class="col s6">
-                            <input class="with-gap" name="headshape" type="radio" id="otherhead" value="Others" />
-                            <label for="otherhead">Others</label>
                           </div>
                         </div>
                       </li>
@@ -240,10 +154,6 @@
                           <div class="col s6">
                             <input class="with-gap" name="eartype" type="radio" id="erect" value="Erect" />
                             <label for="erect">Erect</label>
-                          </div>
-                          <div class="col s6">
-                            <input class="with-gap" name="eartype" type="radio" id="lop" value="Lop" />
-                            <label for="lop">Lop</label>
                           </div>
                         </div>
                       </li>
@@ -320,16 +230,6 @@
                           <input type="hidden" name="ageatmatelabel" value="Age at First Mating (months)">
                           <input id="agefirstmating" type="text" name="agefirstmating" class="validate">
                           <label for="agefirstmating">Age</label>
-                        </div>
-                      </li>
-                    </ul>
-                    <ul class="collection with-header">
-                      <li class="collection-header">Body weight prior to first breeding, kg</li>
-                      <li class="collection-item">
-                        <div class="input-field col s8 offset-s2">
-                          <input type="hidden" name="bweighttofirstlabel" value="Body weight prior to first breeding (kg)">
-                          <input id="weightprior" type="text" name="weightprior" class="validate">
-                          <label for="weightprior">Body weight</label>
                         </div>
                       </li>
                     </ul>

@@ -50,7 +50,8 @@
                 <div class="row">
                   <div class="col s12 m12 l12">
                       <div class="input-field col s12 m6 l6">
-                        <input type="text" class="datepicker" name="date_collected" placeholder="Date Collected">
+                        <input id="date_collected" type="text" class="datepicker" name="date_collected">
+                        <label for="date_collected">Date Collected</label>
                       </div>
                   </div>
                 </div>

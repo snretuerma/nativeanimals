@@ -16,7 +16,7 @@
       <div class="row">
 
         <div class="col s12 m6 l6">
-          <div class="card-panel">
+          <div class="card-panel yellow lighten-3">
             <h4>Breeder Status</h4>
             <div class="row">
               <div class="col s6 m6 l6">
@@ -30,18 +30,14 @@
         </div>
 
         <div class="col s12 m6 l6">
-          <div class="card-panel">
-            <span>
-              Replacement Status
-            </span>
+          <div class="card-panel yellow lighten-3">
+            <h4>Replacement Status</h4>
           </div>
         </div>
 
         <div class="col s12 m12 l12">
-          <div class="card-panel">
-            <span>
-              Overall
-            </span>
+          <div class="card-panel yellow lighten-3">
+            <h4>Overall</h4>
           </div>
         </div>
 

@@ -50,13 +50,9 @@
                 <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="row">
-                      <div class="col s12 m12 1l2">
-                        Date Egg Collected
-                      </div>
-                    </div>
-                    <div class="row">
                       <div class="input-field col s12 m12 l12">
-                        <input type="text" class="datepicker" name="date_eggs_collected">
+                        <input id="date_eggs_collected" type="text" class="datepicker" name="date_eggs_collected">
+                        <label for="date_eggs_collected">Date Egg Collected</label>
                       </div>
                     </div>
                   </div>
@@ -97,7 +93,8 @@
                         <label for="week_taken">Week of Lay Taken When Eggs Were Collected</label>
                       </div>
                       <div class="input-field col s12 m6 l6">
-                        <input type="text" class="datepicker" name="date_eggs_set" placeholder="Date Eggs Set">
+                        <input id="date_eggs_set" type="text" class="datepicker" name="date_eggs_set">
+                        <label for="date_eggs_set">Date Eggs Set</label>
                       </div>
                     </div>
                   </div>
@@ -120,7 +117,8 @@
                   <div class="col s12 m12 l12">
                     <div class="row">
                       <div class="input-field col s12 m6 l6">
-                        <input type="text" class="datepicker" name="date_hatched" placeholder="Date Hatched">
+                        <input id="date_hatched" type="text" class="datepicker" name="date_hatched">
+                        <label for="date_hatched">Date Hatched</label>
                       </div>
                       <div class="input-field col s12 m6 l6">
                         <input id="no_eggs_hatched" type="number" class="validate" name="no_eggs_hatched" min=0>

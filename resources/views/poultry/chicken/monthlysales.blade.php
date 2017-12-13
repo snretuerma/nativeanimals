@@ -18,11 +18,13 @@
           <div class="col s12 m12 l12">
             <div class="card-panel">
               {!! Form::open([ 'method' => 'post']) !!}
-                <div class="row">
+                {{-- Get date when action performed --}}
+
+                {{-- <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="row">
                       <div class="col s12 m12 l12">
-                        <div class="input-field col s6 m6 l6">
+                        <div class="input-field col s12 m12 l12">
                           <select>
                             <option value="" disabled selected>Select Month</option>
                             <option value="January">January</option>
@@ -43,67 +45,67 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> --}}
+
+                {{-- Table for all the replacement stocks to be culled or sold --}}
                 <div class="row">
                   <div class="col s12 m12 l12">
-                      <div class="input-field col s12 m6 l6">
-                        <input type="text" class="datepicker" name="date_collected" placeholder="Date Collected">
-                      </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col s12 m12 l12">
-                    <div class="input-field col s12 m6 l6">
-                      <input id="generation" type="text" class="validate" name="generation">
-                      <label for="generation">Generation</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col s12 m12 l12">
-                    <div class="input-field col s12 m6 l6">
-                      <input id="line" type="text" class="validate" name="line">
-                      <label for="line">Line</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col s12 m12 l12">
-                    <div class="input-field col s12 m6 l6">
-                      <input id="classification" type="text" class="validate" name="classification">
-                      <label for="classification">Classification</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col s12 m12 l12">
-                    <div class="input-field col s12 m6 l6">
-                      <input id="quantity" type="number" min=0 class="validate" name="quantity">
-                      <label for="quantity">Quantity</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col s12 m12 l12">
-                    <div class="input-field col s12 m6 l6">
-                      <input id="price" type="number" min=0 class="validate" name="price">
-                      <label for="price">Price</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col s12 m12 l12">
-                    <div class="input-field col s12 m6 l6">
-                      <input id="remarks" type="text" class="validate" name="remarks">
-                      <label for="remarks">Remarks</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col s12 m12 l12 center">
-                    <button class="btn waves-effect waves-light yellow darken-3" type="submit">Submit
-                      <i class="material-icons right">send</i>
-                    </button>
+                    <table class="responsive-table highlight bordered highlight">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Generation</th>
+                        <th>Line</th>
+                        <th>Family</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+
+                      <tbody>
+                        <tr>
+                          <td>QUEBAI-F21-231421</td>
+                          <td>1</td>
+                          <td>2</td>
+                          <td>B</td>
+                          <td>
+                            <div class="col s12 m6 l6">
+                              <a href="#!"><i class="material-icons">remove_shopping_cart</i></a>
+                            </div>
+                            <div class="col s12 m6 l6">
+                              <a href="#!"><i class="material-icons">attach_money</i></a>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>QUEBAI-M11-231421</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>A</td>
+                          <td>
+                            <div class="col s12 m6 l6">
+                              <a href="#!"><i class="material-icons">remove_shopping_cart</i></a>
+                            </div>
+                            <div class="col s12 m6 l6">
+                              <a href="#!"><i class="material-icons">attach_money</i></a>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>QUEBAI-F12-111421</td>
+                          <td>1</td>
+                          <td>1</td>
+                          <td>C</td>
+                          <td>
+                            <div class="col s12 m6 l6">
+                              <a href="#!"><i class="material-icons">remove_shopping_cart</i></a>
+                            </div>
+                            <div class="col s12 m6 l6">
+                              <a href="#!"><i class="material-icons">attach_money</i></a>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               {!!Form::close()!!}

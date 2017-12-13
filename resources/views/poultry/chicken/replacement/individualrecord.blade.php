@@ -21,7 +21,8 @@
                 <div class="row">
                   <div class="col s12 m12 l12">
                       <div class="input-field col s12 m6 l6">
-                        <input type="text" class="datepicker" name="date_hatched" placeholder="Date Hatched">
+                        <input id="date_hatched" type="text" class="datepicker" name="date_hatched">
+                        <label for="date_hatched">Date Hatched</label>
                       </div>
                   </div>
                 </div>
@@ -46,14 +47,6 @@
                     <div class="input-field col s12 m6 l6">
                       <input id="line" type="text" class="validate" name="line">
                       <label for="line">Line</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col s12 m12 l12">
-                    <div class="input-field col s12 m6 l6">
-                      <input id="family" type="text" class="validate" name="family">
-                      <label for="family">Family</label>
                     </div>
                   </div>
                 </div>
@@ -92,7 +85,8 @@
                 <div class="row">
                   <div class="col s12 m12 l12">
                       <div class="input-field col s12 m6 l6">
-                        <input type="text" class="datepicker" name="date_transferred" placeholder="Date Transferred">
+                        <input id="date_transferred" type="text" class="datepicker" name="date_transferred">
+                        <label for="date_transferred">Date Transferred</label>
                       </div>
                   </div>
                 </div>

@@ -365,11 +365,19 @@ class FarmController extends Controller
       return view('poultry.chicken.breeder.familyrecord');
     }
 
+    public function getIndex(){
+      return view('poultry.dashboard');
+    }
+
     public function getPageFamilyRecord(){
       return view('poultry.chicken.breeder.familyrecord');
     }
 
-    public function getPageEggProduction(){
+    public function getPageAddToFamily(){
+      return view('poultry.chicken.breeder.addtofamily');
+    }
+
+    public function getDailyRecords(){
       return view('poultry.chicken.breeder.eggproductionanddaily');
     }
 

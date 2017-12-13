@@ -84,13 +84,9 @@
                 <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="row">
-                      <div class="col s12 m12 1l2">
-                        Date Eggs Collected
-                      </div>
-                    </div>
-                    <div class="row">
                       <div class="input-field col s12 m12 l12">
-                        <input type="text" class="datepicker" name="date_eggs_collected">
+                        <input id="date_eggs_collected" type="text" class="datepicker">
+                        <label for="date_eggs_collected">Date Eggs Collected</label>
                       </div>
                     </div>
                   </div>

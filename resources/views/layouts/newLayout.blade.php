@@ -16,9 +16,18 @@
           <img src="http://via.placeholder.com/350x400">
         </div>
         <a href="#!"><img class="circle" src="/images/farmer.png"></a>
-        <a href="#!name"><span class="black-text name">John Doe</span></a>
-        <a href="#!email"><span class="black-text email">jdandturk@gmail.com</span></a>
+        <a href="#!name"><span class="black-text name">{{Auth::user()->name}}</span></a>
+        <a href="#!email"><span class="black-text email">{{Auth::user()->email}}</span></a>
       </div></li>
+
+      <li class="no-padding">
+        <ul>
+          <li>
+            <a href="{{route('farm.poultry.dashboard')}}" class="collapsible-header">Dashboard<i class="material-icons">dashboard</i></a>
+          </li>
+        </ul>
+      </li>
+
       <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
           <li>
@@ -26,9 +35,10 @@
             <div class="collapsible-body">
               <ul class="yellow lighten-3">
                 <li><a href="{{route('farm.poultry.page_family_record')}}">Family Record</a></li>
+                <li><a href="{{route('farm.poultry.page_add_to_family')}}">Add to Family</a></li>
                 <li><a href="{{route('farm.poultry.page_phenotypic_characteristics')}}">Phenotypic Characteristics</a></li>
                 <li><a href="{{route('farm.poultry.page_morphometric_characteristics')}}">Morphometric Characteristics</a></li>
-                <li><a href="{{route('farm.poultry.page_egg_production')}}">Egg Production and Daily Records</a></li>
+                <li><a href="{{route('farm.poultry.page_daily_records')}}">Daily Records</a></li>
                 <li><a href="{{route('farm.poultry.page_hatchery_parameters')}}">Hatchery Parameters</a></li>
                 <li><a href="{{route('farm.poultry.page_egg_quality')}}">Egg Quality Characteristics</a></li>
               </ul>

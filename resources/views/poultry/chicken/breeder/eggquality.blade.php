@@ -21,10 +21,10 @@
                 <div class="col s12 m12 l12">
                   <div class="row">
                     <div class="col s12 m6 l6">
-                      Province: <strong><u></u></strong>
+                      Province: <strong><u>{{Auth::user()->getFarm()->address}}</u></strong>
                     </div>
                     <div class="col s12 m6 l6">
-                      Farm ID: <strong><u></u></strong>
+                      Farm ID: <strong><u>{{Auth::user()->getFarm()->code}}</u></strong>
                     </div>
                   </div>
                   <div class="row">

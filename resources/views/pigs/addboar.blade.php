@@ -313,16 +313,6 @@
                 <!--MORPHOMETRIC CHARACTERISTICS-->
                 <div id="tab2" class="col s11 offset-s1 grey lighten-2">
                   <ul class="collection with-header">
-                    <li class="collection-header">Body weight prior to first breeding, kg</li>
-                    <input type="hidden" name="bweighttofirstlabel" value="Body weight prior to first breeding (kg)">
-                    <li class="collection-item">
-                      <div class="input-field col s8 offset-s2">
-                        <input id="weightprior" type="text" name="weightprior" class="validate">
-                        <label for="weightprior">Body weight</label>
-                      </div>
-                    </li>
-                  </ul>
-                  <ul class="collection with-header">
                     <li class="collection-header">Body length, cm</li>
                     <input type="hidden" name="blengthlabel" value="Body lenght (cm)">
                     <li class="collection-item">
