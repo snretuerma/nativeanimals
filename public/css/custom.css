@@ -14,7 +14,7 @@ main {
 #home {
 	margin-top: 100px;
 	font-size: 100px;
-	
+
 }
 
 /*Admin home page CSS*/
@@ -50,14 +50,14 @@ main {
     display: block;
     text-align: center;
     overflow: hidden;
-    white-space: nowrap; 
+    white-space: nowrap;
 }
 
 .strike > span {
     position: relative;
     display: inline-block;
 }
-  
+
 .strike > span:before,
 .strike > span:after {
     content: "";
@@ -79,7 +79,7 @@ main {
 }
 
 .library > img {
-  margin-top: 30px; 
+  margin-top: 30px;
 }
 
 .library > a {

@@ -1,3 +1,31 @@
+.picker__date-display, .picker__weekday-display{
+  background-color: #8b1014 !important;
+}
+
+div.picker__day.picker__day--infocus.picker__day--selected.picker__day--highlighted {
+  background-color: #8b1014 !important;
+}
+
+button.picker__today, button.picker__close {
+  color: #8b1014 !important;
+}
+
+
+[type="radio"]:not(:checked) + label:before,
+[type="radio"]:not(:checked) + label:after {
+  border: 2px solid #8b1014;
+}
+
+type="radio"]:checked + label:after,
+[type="radio"].with-gap:checked + label:before,
+[type="radio"].with-gap:checked + label:after {
+  border: 2px solid #8b1014 !important;
+}
+
+[type="radio"]:checked + label:after,
+[type="radio"].with-gap:checked + label:after {
+  background-color: #8b1014;
+
 /*.container {
    padding-left: 300px;
    width: 100%;
