@@ -37,7 +37,14 @@ class FarmController extends Controller
     {
       $user = $this->user;
       $farm = Farm::find($user->farmable_id);
-      return view('pigs.dashboard', compact('user', 'farm'));
+      $breed = Breed::find($farm->breedable_id);
+      $animaltype = AnimalType::find($breed->animaltype_id);
+      if($animaltype->species == "pig"){
+          return view('pigs.dashboard', compact('user', 'farm'));
+      }else{
+          return view('poultry.dashboard', compact('user', 'farm'));
+      }
+
     }
 
     /**

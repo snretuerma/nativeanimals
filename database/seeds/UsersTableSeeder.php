@@ -45,32 +45,24 @@ class UsersTableSeeder extends Seeder
         $this->command->info('Animaltypes seeded');
 
         $quezon = new Breed;
-        $quezon->breed = "BP";
-        $quezon->animaltype_id = $pig->id;
+        $quezon->breed = "BAI";
+        $quezon->animaltype_id = $chicken->id;
         $quezon->save();
-        $isabela = new Breed;
-        $isabela->breed = "IP";
-        $isabela->animaltype_id = $pig->id;
-        $isabela->save();
-        $benguet = new Breed;
-        $benguet->breed = "BO";
-        $benguet->animaltype_id = $pig->id;
-        $benguet->save();
-        $marinduque = new Breed;
-        $marinduque->breed = "MP";
-        $marinduque->animaltype_id = $pig->id;
-        $marinduque->save();
+        $bohol = new Breed;
+        $bohol->breed = "BOHOL";
+        $bohol->animaltype_id = $chicken->id;
+        $bohol->save();
         $this->command->info('Breed seeded');
 
-        $sampleFarm->breedable_id = $benguet->id;
+        $sampleFarm->breedable_id = $quezon->id;
         $sampleFarm->save();
 
         $sampleFarm->users()->save($sampleUser);
         $this->command->info('User seeded');
 
         $animal = new Animal;
-        $sampleFarm->animaltypes()->attach($pig->id);
-        $animal->animaltype_id = $pig->id;
+        $sampleFarm->animaltypes()->attach($chicken->id);
+        $animal->animaltype_id = $chicken->id;
         $animal->farm_id = $sampleFarm->id;
         $animal->breed_id = $quezon->id;
         $animal->registryid = "QUEBAIBP-20161F1234";

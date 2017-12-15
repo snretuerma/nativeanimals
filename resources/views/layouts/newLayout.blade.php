@@ -70,7 +70,7 @@
             <div class="collapsible-body">
               <ul class="yellow lighten-3">
                 <li><a href="{{route('farm.poultry.page_feeding_records')}}">Feeding Records</a></li>
-                <li><a href="{{route('farm.poultry.page_monthly_sales')}}"">Monthly Sales</a></li>
+                <li><a href="{{route('farm.poultry.page_monthly_sales')}}">Monthly Sales</a></li>
               </ul>
             </div>
           </li>
@@ -98,7 +98,7 @@
 
     <header class="yellow lighten-3 nav-wrapper center">
       <div class="logo">
-        <a href="dashboard.html" class="brand-logo"><img src="/images/logo-poultry.png" height="70" / ></a>
+        <a href="{{route('farm.index')}}" class="brand-logo"><img src="/images/logo-poultry.png" height="70" / ></a>
       </div>
     </header>
 
