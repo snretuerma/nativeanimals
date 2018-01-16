@@ -16,9 +16,10 @@ class CreateAnimalsTable extends Migration
         Schema::create('animals', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('animaltype_id')->unsigned();
-            $table->string('registryid');
+            $table->string('registryid')->nullable();
             $table->integer('farm_id')->unsigned();
             $table->integer('breed_id')->unsigned();
+            $table->string('status');
             $table->timestamps();
         });
     }

@@ -407,6 +407,11 @@ class FarmController extends Controller
     public function getPageReplacementIndividualRecord(){
       return view('poultry.chicken.replacement.individualrecord');
     }
+
+    public function addReplacementIndividualRecord(Request $request){
+      
+    }
+
     public function getPageReplacementGrowthPerformance(){
       return view('poultry.chicken.replacement.growthperformance');
     }
