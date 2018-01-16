@@ -76,14 +76,6 @@
                 </div>
                 <div class="row">
                   <div class="col s12 m12 l12">
-                    <div class="input-field col s12 m6 l6">
-                      <input id="pen" type="text" class="validate" name="pen">
-                      <label for="pen">Moved to Pen No.</label>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col s12 m12 l12">
                       <div class="input-field col s12 m6 l6">
                         <input id="date_transferred" type="text" class="datepicker" name="date_transferred">
                         <label for="date_transferred">Date Transferred</label>
