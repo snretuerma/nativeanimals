@@ -43,6 +43,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('phenotypic_characteristics', ['as' => 'farm.poultry.page_phenotypic_characteristics', 'uses' => 'FarmController@getPagePhenotypicCharacteristic']);
 
     Route::get('replacement_individual_record', ['as' => 'farm.poultry.page_replacement_individual_record', 'uses' => 'FarmController@getPageReplacementIndividualRecord']);
+    Route::post('get_replacement_individual_record', ['as' => 'farm.poultry.get_replacement_individual_record', 'uses' => 'FarmController@addReplacementIndividualRecord']);
     Route::get('replacement_growth_performance', ['as' => 'farm.poultry.page_replacement_growth_performance', 'uses' => 'FarmController@getPageReplacementGrowthPerformance']);
     Route::get('replacement_phenotypic_characteristics', ['as' => 'farm.poultry.page_replacement_phenotypic', 'uses' => 'FarmController@getPageReplacementPhenotypic']);
     Route::get('replacement_morphometric_characteristics', ['as' => 'farm.poultry.page_replacement_morphometric', 'uses' => 'FarmController@getPageReplacementMorphometric']);
