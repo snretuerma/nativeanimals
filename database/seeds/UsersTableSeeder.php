@@ -143,19 +143,19 @@ class UsersTableSeeder extends Seeder
 
         $animalproperty5 = new AnimalProperty;
         $animalproperty5->animal_id = $animal->id;
-        $animalproperty5->property_id = $individuale1->id;
+        $animalproperty5->property_id = $individuale5->id;
         $animalproperty5->value = "B";
         $animalproperty5->save();
 
         $animalproperty6 = new AnimalProperty;
         $animalproperty6->animal_id = $animal->id;
-        $animalproperty6->property_id = $individuale1->id;
+        $animalproperty6->property_id = $individuale6->id;
         $animalproperty6->value = "F";
         $animalproperty6->save();
 
         $animalproperty7 = new AnimalProperty;
         $animalproperty7->animal_id = $animal->id;
-        $animalproperty7->property_id = $individuale1->id;
+        $animalproperty7->property_id = $individuale7->id;
         $animalproperty7->value = $now->toDateString();
         $animalproperty7->save();
         $this->command->info('AnimalProperty seeded');

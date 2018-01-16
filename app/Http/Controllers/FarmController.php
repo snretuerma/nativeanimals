@@ -408,8 +408,68 @@ class FarmController extends Controller
       return view('poultry.chicken.replacement.individualrecord');
     }
 
+    /*
+      @TODO Fix Date in request sent
+    */
+
     public function addReplacementIndividualRecord(Request $request){
-      
+      $now = new Carbon;
+      $animal = new Animal;
+      $farm = $this->user->getFarm();
+      $breed = $farm->getBreed();
+      $animaltype = $farm->getFarmType();
+      $registryid = $farm->code.'-'.$now->year.$request->gender.$request->generation.$request->line.$request->family.$request->individual_id;
+
+      $animal->animaltype_id = $animaltype->id;
+      $animal->farm_id = $farm->id;
+      $animal->breed_id = $breed->id;
+      $animal->status = "replacement";
+      $animal->registryid = $registryid;
+      $animal->save();
+
+      $animalproperty1 = new AnimalProperty;
+      $animalproperty1->animal_id = $animal->id;
+      $animalproperty1->property_id = 1;
+      $animalproperty1->value = $request->date_hatched;
+      $animalproperty1->save();
+
+      $animalproperty2 = new AnimalProperty;
+      $animalproperty2->animal_id = $animal->id;
+      $animalproperty2->property_id = 2;
+      $animalproperty2->value = $request->individual_id;
+      $animalproperty2->save();
+
+      $animalproperty3 = new AnimalProperty;
+      $animalproperty3->animal_id = $animal->id;
+      $animalproperty3->property_id = 3;
+      $animalproperty3->value = $request->generation;
+      $animalproperty3->save();
+
+      $animalproperty4 = new AnimalProperty;
+      $animalproperty4->animal_id = $animal->id;
+      $animalproperty4->property_id = 4;
+      $animalproperty4->value = $request->line;
+      $animalproperty4->save();
+
+      $animalproperty5 = new AnimalProperty;
+      $animalproperty5->animal_id = $animal->id;
+      $animalproperty5->property_id = 5;
+      $animalproperty5->value = $request->family;
+      $animalproperty5->save();
+
+      $animalproperty6 = new AnimalProperty;
+      $animalproperty6->animal_id = $animal->id;
+      $animalproperty6->property_id = 6;
+      $animalproperty6->value = $request->gender;
+      $animalproperty6->save();
+
+      $animalproperty7 = new AnimalProperty;
+      $animalproperty7->animal_id = $animal->id;
+      $animalproperty7->property_id = 7;
+      $animalproperty7->value = $request->date_transferred;
+      $animalproperty7->save();
+
+        return Redirect::back()->with('message','Animal record successfully saved');
     }
 
     public function getPageReplacementGrowthPerformance(){
