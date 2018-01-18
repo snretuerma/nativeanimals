@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\AnimalProperty;
 
 class Animal extends Model
 {
@@ -90,6 +91,12 @@ class Animal extends Model
   public function setStatus($status)
   {
     $this->status = $status;
+  }
+
+  public function getAnimalProperties()
+  {
+    $properties = AnimalProperty::where('animal_id', $this->id)->get();
+    return $properties;
   }
 
 }
