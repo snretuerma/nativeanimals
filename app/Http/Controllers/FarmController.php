@@ -627,6 +627,52 @@ class FarmController extends Controller
       return view('poultry.chicken.breeder.morphometric', compact('province', 'breedname', 'animaltype_name', 'code', 'animal', 'properties'));
     }
 
+    public function fetchDataReplacementMorphometric(Request $request){
+      $morpho1 = new AnimalProperty;
+      $morpho2 = new AnimalProperty;
+      $morpho3 = new AnimalProperty;
+      $morpho4 = new AnimalProperty;
+      $morpho5 = new AnimalProperty;
+      $morpho6 = new AnimalProperty;
+
+      $morpho1->animal_id = $request->animal_id;
+      $morpho1->property_id = 19;
+      $morpho1->value = $request->height;
+
+      $morpho2->animal_id = $request->animal_id;
+      $morpho2->property_id = 20;
+      $morpho2->value = $request->body_length;
+
+      $morpho3->animal_id = $request->animal_id;
+      $morpho3->property_id = 21;
+      $morpho3->value = $request->chest_circumference;
+
+      $morpho4->animal_id = $request->animal_id;
+      $morpho4->property_id = 22;
+      $morpho4->value = $request->wing_span;
+
+      $morpho5->animal_id = $request->animal_id;
+      $morpho5->property_id = 23;
+      $morpho5->value = $request->shank_length;
+
+      $morpho6->animal_id = $request->animal_id;
+      $morpho6->property_id = 24;
+      $morpho6->value = $request->date_first_lay;
+
+      $morpho1->save();
+      $morpho2->save();
+      $morpho3->save();
+      $morpho4->save();
+      $morpho5->save();
+      $morpho6->save();
+
+      $animal = Animal::find($request->animal_id);
+      $animal->morphometric = 1;
+      $animal->save();
+      $replacement = Animal::where('status', 'replacement')->get();
+      return view('poultry.chicken.replacement.phenomorphoidsearch', compact('replacement'));
+    }
+
     public function getPageFeedingRecords(){
       return view('poultry.chicken.feeding');
     }

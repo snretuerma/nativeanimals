@@ -50,8 +50,9 @@
                   </div>
                 </div>
               </div>
-              {!! Form::open([ 'method' => 'post']) !!}
+              {!! Form::open(['route' => 'farm.poultry.fetch_replacement_morphometric_id', 'method' => 'post']) !!}
                 {{-- structure  row -> col -> col: input-field --}}
+                <input type="hidden" name="animal_id" value="{{ $animal->id }}">
                 <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="row">
@@ -70,7 +71,7 @@
                   <div class="col s12 m12 l12">
                     <div class="row">
                       <div class="input-field col s12 m12 l12">
-                        <input id="height" type="number" class="validate" name="height" min=0>
+                        <input id="height" type="number" class="validate" name="height" min=0 required>
                         <label for="height">Height (cm)</label>
                       </div>
                     </div>
@@ -80,7 +81,7 @@
                   <div class="col s12 m12 l12">
                     <div class="row">
                       <div class="input-field col s12 m12 l12">
-                        <input id="body_length" type="number" class="validate" name="body_length" min=0>
+                        <input id="body_length" type="number" class="validate" name="body_length" min=0 required>
                         <label for="body_length">Body Length (cm)</label>
                       </div>
                     </div>
@@ -90,7 +91,7 @@
                   <div class="col s12 m12 l12">
                     <div class="row">
                       <div class="input-field col s12 m12 l12">
-                        <input id="chest_circumference" type="number" class="validate" name="chest_circumference" min=0>
+                        <input id="chest_circumference" type="number" class="validate" name="chest_circumference" min=0 required>
                         <label for="chest_circumference">Chest Circumference (cm)</label>
                       </div>
                     </div>
@@ -100,7 +101,7 @@
                   <div class="col s12 m12 l12">
                     <div class="row">
                       <div class="input-field col s12 m12 l12">
-                        <input id="wing_span" type="number" class="validate" name="wing_span" min=0>
+                        <input id="wing_span" type="number" class="validate" name="wing_span" min=0 required>
                         <label for="wing_span">Wing Span (cm)</label>
                       </div>
                     </div>
@@ -110,7 +111,7 @@
                   <div class="col s12 m12 l12">
                     <div class="row">
                       <div class="input-field col s12 m12 l12">
-                        <input id="shank_length" type="number" class="validate" name="shank_length" min=0>
+                        <input id="shank_length" type="number" class="validate" name="shank_length" min=0 required>
                         <label for="shank_length">Shank Length (cm)</label>
                       </div>
                     </div>
@@ -120,7 +121,7 @@
                   <div class="col s12 m12 l12">
                     <div class="row">
                       <div class="input-field col s12 m12 l12">
-                        <input id="date_first_lay" type="text" class="datepicker" name="date_first_lay">
+                        <input id="date_first_lay" type="text" class="datepicker" name="date_first_lay" required>
                         <label for="date_first_lay">Date at First Lay</label>
                       </div>
                     </div>
