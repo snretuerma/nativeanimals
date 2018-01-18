@@ -26,16 +26,15 @@ class UsersTableSeeder extends Seeder
         $sampleFarm->code = "QUEBAIBP";
         $sampleFarm->address = "Quezon";
 
-
         $sampleUser = new User;
         $sampleUser->name = "SampleUser";
         $sampleUser->email = "sfretuerma@gmail.com";
 
         /**********************************/
-        /**** Chicken and Ducks Seeder ****/
+        /********* Chicken Seeder *********/
         /**********************************/
 
-        // individual records form seeder
+        // Individual Records Seeder (Chicken)
         $individuale1 = new Property;
         $individuale1->name = "Date Hatched";
         $individuale1->fname = "date_hatched";
@@ -77,6 +76,125 @@ class UsersTableSeeder extends Seeder
         $individuale7->fname = "date_transferred";
         $individuale7->description = "Date when the animal was transferred to the replacement stocks";
         $individuale7->save();
+
+        $this->command->info('Chicken individual properties seeded');
+
+        // Phenotypic Characteristics Seeder (Chicken)
+        $pheno1 = new Property;
+        $pheno1->name = "Plummage Color";
+        $pheno1->fname = "plummage_color";
+        $pheno1->description = "Plummage color of the chicken";
+        $pheno1->save();
+
+        $pheno2 = new Property;
+        $pheno2->name = "Plummage Pattern";
+        $pheno2->fname = "plummage_pattern";
+        $pheno2->description = "Plummage pattern of the chicken";
+        $pheno2->save();
+
+        $pheno3 = new Property;
+        $pheno3->name = "Body Carriage";
+        $pheno3->fname = "body_carriage";
+        $pheno3->description = "Body carriage of the chicken";
+        $pheno3->save();
+
+        $pheno4 = new Property;
+        $pheno4->name = "Comb Type";
+        $pheno4->fname = "comb_type";
+        $pheno4->description = "Comb type of the chicken";
+        $pheno4->save();
+
+        $pheno5 = new Property;
+        $pheno5->name = "Comb Color";
+        $pheno5->fname = "comb_color";
+        $pheno5->description = "Comb color of the chicken";
+        $pheno5->save();
+
+        $pheno6 = new Property;
+        $pheno6->name = "Earlobe Color";
+        $pheno6->fname = "earlobe_color";
+        $pheno6->description = "Earlobe color of the chicken";
+        $pheno6->save();
+
+        $pheno7 = new Property;
+        $pheno7->name = "Shank Color";
+        $pheno7->fname = "shank_color";
+        $pheno7->description = "Shank color of the chicken";
+        $pheno7->save();
+
+        $pheno8 = new Property;
+        $pheno8->name = "Skin Color";
+        $pheno8->fname = "skin_color";
+        $pheno8->description = "Skin color of the chicken";
+        $pheno8->save();
+
+        $pheno9 = new Property;
+        $pheno9->name = "Iris Color";
+        $pheno9->fname = "iris_color";
+        $pheno9->description = "Iris color of the chicken";
+        $pheno9->save();
+
+        $pheno10 = new Property;
+        $pheno10->name = "Beak Color";
+        $pheno10->fname = "beak_color";
+        $pheno10->description = "Beak color of the chicken";
+        $pheno10->save();
+
+        $pheno11 = new Property;
+        $pheno11->name = "Other Unique Features";
+        $pheno11->fname = "other_features";
+        $pheno11->description = "Other noticeable features of the chicken";
+        $pheno11->save();
+
+        $this->command->info('Chicken phenotypic properties seeded');
+
+        // Morphometric Characteristics
+        $morpho1 = new Property;
+        $morpho1->name = "height";
+        $morpho1->fname = "height";
+        $morpho1->description = "Height of the chicken";
+        $morpho1->save();
+
+        $morpho2 = new Property;
+        $morpho2->name = "Body Lenght";
+        $morpho2->fname = "body_lenght";
+        $morpho2->description = "Body lenght of the chicken";
+        $morpho2->save();
+
+        $morpho3 = new Property;
+        $morpho3->name = "Chest Circumference";
+        $morpho3->fname = "chest_circumference";
+        $morpho3->description = "Chest circumference of the chicken";
+        $morpho3->save();
+
+        $morpho4 = new Property;
+        $morpho4->name = "Wing Span";
+        $morpho4->fname = "wing_span";
+        $morpho4->description = "Wing span of the chicken";
+        $morpho4->save();
+
+        $morpho5 = new Property;
+        $morpho5->name = "Shank Lenghth";
+        $morpho5->fname = "shank_length";
+        $morpho5->description = "Shank length of the chicken";
+        $morpho5->save();
+
+        $morpho6 = new Property;
+        $morpho6->name = "Date at First Lay";
+        $morpho6->fname = "date_first_lay";
+        $morpho6->description = "Date when the chicken first layed it's eggs";
+        $morpho6->save();
+
+        $this->command->info('Chicken morphometric properties seeded');
+
+
+        /**********************************/
+        /********** Duck Seeder ***********/
+        /**********************************/
+
+        /**********************************/
+        /*********** Pig Seeder ***********/
+        /**********************************/
 
         $this->command->info('Properties value seeded');
 
