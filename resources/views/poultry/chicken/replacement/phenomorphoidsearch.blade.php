@@ -54,12 +54,12 @@
                         <tr>
                           <td>{{ $animal->registryid }}</td>
                           @if ($animal->phenotypic == true)
-                            <td class="center"><a href="#"><i class="material-icons">mode_edit</i></a></td>
+                            <td class="center"><i class="material-icons">mode_edit</i></td>
                           @else
                             <td class="center"><a href="{{ URL::route('farm.poultry.page_replacement_phenotypic_id', [$animal->id]) }}"><i class="material-icons">mode_edit</i></a></td>
                           @endif
                           @if ($animal->morphometric == true)
-                            <td class="center"><a href="#"><i class="material-icons">mode_edit</i></a></td>
+                            <td class="center"><i class="material-icons">mode_edit</i></td>
                           @else
                             <td class="center"><a href="{{ URL::route('farm.poultry.page_replacement_morphometric_id', [$animal->id]) }}"><i class="material-icons">mode_edit</i></a></td>
                           @endif
