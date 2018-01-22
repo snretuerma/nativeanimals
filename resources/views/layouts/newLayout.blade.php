@@ -35,7 +35,7 @@
             <div class="collapsible-body">
               <ul class="yellow lighten-3">
                 <li><a href="{{route('farm.poultry.page_family_record')}}">Family Record</a></li>
-                <li><a href="{{route('farm.poultry.page_add_to_family')}}">Add to Family</a></li>
+                <li><a href="{{route('farm.poultry.page_add_to_breeder')}}">Add to Family</a></li>
                 {{-- <li><a href="{{route('farm.poultry.page_phenotypic_characteristics')}}">Phenotypic Characteristics</a></li> --}}
                 {{-- s<li><a href="{{route('farm.poultry.page_morphometric_characteristics')}}">Morphometric Characteristics</a></li> --}}
                 <li><a href="{{route('farm.poultry.page_daily_records')}}">Daily Records</a></li>
@@ -55,8 +55,8 @@
               <ul class="yellow lighten-3">
                 <li><a href="{{route('farm.poultry.page_replacement_individual_record')}}">Individual Record</a></li>
                 <li><a href="{{route('farm.poultry.page_replacement_growth_performance')}}">Growth Performance</a></li>
-                <li><a href="{{route('farm.poultry.page_phenomorphosearchid')}}">Phenotypic Characteristics</a></li>
-                <li><a href="{{route('farm.poultry.page_phenomorphosearchid')}}">Morphometric Characteristics</a></li>
+                <li><a href="{{route('farm.poultry.page_phenomorphosearchid')}}">Phenotypic and Morphometric</a></li>
+                {{-- <li><a href="{{route('farm.poultry.page_phenomorphosearchid')}}">Morphometric Characteristics</a></li> --}}
               </ul>
             </div>
           </li>

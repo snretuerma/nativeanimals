@@ -1,7 +1,7 @@
 @extends('layouts.newLayout')
 
 @section('title')
-  Search ID {{-- Specify if breeder or replacement when backend added through variable passed --}}
+  Morphometric and Phenotypic Characteristics
 @endsection
 
 @section('initScriptsAndStyles')
@@ -11,13 +11,13 @@
 @section('content')
   <div class="row">
     <div class="col s12 m12 1l2">
-      <h4>Search ID</h4> {{-- Specify if breeder or replacement when backend added through variable passed --}}
+      <h4>Morphometric and Phenotypic Characteristics</h4>
       <div class="divider"></div>
       <div class="row">
         <div class="row">
           <div class="col s12 m12 l12">
             <div class="card-panel">
-              {!! Form::open([ 'method' => 'post']) !!}
+              {!! Form::open(['route' => 'farm.poultry.page_phenomorphosearchid_value', 'method' => 'post']) !!}
                 {{-- structure  row -> col -> col: input-field --}}
                 <div class="row center">
                   <div class="col s12 m12 l12">

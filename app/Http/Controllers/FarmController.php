@@ -379,8 +379,25 @@ class FarmController extends Controller
       return view('poultry.chicken.breeder.familyrecord');
     }
 
-    public function getPageAddToFamily(){
-      return view('poultry.chicken.breeder.addtofamily');
+    public function getPageAddToBreeder() {
+      $families = AnimalProperty::where('property_id', 5)->get();
+      $replacements = Animal::where('status', 'replacement')->get();
+      $breeders = Animal::where('status', 'breeder')->get();
+      $femalebreeders = [];
+      $malebreeders = [];
+      foreach($breeders as $breeder){
+        if(substr($breeder->registryid, 13, 1) == 'F'){
+          array_push($femalebreeders, $breeder);
+        }
+        if(substr($breeder->registryid, 13, 1) == 'M'){
+          array_push($malebreeders, $breeder);
+        }
+      }
+      return view('poultry.chicken.breeder.addtobreeder', compact('replacements', 'families', 'malebreeders', 'femalebreeders'));
+    }
+
+    public function addAnimalsToBreeder(Request $request){
+      dd($request);
     }
 
     public function getDailyRecords(){
@@ -406,10 +423,6 @@ class FarmController extends Controller
     public function getPageReplacementIndividualRecord(){
       return view('poultry.chicken.replacement.individualrecord');
     }
-
-    /*
-      @TODO Fix Date in request sent
-    */
 
     public function addReplacementIndividualRecord(Request $request){
       $now = new Carbon;
@@ -478,6 +491,19 @@ class FarmController extends Controller
     public function getPageSearchID(){
         $replacement = Animal::where('status', 'replacement')->get();
         return view('poultry.chicken.replacement.phenomorphoidsearch', compact('replacement'));
+    }
+
+    // query to get unique animal id only from value
+    public function searchID(Request $request){
+      $animals =  Animal::where('status', 'replacement')->get();
+      $replacement = [];
+      foreach ($animals as $animal) {
+        $id = substr($animal->registryid, 8);
+        if(strpos($id, $request->id_no)!== false){
+          array_push($replacement, $animal);
+        }
+      }
+      return view('poultry.chicken.replacement.phenomorphoidsearch', compact('replacement'));
     }
 
     public function getPageReplacementPhenotypic($id){
