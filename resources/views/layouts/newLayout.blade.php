@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Native Ducks and Chicken | @yield('title')</title>
+    <link rel="stylesheet" href="/thirdparty/fontawesome-free-5.0.4/web-fonts-with-css/css/fontawesome-all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/thirdparty/materialize/css/materialize.min.css">
     <link rel="stylesheet" href="/css/global.css">

@@ -36,7 +36,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('dashboard', ['as' => 'farm.poultry.dashboard', 'uses' => 'FarmController@getIndex']); // Make as landing page after login when doing backend for Native Chicken
     Route::get('family_record', ['as' => 'farm.poultry.page_family_record', 'uses' => 'FarmController@getPageFamilyRecord']);
     Route::get('add_to_breeder', ['as' => 'farm.poultry.page_add_to_breeder', 'uses' => 'FarmController@getPageAddToBreeder']);
-    Route::post('add_animals_breeder', ['as' => 'farm.poultry.page_add_animals_breeder', 'uses' => 'FarmController@addAnimalsToBreeder']);
+    Route::post('add_animals_breeder', ['as' => 'farm.poultry.page_add_animals_breeder', 'uses' => 'FarmController@ ']);
     Route::get('daily_records', ['as' => 'farm.poultry.page_daily_records', 'uses' => 'FarmController@getDailyRecords']);
     Route::get('egg_quality', ['as' => 'farm.poultry.page_egg_quality', 'uses' => 'FarmController@getPageEggQuality']);
     Route::get('hatchery_parameters', ['as' => 'farm.poultry.page_hatchery_parameters', 'uses' => 'FarmController@getPageHatcheryParameter']);

@@ -20,7 +20,7 @@
               {!! Form::open(['route' => 'farm.poultry.page_add_animals_breeder', 'method' => 'post']) !!}
                 <div class="row">
                   <div class="col s12 m12 l12">
-                    <div class="row">
+                    {{-- <div class="row">
                       <div class="input-field col s12 m12 l12">
                         <select>
                           <option value="" disabled selected>Select Family</option>
@@ -32,8 +32,8 @@
                         </select>
                         <label>Family</label>
                       </div>
-                    </div>
-                    <div class="row">
+                    </div> --}}
+                    {{-- <div class="row">
                       <div class="input-field col s12 m12 l12">
                         <select>
                           <option value="" disabled selected>Select Father ID</option>
@@ -45,55 +45,47 @@
                         </select>
                         <label>Father</label>
                       </div>
-                    </div>
-                    <div class="row">
-                      <div class="input-field col s12 m12 l12">
-                        <select>
-                          <option value="" disabled selected>Select Mother ID</option>
-                          @forelse ($femalebreeders as $female)
-                            <option value="{{$female->value}}">{{$female->value}}</option>
-                          @empty
-                            No Available Families
-                          @endforelse
-                        </select>
-                        <label>Mother</label>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col s12 m12 l12">
-                        <a class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add New Family</a>
-                      </div>
-                    </div>
+                    </div> --}}
                     <div class="row">
                       <div class="input-field col s12 m12 l12">
                         <i class="material-icons prefix">search</i>
                         <input id="search" type="text" class="validate">
-                        <label for="search">Search</label>
+                        <label for="search">Search ID</label>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col s12 m12 l12">
-                    <div class="row">
-                      @forelse ($replacements as $replacement)
-                        <div class="col s6 m4 l4">
-                          <input type="checkbox" class="filled-in" id="{{$replacement->id}}" name="add_breeder[]" value="{{$replacement->id}}"/>
-                          <label for="{{$replacement->id}}">{{$replacement->registryid}}</label>
-                        </div>
-                      @empty
-                        <div class="col s12 m12 l12 center">
-                          No Animals to Add
-                        </div>
-                      @endforelse
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col s12 m12 l12 center">
-                    <button class="btn waves-effect waves-light yellow darken-3" type="submit">Add
-                      <i class="material-icons right">add</i>
-                    </button>
+                    <table class="bordered highlight responsive-table centered">
+                      <thead>
+                        <tr>
+                          <th data-field="id">Registry ID</th>
+                          <th data-field="action1">Add to Family</th>
+                          <th data-field="action2">Create Family</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        @forelse ($replacements as $replacement)
+                          <tr>
+                            <td>{{$replacement->registryid}}</td>
+                            <td>
+                              <a><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                            </td>
+                            <td>
+                              <a><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+                            </td>
+                          </tr>
+                        @empty
+                          <tr>
+                            <td></td>
+                            <td>No Animals in Replacement Stocks</td>
+                            <td></td>
+                          </tr>
+                        @endforelse
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               {!!Form::close()!!}

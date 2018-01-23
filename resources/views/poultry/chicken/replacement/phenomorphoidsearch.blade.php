@@ -11,7 +11,7 @@
 @section('content')
   <div class="row">
     <div class="col s12 m12 1l2">
-      <h4>Morphometric and Phenotypic Characteristics</h4>
+      <h4>Add Morphometric and Phenotypic Characteristics</h4>
       <div class="divider"></div>
       <div class="row">
         <div class="row">
@@ -54,14 +54,14 @@
                         <tr>
                           <td>{{ $animal->registryid }}</td>
                           @if ($animal->phenotypic == true)
-                            <td class="center"><i class="material-icons">mode_edit</i></td>
+                            <td class="center"><i class="material-icons">add_circle</i></td>
                           @else
-                            <td class="center"><a href="{{ URL::route('farm.poultry.page_replacement_phenotypic_id', [$animal->id]) }}"><i class="material-icons">mode_edit</i></a></td>
+                            <td class="center"><a href="{{ URL::route('farm.poultry.page_replacement_phenotypic_id', [$animal->id]) }}"><i class="material-icons">add_circle</i></a></td>
                           @endif
                           @if ($animal->morphometric == true)
-                            <td class="center"><i class="material-icons">mode_edit</i></td>
+                            <td class="center"><i class="material-icons">add_circle</i></td>
                           @else
-                            <td class="center"><a href="{{ URL::route('farm.poultry.page_replacement_morphometric_id', [$animal->id]) }}"><i class="material-icons">mode_edit</i></a></td>
+                            <td class="center"><a href="{{ URL::route('farm.poultry.page_replacement_morphometric_id', [$animal->id]) }}"><i class="material-icons">add_circle</i></a></td>
                           @endif
                         </tr>
                       @endforeach
