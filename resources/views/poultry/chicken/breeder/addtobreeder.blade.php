@@ -17,7 +17,7 @@
         <div class="row">
           <div class="col s12 m12 l12">
             <div class="card-panel">
-              {!! Form::open(['route' => 'farm.poultry.page_add_animals_breeder', 'method' => 'post']) !!}
+              {!! Form::open(['method' => 'post']) !!}
                 <div class="row">
                   <div class="col s12 m12 l12">
                     {{-- <div class="row">
@@ -49,7 +49,7 @@
                     <div class="row">
                       <div class="input-field col s12 m12 l12">
                         <i class="material-icons prefix">search</i>
-                        <input id="search" type="text" class="validate">
+                        <input id="search" type="text" class="validate tooltipped" data-position="bottom" data-delay="50" data-tooltip="Search for animal's registry ID">
                         <label for="search">Search ID</label>
                       </div>
                     </div>
@@ -68,15 +68,28 @@
 
                       <tbody>
                         @forelse ($replacements as $replacement)
-                          <tr>
-                            <td>{{$replacement->registryid}}</td>
-                            <td>
-                              <a><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
-                            </td>
-                            <td>
-                              <a><i class="fa fa-list-alt" aria-hidden="true"></i></a>
-                            </td>
-                          </tr>
+                          @if (substr($replacement->registryid, 16, 1) == 'M')
+                            <tr>
+                              <td>{{$replacement->registryid}}</td>
+                              <td>
+                                <a><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                              </td>
+                              <td>
+                                <a href="{{ URL::route('farm.poultry.create_family_id', [$replacement->id]) }}"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
+                              </td>
+                            </tr>
+                            @else
+                              <tr>
+                                <td>{{$replacement->registryid}}</td>
+                                <td>
+                                  <a><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                                </td>
+                                <td>
+                                  <i class="fa fa-list-alt tooltipped" aria-hidden="true" data-position="bottom" data-delay="50" data-tooltip="Action not available"></i>
+                                </td>
+                              </tr>
+                          @endif
+
                         @empty
                           <tr>
                             <td></td>

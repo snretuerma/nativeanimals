@@ -9,6 +9,8 @@ use App\Models\Property;
 use App\Models\AnimalType;
 use App\Models\AnimalProperty;
 use App\Models\Breed;
+use App\Models\Grouping;
+use App\Models\GroupingMember;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -383,22 +385,44 @@ class FarmController extends Controller
       $families = AnimalProperty::where('property_id', 5)->get();
       $replacements = Animal::where('status', 'replacement')->get();
       $breeders = Animal::where('status', 'breeder')->get();
-      $femalebreeders = [];
-      $malebreeders = [];
-      foreach($breeders as $breeder){
-        if(substr($breeder->registryid, 13, 1) == 'F'){
-          array_push($femalebreeders, $breeder);
-        }
-        if(substr($breeder->registryid, 13, 1) == 'M'){
-          array_push($malebreeders, $breeder);
-        }
-      }
-      return view('poultry.chicken.breeder.addtobreeder', compact('replacements', 'families', 'malebreeders', 'femalebreeders'));
+      // $femalebreeders = [];
+      // $malebreeders = [];
+      // foreach($breeders as $breeder){
+      //   if(substr($breeder->registryid, 13, 1) == 'F'){
+      //     array_push($femalebreeders, $breeder);
+      //   }
+      //   if(substr($breeder->registryid, 13, 1) == 'M'){
+      //     array_push($malebreeders, $breeder);
+      //   }
+      // }
+      return view('poultry.chicken.breeder.addtobreeder', compact('replacements', 'families'));
     }
 
-    public function addAnimalsToBreeder(Request $request){
-      dd($request);
+    public function addToFamily(){
+
     }
+
+    public function createFamily($id){
+      $families = AnimalProperty::where('property_id', 5)->get();
+      $replacements = Animal::where('status', 'replacement')->get();
+      $group = new Grouping;
+      $animal = Animal::where('id', $id)->first();
+      $group->registryid = $animal->registryid;
+      $group->father_id = $animal->id;
+      $group->save();
+
+      $breedermember = new GroupingMember;
+      $breedermember->grouping_id = $group->id;
+      $breedermember->animal_id = $animal->id;
+      $breedermember->save();
+      $animal->status = "breeder";
+      $animal->save();
+      return Redirect::back()->with('message','Operation Successful !');
+    }
+
+    // public function addAnimalsToBreeder(Request $request){
+    //   dd($request);
+    // }
 
     public function getDailyRecords(){
       return view('poultry.chicken.breeder.eggproductionanddaily');
