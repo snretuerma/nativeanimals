@@ -72,7 +72,7 @@
                             <tr>
                               <td>{{$replacement->registryid}}</td>
                               <td>
-                                <a><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                                <a class="modal-trigger" href="#add_to_family_modal"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
                               </td>
                               <td>
                                 <a href="{{ URL::route('farm.poultry.create_family_id', [$replacement->id]) }}"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
@@ -82,7 +82,7 @@
                               <tr>
                                 <td>{{$replacement->registryid}}</td>
                                 <td>
-                                  <a><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                                  <a class="modal-trigger" href="#add_to_family_modal"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
                                 </td>
                                 <td>
                                   <i class="fa fa-list-alt tooltipped" aria-hidden="true" data-position="bottom" data-delay="50" data-tooltip="Action not available"></i>
@@ -101,6 +101,30 @@
                     </table>
                   </div>
                 </div>
+                <!-- Modal Structure -->
+                <div id="add_to_family_modal" class="modal modal-fixed-footer">
+                  <div class="modal-content">
+                    <h4>Add to Family</h4>
+                    <div class="divider"></div>
+                    <div class="row">
+                      <div class="input-field col s12 m12 l12">
+                        <select>
+                          <option value="" disabled selected>Select Family</option>
+                            @forelse ($families as $family)
+                            <option value="{{$family->value}}">{{$family->value}}</option>
+                          @empty
+                            No Available Families
+                          @endforelse
+                        </select>
+                        <label>Family</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+                  </div>
+                </div>
+
               {!!Form::close()!!}
             </div>
           </div>
