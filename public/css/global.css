@@ -32,10 +32,6 @@ main {
 }
 
 #add_to_family_modal{
-  height: 300px;
+  height: 240px;
   width: 500px;;
-}
-
-.select-dropdown{
-    overflow-y: auto !important;
 }

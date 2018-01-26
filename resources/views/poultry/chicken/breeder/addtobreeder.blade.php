@@ -107,16 +107,15 @@
                     <h4>Add to Family</h4>
                     <div class="divider"></div>
                     <div class="row">
-                      <div class="input-field col s12 m12 l12">
-                        <select>
+                      <div class="  col s12 m12 l12">
+                        <select class="browser-default">
                           <option value="" disabled selected>Select Family</option>
-                            @forelse ($families as $family)
-                            <option value="{{$family->value}}">{{$family->value}}</option>
+                          @forelse ($families as $family)
+                            <option value="{{$family->id}}">{{substr($family->registryid, 15, 1)}} (<i>{{$family->registryid}}</i>)</option>
                           @empty
                             No Available Families
                           @endforelse
                         </select>
-                        <label>Family</label>
                       </div>
                     </div>
                   </div>

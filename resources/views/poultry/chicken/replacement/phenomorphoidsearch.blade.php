@@ -73,9 +73,11 @@
                         <td></td>
                       </tr>
                     @endempty
-
                   </tbody>
                   </table>
+
+                  <ul class="pagination center"> <li>{{ $replacement->appends(Request::except('page'))->links() }}</li> </ul>
+
                 </div>
               </div>
             </div>

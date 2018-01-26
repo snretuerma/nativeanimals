@@ -21,7 +21,7 @@
                 <div class="row">
                   <div class="col s12 m12 l12">
                       <div class="input-field col s12 m6 l6">
-                        <input id="date_hatched" type="text" class="datepicker" name="date_hatched">
+                        <input id="date_hatched" type="text" class="datepicker" name="date_hatched" required>
                         <label for="date_hatched">Date Hatched</label>
                       </div>
                   </div>
@@ -29,7 +29,7 @@
                 <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="input-field col s12 m6 l6">
-                      <input id="individual_id" type="text" class="validate" name="individual_id">
+                      <input id="individual_id" type="text" class="validate" name="individual_id" required>
                       <label for="individual_id">Individual ID</label>
                     </div>
                   </div>
@@ -37,7 +37,7 @@
                 <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="input-field col s12 m6 l6">
-                      <input id="generation" type="text" class="validate" name="generation">
+                      <input id="generation" type="text" class="validate" name="generation" required>
                       <label for="generation">Generation</label>
                     </div>
                   </div>
@@ -45,7 +45,7 @@
                 <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="input-field col s12 m6 l6">
-                      <input id="line" type="text" class="validate" name="line">
+                      <input id="line" type="text" class="validate" name="line" required>
                       <label for="line">Line</label>
                     </div>
                   </div>
@@ -53,7 +53,7 @@
                 <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="input-field col s12 m6 l6">
-                      <input id="family" type="text" class="validate" name="family">
+                      <input id="family" type="text" class="validate" name="family" required>
                       <label for="family">Family</label>
                     </div>
                   </div>
@@ -63,7 +63,7 @@
                     <div class="row">
                       <div class="col s12 m12 l12">
                         <div class="input-field col s6 m6 l6">
-                          <select name="gender">
+                          <select name="gender" required>
                             <option value="" disabled selected>Select Gender</option>
                             <option value="M">Male</option>
                             <option value="F">Female</option>
@@ -77,7 +77,7 @@
                 <div class="row">
                   <div class="col s12 m12 l12">
                       <div class="input-field col s12 m6 l6">
-                        <input id="date_transferred" type="text" class="datepicker" name="date_transferred">
+                        <input id="date_transferred" type="text" class="datepicker" name="date_transferred" required>
                         <label for="date_transferred">Date Transferred</label>
                       </div>
                   </div>

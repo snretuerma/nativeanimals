@@ -15,6 +15,8 @@ use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 
 class FarmController extends Controller
@@ -382,9 +384,15 @@ class FarmController extends Controller
     }
 
     public function getPageAddToBreeder() {
-      $families = AnimalProperty::where('property_id', 5)->get();
-      $replacements = Animal::where('status', 'replacement')->get();
-      $breeders = Animal::where('status', 'breeder')->get();
+      // $families = AnimalProperty::where('property_id', 5)->distinct()->get(['value']);
+      // $families = [];
+      // $groupings = Grouping::all();
+      // $replacements = Animal::where('status', 'replacement')->get();
+      // $breeders = Animal::where('status', 'breeder')->get();
+      // foreach ($groupings as $grouping) {
+      //   array_push($families, substr($grouping->registryid, 15, 1));
+      // }
+
       // $femalebreeders = [];
       // $malebreeders = [];
       // foreach($breeders as $breeder){
@@ -395,11 +403,19 @@ class FarmController extends Controller
       //     array_push($malebreeders, $breeder);
       //   }
       // }
+
+      $families = Grouping::all();
+      $replacements = Animal::where('status', 'replacement')->get();
+      $breeders = Animal::where('status', 'breeder')->get();
+      // foreach ($groupings as $grouping) {
+      //   array_push($families, substr($grouping->registryid, 15, 1));
+      // }
       return view('poultry.chicken.breeder.addtobreeder', compact('replacements', 'families'));
     }
 
-    public function addToFamily(){
-
+    public function addToFamily(Request $request){
+      
+      return Redirect::back()->with('message','Operation Successful !');
     }
 
     public function createFamily($id){
@@ -416,8 +432,8 @@ class FarmController extends Controller
       $breedermember->animal_id = $animal->id;
       $breedermember->save();
       $animal->status = "breeder";
-      $animal->save();
       return Redirect::back()->with('message','Operation Successful !');
+      $animal->save();
     }
 
     // public function addAnimalsToBreeder(Request $request){
@@ -517,22 +533,36 @@ class FarmController extends Controller
         $replacement = Animal::where('status', 'replacement')->where(function ($query) {
                       $query->where('phenotypic', '==', false)
                             ->orWhere('morphometric', '==', false);
-                            })->get();
+                          })->paginate(10);
         return view('poultry.chicken.replacement.phenomorphoidsearch', compact('replacement'));
     }
 
     public function searchID(Request $request){
-      $animals =  Animal::where('status', 'replacement')->where(function ($query) {
-                    $query->where('phenotypic', '==', false)
-                          ->orWhere('morphometric', '==', false);
-                          })->get();
+      $animals =  Animal::where('status', 'replacement')
+                          ->where(function ($query) {
+                              $query->where('phenotypic', '==', false)
+                                    ->orWhere('morphometric', '==', false);
+                          })
+                          ->get();
       $replacement = [];
+      $replacement = collect($replacement);
       foreach ($animals as $animal) {
-        $id = substr($animal->registryid, 8);
-        if(strpos($id, $request->id_no)!== false){
-          array_push($replacement, $animal);
+        $id = substr($animal->registryid, 9);
+        if(strpos($id, $request->id_no)){
+          $replacement->push($animal);
         }
       }
+      $page = Input::get('page', 1); // Get the ?page=1 from the url
+      $perPage = 10; // Number of items per page
+      $offset = ($page * $perPage) - $perPage;
+
+      $replacement =  new LengthAwarePaginator(
+          $replacement->forPage($page, $perPage)->values(),
+          $replacement->count(), // Total items
+          $perPage, // Items per page
+          $page, // Current page
+          ['path' => $request->url(), 'query' => $request->query()] // We need this so we can keep all old query parameters from the url
+      );
       return view('poultry.chicken.replacement.phenomorphoidsearch', compact('replacement'));
     }
 
