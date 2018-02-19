@@ -115,17 +115,61 @@
                 <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="row">
-                      <div class="input-field col s12 m6 l6">
+                      <div class="input-field col s12 m12 l12">
                         <input id="width" type="number" min=0 class="validate" name="width">
                         <label for="width">Width (mm)</label>
                       </div>
-                      <div class="input-field col s12 m6 l6">
+                      {{-- <div class="input-field col s12 m6 l6">
                         <input id="shell_weight" type="number" min=0 class="validate" name="shell_weight">
+                        <label for="shell_weight">Shell Weight (g)</label>
+                      </div> --}}
+                    </div>
+                  </div>
+                </div>
+                {{-- Shape Index (width/length)*100 --}}
+                {{-- Haugh Unit () --}}
+                {{-- Average Shell Thickness --}}
+                <div class="row">
+                  <div class="col s12 m12 l12">
+                    <div class="row">
+                      <div class="input-field col s12 m6 l6">
+                        <input id="abumen_height" type="number" min=0 class="validate" name="albumen_height">
+                        <label for="albumen_height">Albument Height (mm)</label>
+                      </div>
+                      <div class="input-field col s12 m6 l6">
+                        <input id="albumen_weight" type="number" class="validate" name="albumen_weight">
+                        <label for="albumen_weight">Albumen Weight (mm)</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s12 m12 l12">
+                    <div class="row">
+                      <div class="input-field col s12 m6 l6">
+                        <input id="yolk_weight" type="number" class="validate" name="yolk_weight">
+                        <label for="yolk_weight">Yolk Weight (g)</label>
+                      </div>
+                      <div class="input-field col s12 m6 l6">
+                        <input id="yolk_color" type="text" class="validate" name="yolk_color">
+                        <label for="yolk_color">Yolk Color</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s12 m12 l12">
+                    <div class="row">
+                      <div class="input-field col s12 m12 l12">
+                        <input id="shell_weight" type="number" class="validate" name="shell_weight">
                         <label for="shell_weight">Shell Weight (g)</label>
                       </div>
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="row">
@@ -149,20 +193,9 @@
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col s12 m12 l12">
-                    <div class="row">
-                      <div class="input-field col s12 m6 l6">
-                        <input id="abumen_height" type="number" min=0 class="validate" name="albumen_height">
-                        <label for="albumen_height">Albument Height (mm)</label>
-                      </div>
-                      <div class="input-field col s12 m6 l6">
-                        <input id="yolk_color" type="text" class="validate" name="yolk_color">
-                        <label for="yolk_color">Yolk Color</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
+
+
                 <div class="row">
                   <div class="col s12 m12 l12 center">
                     <button class="btn waves-effect waves-light yellow darken-3" type="submit">Submit

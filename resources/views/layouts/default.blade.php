@@ -18,8 +18,8 @@
   <title>@yield('title')</title>
 </head>
 <body @yield('page-id')>
-  <div id="default_top_nav" class="navbar-fixed">
-      <nav class="blue-grey">
+  <div id="login_page_navbar" class="navbar-fixed">
+      <nav class="blue-grey" id="login_page_navbar_contents">
         <div class="nav-wrapper container">
 
           <a href="{{ url('/') }}" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -36,27 +36,14 @@
               @endif
           @else
                 <li><a href="{{ url('/login') }}">Login</a></li>
-                <li><a href="{{ url('/register') }}">Register</a></li>
             @endif
           </ul>
         </div>
       </nav>
     </div>
-
-    <ul id="slide-out" class="side-nav fixed">
-      <div id="logo_image_holder" class="center"><a href="{{ url('/') }}" class="brand-logo indent"><img src="{{asset('images/logo-default.png')}}" height="65"/></a></div>
-      <li><a href="#!">Dashboard</a></li>
-        <li><a href="{{ route('farm.pig.add_sow_record')}}">Add Sow Record</a></li>
-      <li><a href="#!">Add Boar Record</a></li>
-      <li><a href="#!">View Animal Record</a></li>
-      <li><a href="#!">Sow Litter Record</a></li>
-      <li><a href="#!">Mortality and Sales</a></li>
-      <li><a href="#!">Farm Profile</a></li>
-    </ul>
-    <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
   @yield('navigation')
 
-  <main>
+  <main id="login_page_main">
     <div class="container">
       <div class="col">
         <div class="row">
@@ -67,7 +54,7 @@
   </main>
 
 
-  <footer class="page-footer blue-grey">
+  <footer class="page-footer blue-grey" id="login_page_footer">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">

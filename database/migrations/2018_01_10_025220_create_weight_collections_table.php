@@ -16,8 +16,9 @@ class CreateWeightCollectionsTable extends Migration
         Schema::create('weight_collections', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('animal_id')->unsigned();
+            $table->integer('weight_at')->unsigned();
             $table->double('weight');
-            $table->timestamps();
+            $table->date('date_collected');
         });
     }
 

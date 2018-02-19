@@ -33,5 +33,10 @@ main {
 
 #add_to_family_modal{
   height: 240px;
-  width: 500px;;
+  width: 700px;;
+}
+
+.individual_animal_image{
+  height: 340px;
+  width: 340px;
 }

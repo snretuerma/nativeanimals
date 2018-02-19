@@ -56,6 +56,15 @@ class Animal extends Model
     return $this->hasOne('App\Models\Mortality');
   }
 
+  public function pens()
+  {
+    return $this->belongsTo('App\Models\Pen');
+  }
+
+  public function penassignments()
+  {
+    return $this->belongsTo('App\Models\PenAssignment');
+  }
 
   /*
     Model Functions
@@ -97,6 +106,21 @@ class Animal extends Model
   {
     $properties = AnimalProperty::where('animal_id', $this->id)->get();
     return $properties;
+  }
+
+  public function getFamily(){
+    $family = substr($this->registryid, 15, 1);
+    return $family;
+  }
+
+  public function getLine(){
+    $line = substr($this->registryid, 14, 1);
+    return $line;
+  }
+
+  public function getGeneration(){
+    $generation = substr($this->registryid, 13, 1);
+    return $generation;
   }
 
 }

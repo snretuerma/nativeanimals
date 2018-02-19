@@ -93,16 +93,16 @@
                     </div>
                     <div class="row">
                       <div class="col s12 m4 l4">
-                        <input class="with-gap" name="plummage_color" type="radio" id="plummage_color_redblack" value="Red-Black" />
-                        <label for="plummage_color_redblack">Red-Black</label>
-                      </div>
-                      <div class="col s12 m4 l4">
                         <input class="with-gap" name="plummage_color" type="radio" id="plummage_color_orange" value="Orange" />
                         <label for="plummage_color_orange">Orange</label>
                       </div>
                       <div class="col s12 m4 l4">
                         <input class="with-gap" name="plummage_color" type="radio" id="plummage_color_brown" value="Brown" />
                         <label for="plummage_color_brown">Brown</label>
+                      </div>
+                      <div class="col s12 m4 l4">
+                        <input class="with-gap" name="plummage_color" type="radio" id="plummage_color_yellow" value="Yellow" />
+                        <label for="plummage_color_yellow">Yellow</label>
                       </div>
                     </div>
                     <div class="row">
@@ -131,9 +131,99 @@
                       </div>
                     </div>
                     <div class="row">
+                      <div class="col s12 m6 l6">
+                        <input class="with-gap" name="plummage_pattern" type="radio" id="plummage_pattern_wild" value="Wild" />
+                        <label for="plummage_pattern_wild">Wild Type</label>
+                      </div>
+                      <div class="col s12 m6 l6">
+                        <input class="with-gap" name="plummage_pattern" type="radio" id="plummage_pattern_laced" value="Laced" />
+                        <label for="plummage_pattern_laced">Laced</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col s12 m6 l6">
+                        <input class="with-gap" name="plummage_pattern" type="radio" id="plummage_pattern_mottled" value="Mottled" />
+                        <label for="plummage_pattern_mottled">Mottled</label>
+                      </div>
+                    </div>
+
+                    <div class="row">
                       <div class="input-field col s12 m12 l12">
                         <input id="plummage_pattern_others" type="text" class="validate" name="plummage_pattern_others">
                         <label for="plummage_pattern_others">Others</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12 m12 l12">
+                    <div class="row">
+                      <div class="col s12 m12 1l2">
+                        Hackle Color
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col s12 m6 l6">
+                        <input class="with-gap" name="hackle_color" type="radio" id="hackle_color_yellow" value="Yellow" />
+                        <label for="hackle_color_yellow">Yellow</label>
+                      </div>
+                      <div class="col s12 m6 l6">
+                        <input class="with-gap" name="hackle_color" type="radio" id="hackle_color_orange" value="Orange" />
+                        <label for="hackle_color_orange">Orange</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col s12 m6 l6">
+                        <input class="with-gap" name="hackle_color" type="radio" id="hackle_color_brown" value="Brown" />
+                        <label for="hackle_color_brown">Brown</label>
+                      </div>
+                      <div class="col s12 m6 l6">
+                        <input class="with-gap" name="hackle_color" type="radio" id="hackle_color_red" value="Red" />
+                        <label for="hackle_color_red">Red</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col s12 m6 l6">
+                        <input class="with-gap" name="hackle_color" type="radio" id="hackle_color_black" value="Black" />
+                        <label for="hackle_color_black">Black</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12 m12 l12">
+                        <input id="hackle_color_others" type="text" class="validate" name="hackle_color_others">
+                        <label for="hackle_color_others">Others</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12 m12 l12">
+                    <div class="row">
+                      <div class="col s12 m12 1l2">
+                        Hackle Pattern
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col s12 m6 l6">
+                        <input class="with-gap" name="hackle_pattern" type="radio" id="hackle_pattern_plain" value="Plain" />
+                        <label for="hackle_pattern_plain">Plain</label>
+                      </div>
+                      <div class="col s12 m6 l6">
+                        <input class="with-gap" name="hackle_pattern" type="radio" id="hackle_pattern_laced" value="Laced" />
+                        <label for="hackle_pattern_laced">Laced</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col s12 m6 l6">
+                        <input class="with-gap" name="hackle_pattern" type="radio" id="hackle_pattern_barred" value="Barred" />
+                        <label for="hackle_pattern_barred">Barred</label>
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12 m12 l12">
+                        <input id="hackle_pattern_others" type="text" class="validate" name="hackle_pattern_others">
+                        <label for="hackle_pattern_others">Others</label>
                       </div>
                     </div>
                   </div>
@@ -200,13 +290,17 @@
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col s12 m6 l6">
+                      <div class="col s12 m4 l4">
                         <input class="with-gap" name="comb_color" type="radio" id="comb_color_red" value="Red" />
                         <label for="comb_color_red">Red</label>
                       </div>
-                      <div class="col s12 m6 l6">
+                      <div class="col s12 m4 l4">
                         <input class="with-gap" name="comb_color" type="radio" id="comb_color_pink" value="Pink" />
                         <label for="comb_color_pink">Pink</label>
+                      </div>
+                      <div class="col s12 m4 l4">
+                        <input class="with-gap" name="comb_color" type="radio" id="comb_color_black" value="Black" />
+                        <label for="comb_color_black">Black</label>
                       </div>
                     </div>
                     <div class="row">
@@ -235,42 +329,9 @@
                       </div>
                     </div>
                     <div class="row">
-                      <div class="input-field col s12 m12 l12">
-                        <input id="earlobe_color_others" type="text" class="validate" name="earlobe_color_others">
-                        <label for="earlobe_color_others">Others</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col s12 m12 l12">
-                    <div class="row">
-                      <div class="col s12 m12 1l2">
-                        Shank Color
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col s12 m4 l4">
-                        <input class="with-gap" name="shank_color" type="radio" id="shank_color_white" value="White" />
-                        <label for="shank_color_white">White</label>
-                      </div>
-                      <div class="col s12 m4 l4">
-                        <input class="with-gap" name="shank_color" type="radio" id="shank_color_black" value="Black" />
-                        <label for="shank_color_black">Black</label>
-                      </div>
-                      <div class="col s12 m4 l4">
-                        <input class="with-gap" name="shank_color" type="radio" id="shank_color_yellow" value="Yellow" />
-                        <label for="shank_color_yellow">Yellow</label>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col s12 m4 l4">
-                        <input class="with-gap" name="shank_color" type="radio" id="shank_color_green" value="Green" />
-                        <label for="shank_color_green">Green</label>
-                      </div>
-                      <div class="col s12 m4 l4">
-                        <input class="with-gap" name="shank_color" type="radio" id="shank_color_bluish" value="Bluish-grey" />
-                        <label for="shank_color_bluish">Bluish-grey</label>
+                      <div class="col s12 m6 l6">
+                        <input class="with-gap" name="earlobe_color" type="radio" id="earlobe_color_redwhwhite" value="Red-White" />
+                        <label for="earlobe_color_redwhwhite">Red-White</label>
                       </div>
                     </div>
                     <div class="row">
@@ -281,31 +342,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col s12 m12 l12">
-                    <div class="row">
-                      <div class="col s12 m12 1l2">
-                        Skin Color
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col s12 m6 l6">
-                        <input class="with-gap" name="skin_color" type="radio" id="skin_color_white" value="White" />
-                        <label for="skin_color_white">White</label>
-                      </div>
-                      <div class="col s12 m6 l6">
-                        <input class="with-gap" name="skin_color" type="radio" id="skin_color_yellow" value="Yellow" />
-                        <label for="skin_color_yellow">Yellow</label>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="input-field col s12 m12 l12">
-                        <input id="skin_color_others" type="text" class="validate" name="skin_color_others">
-                        <label for="skin_color_others">Others</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
                 <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="row">
@@ -349,15 +386,19 @@
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col s12 m4 l4">
+                      <div class="col s12 m3 l3">
                         <input class="with-gap" name="beak_color" type="radio" id="beak_color_white" value="White" />
                         <label for="beak_color_white">White</label>
                       </div>
-                      <div class="col s12 m4 l4">
+                      <div class="col s12 m3 l3">
                         <input class="with-gap" name="beak_color" type="radio" id="beak_color_black" value="Black" />
                         <label for="beak_color_black">Black</label>
                       </div>
-                      <div class="col s12 m4 l4">
+                      <div class="col s12 m3 l3">
+                        <input class="with-gap" name="beak_color" type="radio" id="beak_color_brown" value="Brown" />
+                        <label for="beak_color_brown">Brown</label>
+                      </div>
+                      <div class="col s12 m3 l3">
                         <input class="with-gap" name="beak_color" type="radio" id="beak_color_yellow" value="Yellow" />
                         <label for="beak_color_yellow">Yellow</label>
                       </div>
@@ -366,6 +407,70 @@
                       <div class="input-field col s12 m12 l12">
                         <input id="beak_color_others" type="text" class="validate" name="beak_color_others">
                         <label for="beak_color_others">Others</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12 m12 l12">
+                    <div class="row">
+                      <div class="col s12 m12 1l2">
+                        Shank Color
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col s12 m4 l4">
+                        <input class="with-gap" name="shank_color" type="radio" id="shank_color_white" value="White" />
+                        <label for="shank_color_white">White</label>
+                      </div>
+                      <div class="col s12 m4 l4">
+                        <input class="with-gap" name="shank_color" type="radio" id="shank_color_black" value="Black" />
+                        <label for="shank_color_black">Black</label>
+                      </div>
+                      <div class="col s12 m4 l4">
+                        <input class="with-gap" name="shank_color" type="radio" id="shank_color_yellow" value="Yellow" />
+                        <label for="shank_color_yellow">Yellow</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col s12 m4 l4">
+                        <input class="with-gap" name="shank_color" type="radio" id="shank_color_green" value="Green" />
+                        <label for="shank_color_green">Green</label>
+                      </div>
+                      <div class="col s12 m4 l4">
+                        <input class="with-gap" name="shank_color" type="radio" id="shank_color_grey" value="Grey" />
+                        <label for="shank_color_grey">Grey</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12 m12 l12">
+                        <input id="shank_color_others" type="text" class="validate" name="shank_color_others">
+                        <label for="shank_color_others">Others</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12 m12 l12">
+                    <div class="row">
+                      <div class="col s12 m12 1l2">
+                        Skin Color
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col s12 m6 l6">
+                        <input class="with-gap" name="skin_color" type="radio" id="skin_color_white" value="White" />
+                        <label for="skin_color_white">White</label>
+                      </div>
+                      <div class="col s12 m6 l6">
+                        <input class="with-gap" name="skin_color" type="radio" id="skin_color_yellow" value="Yellow" />
+                        <label for="skin_color_yellow">Yellow</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12 m12 l12">
+                        <input id="skin_color_others" type="text" class="validate" name="skin_color_others">
+                        <label for="skin_color_others">Others</label>
                       </div>
                     </div>
                   </div>

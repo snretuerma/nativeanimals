@@ -16,6 +16,7 @@ class CreateMortalitiesTable extends Migration
         Schema::create('mortalities', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('animal_id')->unsigned();
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }

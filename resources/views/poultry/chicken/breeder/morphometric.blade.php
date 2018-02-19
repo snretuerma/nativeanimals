@@ -47,6 +47,9 @@
                     <div class="col s12 m6 l6">
                       Animal Type: <strong><u>{{ ucfirst($animaltype_name) }}</u></strong>
                     </div>
+                    <div class="col s12 m6 l6">
+                      Date Hatched: <strong><u>{{ $properties[6]->value }}</u></strong>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -73,6 +76,16 @@
                       <div class="input-field col s12 m12 l12">
                         <input id="height" type="number" class="validate" name="height" min=0 required>
                         <label for="height">Height (cm)</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12 m12 l12">
+                    <div class="row">
+                      <div class="input-field col s12 m12 l12">
+                        <input id="weight" type="number" class="validate" name="weight" min=0 required>
+                        <label for="height">Weight (kg)</label>
                       </div>
                     </div>
                   </div>
@@ -121,7 +134,7 @@
                   <div class="col s12 m12 l12">
                     <div class="row">
                       <div class="input-field col s12 m12 l12">
-                        <input id="date_first_lay" type="text" class="datepicker" name="date_first_lay" required>
+                        <input id="date_first_lay" type="text" class="datepicker" name="date_first_lay">
                         <label for="date_first_lay">Date at First Lay</label>
                       </div>
                     </div>

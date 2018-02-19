@@ -1,7 +1,7 @@
 @extends('layouts.newLayout')
 
 @section('title')
-  Monthly Sales
+  Mortality and Sales
 @endsection
 
 @section('initScriptsAndStyles')
@@ -11,44 +11,33 @@
 @section('content')
   <div class="row">
     <div class="col s12 m12 1l2">
-      <h4>Monthly Sales</h4>
+      <h4>Mortality and Sales</h4>
       <div class="divider"></div>
       <div class="row">
         <div class="row">
           <div class="col s12 m12 l12">
             <div class="card-panel">
-              {{-- Get date when action performed --}}
-
-              {{-- <div class="row">
-                <div class="col s12 m12 l12">
-                  <div class="row">
-                    <div class="col s12 m12 l12">
-                      <div class="input-field col s12 m12 l12">
-                        <select>
-                          <option value="" disabled selected>Select Month</option>
-                          <option value="January">January</option>
-                          <option value="February">February</option>
-                          <option value="March">March</option>
-                          <option value="April">April</option>
-                          <option value="May">May</option>
-                          <option value="June">June</option>
-                          <option value="July">July</option>
-                          <option value="August">August</option>
-                          <option value="September">September</option>
-                          <option value="October">October</option>
-                          <option value="November">November</option>
-                          <option value="December">December</option>
-                        </select>
-                        <label>Month</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> --}}
               {{-- Table for all the replacement stocks to be culled or sold --}}
               <div class="row">
                 <div class="col s12 m12 l12">
-                  <table class="responsive-table highlight bordered highlight">
+                  <div class="row">
+                    {!! Form::open(['route' => 'farm.chicken.search_monthly_sales', 'method' => 'post']) !!}
+                      <div class="input-field col s12 m8 l8">
+                        <input value="" id="search" type="text" class="validate" name="search">
+                        <label class="active" for="search">Search</label>
+                      </div>
+                      <div class="col s12 m4 l4">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                          <i class="material-icons right">search</i>
+                        </button>
+                      </div>
+                    {!!Form::close()!!}
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s12 m12 l12">
+                  <table class="responsive-table highlight bordered highlight centered">
                   <thead>
                     <tr>
                       <th>ID</th>
@@ -58,54 +47,39 @@
                       <th>Action</th>
                     </tr>
                   </thead>
-
                     <tbody>
-                      <tr>
-                        <td>QUEBAI-F21-231421</td>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>B</td>
-                        <td>
-                          <div class="col s12 m6 l6">
-                            <a href="#!"><i class="material-icons modal-trigger" href="#culled-modal">remove_shopping_cart</i></a>
-                          </div>
-                          <div class="col s12 m6 l6">
-                            <a href="#!"><i class="material-icons modal-trigger" href="#sold-modal">attach_money</i></a>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>QUEBAI-M11-231421</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>A</td>
-                        <td>
-                          <div class="col s12 m6 l6">
-                            <a href="#!"><i class="material-icons modal-trigger" href="#culled-modal">remove_shopping_cart</i></a>
-                          </div>
-                          <div class="col s12 m6 l6">
-                            <a href="#!"><i class="material-icons modal-trigger" href="#sold-modal">attach_money</i></a>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>QUEBAI-F12-111421</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>C</td>
-                        <td>
-                          <div class="col s12 m6 l6">
-                            <a href="#!"><i class="material-icons modal-trigger" href="#culled-modal">remove_shopping_cart</i></a>
-                          </div>
-                          <div class="col s12 m6 l6">
-                            <a href="#!"><i class="material-icons modal-trigger" href="#sold-modal">attach_money</i></a>
-                          </div>
-                        </td>
-                      </tr>
+                      @isset($replacement)
+                        @forelse ($replacement as $animal)
+                          <tr>
+                            <td>{{$animal->registryid}}</td>
+                            <td>{{$animal->getGeneration()}}</td>
+                            <td>{{$animal->getLine()}}</td>
+                            <td>{{$animal->getFamily()}}</td>
+                            <td>
+                              <div class="col s12 m6 l6">
+                                <a href="#!" class="culled"><i class="fa fa-minus modal-trigger" aria-hidden="true"  href="#culled-modal" data-id="{{$animal->id}}"></i></a>
+                              </div>
+                              <div class="col s12 m6 l6">
+                                <a href="#!" class="sold"><i class="material-icons modal-trigger" href="#sold-modal"  data-id="{{$animal->id}}">attach_money</i></a>
+                              </div>
+                            </td>
+                          </tr>
+                        @endforeach
+                      @endisset
+                      {{-- @empty($items)
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td>No Data Found</td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      @endempty --}}
                     </tbody>
                   </table>
                 </div>
               </div>
+              <ul class="pagination center"> <li>{{ $replacement->appends(Request::except('page'))->links() }}</li> </ul>
             </div>
           </div>
         </div>
@@ -113,13 +87,14 @@
     </div>
   </div>
   <div id="culled-modal" class="modal modal-fixed-footer">
-    {!! Form::open([ 'method' => 'post']) !!}
+    {!! Form::open(['route' => 'farm.poultry.addto_culled',  'method' => 'post']) !!}
       <div class="modal-content">
         <div class="row">
           <div class="col s12 m12 l12">
             Are you sure you want to mark this entry as culled?
             <div class="row">
               <div class="input-field col s12 m12 l12">
+                <input id="culled_modal_input" type="hidden" name="culled_animal_id" value="">
                 <textarea id="input_culled" class="materialize-textarea" name="culled_remarks"></textarea>
                 <label for="input_culled">Remarks</label>
               </div>
@@ -133,15 +108,16 @@
     {!!Form::close()!!}
   </div>
   <div id="sold-modal" class="modal modal-fixed-footer">
-    {!! Form::open([ 'method' => 'post']) !!}
+    {!! Form::open(['route' => 'farm.poultry.addto_monthly_sales', 'method' => 'post']) !!}
       <div class="modal-content">
         <div class="row">
           <div class="col s12 m12 l12">
             Are you sure you want to mark this entry as sold?
             <div class="row">
               <div class="input-field col s12 m12 l12">
-                <textarea id="input_sold" class="materialize-textarea" name="sold_remarks"></textarea>
-                <label for="input_sold">Remarks</label>
+                <input id="sold_modal_input" type="hidden" name="sold_animal_id" value="">
+                <input id="input_sold" type="number" name="sold_weight" min=0 value=0>
+                <label for="input_sold" data-success="right">Weight</label>
                 {{-- <input placeholder="Reason for selling this entry" id="sell_input" type="text" class="validate">
                 <label for="sell_input">Remarks</label> --}}
               </div>
@@ -157,5 +133,5 @@
 @endsection
 
 @section('scripts')
-
+  <script type="text/javascript" src="/js/vue/addtosales.js"></script>
 @endsection

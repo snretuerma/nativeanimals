@@ -17,42 +17,26 @@
         <div class="row">
           <div class="col s12 m12 l12">
             <div class="card-panel">
-              <div class="row">
-                <div class="col s12 m12 l12">
-                  <div class="row">
-                    <div class="col s12 m6 l6">
-                      Province: <strong><u></u></strong>
-                    </div>
-                    <div class="col s12 m6 l6">
-                      Generation: <strong><u></u></strong>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col s12 m6 l6">
-                      Farm ID: <strong><u></u></strong>
-                    </div>
-                    <div class="col s12 m6 l6">
-                      Breed Name: <strong><u></u></strong>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col s12 m6 l6">
-                      Date Collected: <strong><u></u></strong>
-                    </div>
-                    <div class="col s12 m6 l6">
-                      Animal Type: <strong><u>Chicken</u></strong>
-                    </div>
+              {!! Form::open([ 'method' => 'post']) !!}
+                <div class="row">
+                  <div class="input-field col s12">
+                    <select name="family">
+                      <option value="" disabled selected>Choose family</option>
+                      <option value="1">Family 1</option>
+                      <option value="2">Family 2</option>
+                      <option value="3">Family 3</option>
+                    </select>
+                  <label>Family</label>
                   </div>
                 </div>
-              </div>
-              {!! Form::open([ 'method' => 'post']) !!}
+
                 {{-- structure  row -> col -> col: input-field --}}
                 <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="row">
                       <div class="input-field col s12 m12 l12">
-                        <input id="date_eggs_collected" type="text" class="datepicker" name="date_eggs_collected">
-                        <label for="date_eggs_collected">Date Egg Collected</label>
+                        <input id="date_eggs_set" type="text" class="datepicker" name="date_eggs_set">
+                        <label for="date_eggs_set">Date Egg Set</label>
                       </div>
                     </div>
                   </div>
@@ -88,14 +72,16 @@
                 <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="row">
-                      <div class="input-field col s12 m6 l6">
+                      {{-- Compute based from the age of the Family / Age of Family based on date eggs collected --}}
+
+                      {{-- <div class="input-field col s12 m6 l6">
                         <input id="week_taken" type="text" class="validate" name="week_taken">
                         <label for="week_taken">Week of Lay Taken When Eggs Were Collected</label>
-                      </div>
-                      <div class="input-field col s12 m6 l6">
+                      </div> --}}
+                      {{-- <div class="input-field col s12 m6 l6">
                         <input id="date_eggs_set" type="text" class="datepicker" name="date_eggs_set">
                         <label for="date_eggs_set">Date Eggs Set</label>
-                      </div>
+                      </div> --}}
                     </div>
                   </div>
                 </div>
@@ -130,7 +116,18 @@
                 <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="row">
-                      <div class="input-field col s12 m6=12 l12">
+                      <div class="input-field col s12 m12 l12">
+                        <input id="moved_to_pen" type="text" class="validate" name="moved_to_pen" required>
+                        <label for="moved_to_pen">Moved to Brooder Pen No.</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col s12 m12 l12">
+                    <div class="row">
+                      <div class="input-field col s12 m12 l12">
                         <input id="remarks" type="text" class="validate" name="remarks" placeholder="i.e. ID Code, Color Code">
                         <label for="remarks">Remarks</label>
                       </div>

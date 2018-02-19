@@ -81,6 +81,14 @@
                         <label for="date_transferred">Date Transferred</label>
                       </div>
                   </div>
+                </div>  
+                <div class="row">
+                  <div class="col s12 m12 l12">
+                    <div class="input-field col s12 m6 l6">
+                      <input id="moved_to_pen" type="text" class="validate" name="moved_to_pen" required>
+                      <label for="moved_to_pen">Moved to Grower Pen No.</label>
+                    </div>
+                  </div>
                 </div>
                 <div class="row">
                   <div class="col s12 m12 l12 center">

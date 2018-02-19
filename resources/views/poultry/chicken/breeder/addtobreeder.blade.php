@@ -17,7 +17,6 @@
         <div class="row">
           <div class="col s12 m12 l12">
             <div class="card-panel">
-              {!! Form::open(['method' => 'post']) !!}
                 <div class="row">
                   <div class="col s12 m12 l12">
                     {{-- <div class="row">
@@ -72,7 +71,7 @@
                             <tr>
                               <td>{{$replacement->registryid}}</td>
                               <td>
-                                <a class="modal-trigger" href="#add_to_family_modal"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                                <a class="modal-trigger add_family_button" href="#add_to_family_modal" data-id="{{$replacement->id}}" data-registryid = "{{$replacement->registryid}}"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
                               </td>
                               <td>
                                 <a href="{{ URL::route('farm.poultry.create_family_id', [$replacement->id]) }}"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
@@ -101,31 +100,35 @@
                     </table>
                   </div>
                 </div>
-                <!-- Modal Structure -->
-                <div id="add_to_family_modal" class="modal modal-fixed-footer">
-                  <div class="modal-content">
-                    <h4>Add to Family</h4>
-                    <div class="divider"></div>
-                    <div class="row">
-                      <div class="  col s12 m12 l12">
-                        <select class="browser-default">
-                          <option value="" disabled selected>Select Family</option>
-                          @forelse ($families as $family)
-                            <option value="{{$family->id}}">{{substr($family->registryid, 15, 1)}} (<i>{{$family->registryid}}</i>)</option>
-                          @empty
-                            No Available Families
-                          @endforelse
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+            </div>
+            <!-- Modal Structure -->
+            <div id="add_to_family_modal" class="modal modal-fixed-footer">
+              {!! Form::open(['route'=> 'farm.poultry.add_to_family_animal', 'method' => 'post']) !!}
+
+              <div class="modal-content">
+                <h4 id="modal_title">Add to Family</h4>
+                <div class="divider"></div>
+                <input id="add_to_family_input" type="hidden" name="animal_id" value="">
+                <div class="row">
+                  <div class="  col s12 m12 l12">
+                    <select class="browser-default" name="family">
+                      <option value="" disabled selected>Select Family</option>
+                      @forelse ($families as $family)
+                        <option value="{{$family->id}}">{{substr($family->registryid, 15, 1)}} (<i>{{$family->registryid}}</i>)</option>
+                      @empty
+                        No Available Families
+                      @endforelse
+                    </select>
                   </div>
                 </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+              </div>
 
               {!!Form::close()!!}
             </div>
+
           </div>
         </div>
       </div>
@@ -134,5 +137,5 @@
 @endsection
 
 @section('scripts')
-
+  <script type="text/javascript" src="/js/vue/addtofamily.js"></script>
 @endsection

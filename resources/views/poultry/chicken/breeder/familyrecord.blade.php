@@ -61,14 +61,9 @@
                 <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="input-field col s12 m6 l6">
-                      <input disabled id="no_male" type="text">
-                      <label for="no_male">No. of Males in the Family</label>
+                      <input id="pen_no" type="text" class="validate" name="pen_no">
+                      <label for="pen_no">Pen No.</label>
                     </div>
-                    <div class="input-field col s12 m6 l6">
-                      <input disabled id="no_female" type="text">
-                      <label for="no_female">No. of Females in the Family</label>
-                    </div>
-                  </div>
                 </div>
                 <div class="row">
                   <div class="col s12 m12 l12 center">

@@ -36,6 +36,16 @@ class Farm extends Model
     return $this->hasOne('App\Models\Breed');
   }
 
+  public function pens()
+  {
+      return $this->hasMany('App\Models\Pen');
+  }
+
+  public function penassignment()
+  {
+    return $this->hasMany('App\Models\PenAssignment');
+  }
+
   public function getFarmType()
   {
     $pivot = DB::table('farm_animaltypes')->where('farm_id', '=', $this->id)->first();

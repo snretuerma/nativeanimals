@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Native Ducks and Chicken | @yield('title')</title>
+    <title>Native Chickens and Ducks | @yield('title')</title>
     <link rel="stylesheet" href="/thirdparty/fontawesome-free-5.0.4/web-fonts-with-css/css/fontawesome-all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/thirdparty/materialize/css/materialize.min.css">
@@ -32,16 +32,20 @@
       <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
           <li>
-            <a class="collapsible-header">Breeder Record<i class="material-icons">add_circle</i></a>
+            <a class="collapsible-header">Breeder<i class="material-icons">add_circle</i></a>
             <div class="collapsible-body">
               <ul class="yellow lighten-3">
+                <li><a href="{{route('farm.poultry.generation')}}">Generation</a></li>
+                <li><a href="{{route('farm.poultry.breeder.daily')}}">Daily Records</a></li>
+                <li><a href="{{route('farm.poultry.page_hatchery_parameters')}}">Hatchery Parameters</a></li>
+                <li><a href="{{route('farm.poultry.breeder.familymenu')}}">Family Records</a></li>
+                <li><a href="{{route('farm.poultry.breeder.daily')}}">Egg Quality Records</a></li>
+                <li><a href="{{route('farm.poultry.page_view_breeders')}}">View Breeders</a></li>
+                {{-- <li><a href="{{route('farm.poultry.page_add_to_breeder')}}">Add to Family</a></li>
                 <li><a href="{{route('farm.poultry.page_family_record')}}">Family Record</a></li>
-                <li><a href="{{route('farm.poultry.page_add_to_breeder')}}">Add to Family</a></li>
-                {{-- <li><a href="{{route('farm.poultry.page_phenotypic_characteristics')}}">Phenotypic Characteristics</a></li> --}}
-                {{-- s<li><a href="{{route('farm.poultry.page_morphometric_characteristics')}}">Morphometric Characteristics</a></li> --}}
                 <li><a href="{{route('farm.poultry.page_daily_records')}}">Daily Records</a></li>
                 <li><a href="{{route('farm.poultry.page_hatchery_parameters')}}">Hatchery Parameters</a></li>
-                <li><a href="{{route('farm.poultry.page_egg_quality')}}">Egg Quality Characteristics</a></li>
+                <li><a href="{{route('farm.poultry.page_egg_quality')}}">Egg Quality Characteristics</a></li> --}}
               </ul>
             </div>
           </li>
@@ -51,7 +55,23 @@
       <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
           <li>
-            <a class="collapsible-header">Replacement Stocks Record<i class="material-icons">add_circle_outline</i></a>
+            <a class="collapsible-header">Replacement<i class="material-icons">add_circle_outline</i></a>
+            <div class="collapsible-body">
+              <ul class="yellow lighten-3">
+                <li><a href="{{route('farm.poultry.page_replacement_individual_record')}}">Individual Record</a></li>
+                <li><a href="{{route('farm.poultry.page_replacement_growth_performance')}}">Growth Performance</a></li>
+                <li><a href="{{route('farm.poultry.page_phenomorphosearchid')}}">Phenotypic and Morphometric</a></li>
+                {{-- <li><a href="{{route('farm.poultry.page_phenomorphosearchid')}}">Morphometric Characteristics</a></li> --}}
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Brooders and Growers<i class="fas fa-cart-plus"></i></a>
             <div class="collapsible-body">
               <ul class="yellow lighten-3">
                 <li><a href="{{route('farm.poultry.page_replacement_individual_record')}}">Individual Record</a></li>
@@ -71,12 +91,28 @@
             <div class="collapsible-body">
               <ul class="yellow lighten-3">
                 <li><a href="{{route('farm.poultry.page_feeding_records')}}">Feeding Records</a></li>
-                <li><a href="{{route('farm.poultry.page_monthly_sales')}}">Monthly Sales</a></li>
+                <li><a href="{{route('farm.poultry.page_monthly_sales')}}">Mortality and Sales  </a></li>
               </ul>
             </div>
           </li>
         </ul>
       </li>
+{{--
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">View<i class="material-icons">search</i></a>
+            <div class="collapsible-body">
+              <ul class="yellow lighten-3">
+                <li><a href="{{route('farm.poultry.page_view_breeders')}}">Breeders</a></li>
+                <li><a href="{{route('farm.poultry.page_view_replacement')}}">Replacement Stocks</a></li>
+                <li><a href="{{route('farm.poultry.page_view_culled')}}">Mortalities</a></li>
+                <li><a href="{{route('farm.poultry.page_view_sold')}}">Sales</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li> --}}
 
       <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
@@ -103,7 +139,7 @@
       </div>
     </header>
 
-    <main>
+    <main id="vue">
       <div class="container">
         @yield('content')
       </div>
@@ -135,10 +171,11 @@
           </div>
         </footer>
 
-
+    <script type="text/javascript" src="/thirdparty/vue.js"></script>
     <script type="text/javascript" src="/thirdparty/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="/thirdparty/materialize/js/materialize.min.js"></script>
     <script type="text/javascript" src="/js/global.js"></script>
+    <script type="text/javascript" src="/thirdparty/Chart.bundle.min.js"></script>
     @yield('scripts')
   </body>
 </html>

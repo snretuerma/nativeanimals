@@ -16,10 +16,6 @@
   margin-bottom: 10px;
 }
 
-#default_top_nav{
-  padding-left: 150px;
-}
-
 /*Materialize Side-Nav CSS*/
 header, main, footer {
     padding-left: 300px;
@@ -29,4 +25,20 @@ header, main, footer {
   header, main, footer {
     padding-left: 0;
   }
+}
+
+#login_page_main{
+  padding-left: 0px;
+}
+
+#login_page_footer{
+  padding-left: 0px;
+}
+
+#login_page_navbar{
+  padding-left: 0px;
+}
+
+#login_page_navbar_contents{
+  padding-left: 500px;
 }

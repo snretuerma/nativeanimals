@@ -138,11 +138,11 @@
                     <div class="row">
                       <div class="input-field col s12 m6 l6">
                         <input id="mortality" type="number" min=0 class="validate" name="mortality">
-                        <label for="mortality">Mortality</label>
+                        <label for="mortality">No. of Dead Birds</label>
                       </div>
                       <div class="input-field col s12 m6 l6">
                         <input id="culled" type="number" min=0 class="validate" name="culled">
-                        <label for="culled">Culled</label>
+                        <label for="culled">No. of Culled Birds</label>
                       </div>
                     </div>
                   </div>
