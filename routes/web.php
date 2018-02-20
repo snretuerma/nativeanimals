@@ -84,8 +84,10 @@ Route::group(['middleware' => ['web']], function () {
     // New Views
     Route::get('breeder_generation', ['as' => 'farm.poultry.generation', 'uses' => 'FarmController@generationPage']);
     Route::post('breeder_add_generation', ['as' => 'farm.poultry.add_generation', 'uses' => 'FarmController@addGeneration']);
+    Route::post('breeder_edit_generation', ['as' => 'farm.poultry.breeder.edit_generation', 'uses' => 'FarmController@editGeneration']);
 
     Route::get('breeder_daily_records', ['as' => 'farm.poultry.breeder.daily', 'uses' => 'FarmController@breederDailyRecords']);
+
   });
 
   // Route::group(['prefix' => 'admin'], function(){

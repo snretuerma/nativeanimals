@@ -977,11 +977,47 @@ class FarmController extends Controller
     }
 
     public function addGeneration(Request $request){
+      $lines = array_filter($request->line);
       $newgen = new Generation;
-      $newgen->number = str_pad( $request->generation, 4, "0", STR_PAD_LEFT);
+      $newgen->number = str_pad($request->generation, 4, "0", STR_PAD_LEFT);
       $newgen->is_active = true;
       $newgen->save();
+      if(!empty($lines)){
+        foreach ($lines as $line) {
+          $newline = new Line;
+          $newline->number = str_pad($line, 4, "0", STR_PAD_LEFT);
+          $newline->generation_id = $newgen->id;
+          $newline->is_active = true;
+          $newline->save();
+        }
+      }
+
       return Redirect::back()->with('message','Generation  added');
+    }
+
+    public function editGeneration(Request $request){
+      $generation = Generation::where('id', $request->generation_edit)->first();
+      $lines = array_filter($request->line_edit);
+      $pens =  array_filter($request->pen);
+      if(!empty($lines)){
+        foreach ($lines as $line) {
+          $newline = new Line;
+          $newline->number = str_pad($line, 4, "0", STR_PAD_LEFT);
+          $newline->generation_id = $generation->id;
+          $newline->is_active = true;
+          $newline->save();
+        }
+      }
+
+      if(!empty($pens)){
+        foreach ($pens as $pen) {
+          $newpen = new Pen;
+          $newpen->number = str_pad($line, 4, "0", STR_PAD_LEFT);
+          $newpen->capacity = 10;
+          $newpen->save();
+        }
+      }
+      return Redirect::back()->with('message','Generation  edit complete');
     }
 
     public function breederDailyRecords()
