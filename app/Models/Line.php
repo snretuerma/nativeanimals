@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\Generation;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,5 +21,10 @@ class Line extends Model
   public function families()
   {
     return $this->hasMany('App\Models\Family');
+  }
+
+  public function getGeneration()
+  {
+    return Generation::where('id', $this->generation_id)->first();
   }
 }

@@ -15,10 +15,14 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->increments('id');
-            $table->double('weight');
-            $table->integer('animal_id')->unsigned();
-            $table->string('age');
-            $table->timestamps();
+            $table->integer('animal_id')->unsigned()->nullable();
+            $table->integer('family_id')->unsigned()->nullable();
+            $table->integer('pen_id')->unsigned()->nullable();
+            $table->date('date_sold');
+            $table->string('classification');
+            $table->integer('quantity');
+            $table->double('price');
+            $table->string('remarks')->nullable();
         });
     }
 

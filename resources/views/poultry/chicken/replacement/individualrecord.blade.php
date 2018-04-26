@@ -52,9 +52,14 @@
                 </div>
                 <div class="row">
                   <div class="col s12 m12 l12">
-                    <div class="input-field col s12 m6 l6">
-                      <input id="family" type="text" class="validate" name="family" required>
-                      <label for="family">Family</label>
+                     <div  class="input-field col s12 m6 l6">
+                      <select name = "family" required>
+                         <option value="" disabled selected>Choose family</option>
+                         @foreach ($families as $family)
+                           <option value="{{ $family->id }}">{{ $family->number }}</option>
+                         @endforeach
+                      </select>
+                      <label>Family</label>
                     </div>
                   </div>
                 </div>
@@ -81,12 +86,17 @@
                         <label for="date_transferred">Date Transferred</label>
                       </div>
                   </div>
-                </div>  
+                </div>
                 <div class="row">
                   <div class="col s12 m12 l12">
-                    <div class="input-field col s12 m6 l6">
-                      <input id="moved_to_pen" type="text" class="validate" name="moved_to_pen" required>
-                      <label for="moved_to_pen">Moved to Grower Pen No.</label>
+                    <div  class="input-field col s12 m6 l6">
+                      <select name = "moved_to_pen" required>
+                         <option value="" disabled selected>Choose pen</option>
+                         @foreach ($pens as $pen)
+                           <option value="{{ $pen->id }}">{{ $pen->number }}</option>
+                         @endforeach
+                      </select>
+                      <label>Moved to Pen Number</label>
                     </div>
                   </div>
                 </div>

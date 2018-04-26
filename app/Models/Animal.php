@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\AnimalProperty;
+use App\Models\FamilyMember;
+use App\Models\Pen;
 
 class Animal extends Model
 {
@@ -11,7 +13,8 @@ class Animal extends Model
   protected $table = 'animals';
   protected $fillable = [
       'registryid',
-      'status'
+      'status',
+      'growth'
   ];
 
   /*
@@ -69,14 +72,18 @@ class Animal extends Model
   /*
     Model Functions
   */
-  public function getAnimalType(){
+  public function getAnimalType()
+  {
     return $this->animaltype_id;
   }
-  public function getFarmId(){
+
+  public function getFarmId()
+  {
     return $this->farm_id;
   }
 
-  public function getBreedId(){
+  public function getBreedId()
+  {
     return $this->breed_id;
   }
 
@@ -85,7 +92,8 @@ class Animal extends Model
     return $this->status;
   }
 
-  public function setAnimalType($animaltype_id){
+  public function setAnimalType($animaltype_id)
+  {
       $this->animaltype = $animaltype_id;
   }
 
@@ -93,7 +101,8 @@ class Animal extends Model
       $this->breed_id = $breed_id;
   }
 
-  public function setFarm($farm_id){
+  public function setFarm($farm_id)
+  {
     $this->farm_id = $farm_id;
   }
 
@@ -108,19 +117,52 @@ class Animal extends Model
     return $properties;
   }
 
-  public function getFamily(){
-    $family = substr($this->registryid, 15, 1);
+  public function getFamily()
+  {
+    $family = AnimalProperty::where('animal_id', $this->id)->where('property_id', 5)->first();
     return $family;
   }
 
-  public function getLine(){
-    $line = substr($this->registryid, 14, 1);
+  public function getFamilyId()
+  {
+    $member = FamilyMember::where('animal_id', $this->id)->where('date_end', null)->first();
+    return $member->family_id;
+  }
+
+  public function getLine()
+  {
+    $line = AnimalProperty::where('animal_id', $this->id)->where('property_id', 4)->first();
     return $line;
   }
 
   public function getGeneration(){
-    $generation = substr($this->registryid, 13, 1);
+    $generation = AnimalProperty::where('animal_id', $this->id)->where('property_id', 3)->first();
     return $generation;
+  }
+
+  public function getPen()
+  {
+    $pen = Pen::where('id', $this->pen_id)->first();
+    return $pen->number;
+  }
+
+  public function getGender()
+  {
+    $gender = AnimalProperty::where('property_id', 6)->where('animal_id', $this->id)->first();
+    return $gender->value;
+  }
+
+  // property id 9-21
+  public function getPhenotypicCharacteristic()
+  {
+    $properties = AnimalProperty::where('animal_id', $this->id)->whereIn('property_id', range(9,21))->get();
+    return $properties;
+  }
+  // property id 22-27
+  public function getMorphometricCharacteristic()
+  {
+    $properties = AnimalProperty::where('animal_id', $this->id)->whereIn('property_id', range(22,27))->get();
+    return $properties;
   }
 
 }

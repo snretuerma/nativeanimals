@@ -10,7 +10,8 @@ class Pen extends Model
   public $timestamps = false;
   protected $fillable = [
       'number',
-      'capacity'
+      'capacity',
+      'current_capacity'
   ];
 
   public function animals()
@@ -20,12 +21,12 @@ class Pen extends Model
 
   public function chickmovements()
   {
-    return $this->belongsTo('App\Models\ChickMovement');
+    return $this->hasMany('App\Models\ChickMovement');
   }
 
   public function chicks()
   {
-    return $this->belongsTo('App\Models\Chick');
+    return $this->hasMany('App\Models\Chick');
   }
 
   public function penfeedings()

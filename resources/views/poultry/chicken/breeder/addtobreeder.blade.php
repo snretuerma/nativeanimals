@@ -19,32 +19,6 @@
             <div class="card-panel">
                 <div class="row">
                   <div class="col s12 m12 l12">
-                    {{-- <div class="row">
-                      <div class="input-field col s12 m12 l12">
-                        <select>
-                          <option value="" disabled selected>Select Family</option>
-                          @forelse ($families as $family)
-                            <option value="{{$family->value}}">{{$family->value}}</option>
-                          @empty
-                            No Available Families
-                          @endforelse
-                        </select>
-                        <label>Family</label>
-                      </div>
-                    </div> --}}
-                    {{-- <div class="row">
-                      <div class="input-field col s12 m12 l12">
-                        <select>
-                          <option value="" disabled selected>Select Father ID</option>
-                          @forelse ($malebreeders as $male)
-                            <option value="{{$male->value}}">{{$male->value}}</option>
-                          @empty
-                            No Available Families
-                          @endforelse
-                        </select>
-                        <label>Father</label>
-                      </div>
-                    </div> --}}
                     <div class="row">
                       <div class="input-field col s12 m12 l12">
                         <i class="material-icons prefix">search</i>

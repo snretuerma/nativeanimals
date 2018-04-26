@@ -17,7 +17,7 @@ class CreateAnimalPropertiesTable extends Migration
           $table->increments('id');
           $table->integer('animal_id')->unsigned();
           $table->integer('property_id')->unsigned();
-          $table->string('value');
+          $table->string('value')->nullable();
           $table->date('date_collected');
         });
     }

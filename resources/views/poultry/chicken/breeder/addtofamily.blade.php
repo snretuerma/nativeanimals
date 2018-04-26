@@ -1,3 +1,4 @@
+{{-- DELETE IF NOT USED --}}
 @extends('layouts.newLayout')
 
 @section('title')

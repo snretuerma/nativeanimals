@@ -1,7 +1,7 @@
 @extends('layouts.newLayout')
 
 @section('title')
-  Replacement - Growth Performance
+   Growth Performance
 @endsection
 
 @section('initScriptsAndStyles')
@@ -11,42 +11,53 @@
 @section('content')
   <div class="row">
     <div class="col s12 m12 1l2">
-      <h4>Growth Performance</h4>
+      <h4>Growth Performance
+         @if ($record == '0')
+            at Day 0
+         @elseif ($record == '21')
+            at Day 21
+         @elseif ($record == '45')
+            at Day 45
+         @elseif ($record == '75')
+            at Day 75
+         @elseif ($record == '100')
+            at Day 100
+         @elseif ($record == '120')
+            at Day 120
+         @endif
+      </h4>
       <div class="divider"></div>
       <div class="row">
         <div class="row">
           <div class="col s12 m12 l12">
             <div class="card-panel">
-              {!! Form::open(['route' => 'farm.poultry.submit_feeding_records_id', 'method' => 'post']) !!}
-                <div class="row">
-                  <div class="col s12 m12 l12">
-                    Weight at
+               <div class="row">
+                  <div class="col s12 l6 m6">
+                     ID: <strong>{{$chick->id}}</strong>
                   </div>
-                  <div class="col s12 m3 l3">
-                    <input class="with-gap" name="weight_at" type="radio" id="weight_at_0" value=1 />
-                    <label for="weight_at_0">0 days</label>
+                  <div class="col s12 l6 m6">
+                     Date Hatched: <strong>{{$chick->date_hatched}}</strong>
                   </div>
-                  <div class="col s12 m3 l3">
-                    <input class="with-gap" name="weight_at" type="radio" id="weight_at_21" value=2 />
-                    <label for="weight_at_21">21 days</label>
+               </div>
+               <div class="row">
+                  <div class="col s12 l6 m6">
+                     Generation: <strong>{{$chick->getGeneration()}}</strong>
                   </div>
-                  <div class="col s12 m3 l3">
-                    <input class="with-gap" name="weight_at" type="radio" id="weight_at_45" value=3 />
-                    <label for="weight_at_45">45 days</label>
+                  <div class="col s12 l6 m6">
+                     Line: <strong>{{$chick->getLine()}}</strong>
                   </div>
-                  <div class="col s12 m3 l3">
-                    <input class="with-gap" name="weight_at" type="radio" id="weight_at_75" value=4 />
-                    <label for="weight_at_75">75 days</label>
+               </div>
+               <div class="row">
+                  <div class="col s12 l6 m6">
+                     Family: <strong>{{$chick->getFamily()}}</strong>
                   </div>
-                  <div class="col s12 m3 l3">
-                    <input class="with-gap" name="weight_at" type="radio" id="weight_at_100" value=5 />
-                    <label for="weight_at_100">100 days</label>
+                  <div class="col s12 l6 m6">
+                     Pen: <strong>{{$chick->getPen()}}</strong>
                   </div>
-                  <div class="col s12 m3 l3">
-                    <input class="with-gap" name="weight_at" type="radio" id="weight_at_120" value=6 />
-                    <label for="weight_at_120">120 days</label>
-                  </div>
-                </div>
+               </div>
+              {!! Form::open(['route' => 'farm.poultry.replacement_growth_performance_save', 'method' => 'post']) !!}
+               <input type="hidden" name="weight_at" value="{{$record}}">
+               <input type="hidden" name="animal_id" value="{{$chick->id}}">
                 <div class="row">
                   <div class="col s12 m12 l12">
                       <div class="input-field col s12 m6 l6">
@@ -55,52 +66,42 @@
                       </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="input-field col s12 m6 l6">
-                      <input id="pen" type="text" class="validate" name="pen" disabled>
-                      <label for="pen">Pen No.</label>
+                      <input id="m_quantity" type="number" min=0 max="{{$chick->hatched_eggs}}" lass="validate" name="m_quantity" required>
+                      <label for="m_quantity">Male Quantity</label>
                     </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col s12 m12 l12">
                     <div class="input-field col s12 m6 l6">
-                      <input id="individual_id" type="text" value="{{$animal->registryid}}" disabled>
-                      <label for="individual_id">Individual ID</label>
+                      <input id="m_weight" type="number" min=0 class="validate" name="m_weight" required>
+                      <label for="m_weight">Male Weight</label>
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col s12 m12 l12">
-                    <div class="row">
-                      <div class="col s12 m12 l12">
-                        <div class="input-field col s6 m6 l6">
-                          @if ($animal->getAnimalProperties()[5]->value == 'M')
-                            <input id="gender" type="text" value="Male" disabled>
-                            @else
-                            <input id="gender" type="text" value="Female" disabled>
-                          @endif
-                          <label for="gender">Gender</label>
-                        </div>
-                      </div>
+                     <div class="input-field col s12 m6 l6">
+                      <input id="f_quantity" type="number" min=0 max="{{$chick->hatched_eggs}}" class="validate" name="f_quantity" required>
+                      <label for="f_quantity">Female Quantity</label>
                     </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col s12 m12 l12">
                     <div class="input-field col s12 m6 l6">
-                      <input id="family" type="text" value="{{$animal->getAnimalProperties()[4]->value}}" disabled>
-                      <label for="family">Family</label>
+                      <input id="f_weight" type="number" min=0 class="validate" name="f_weight" required>
+                      <label for="f_weight">Female Weight</label>
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <div class="col s12 m12 l12">
+                     <div class="input-field col s12 m6 l6">
+                      <input id="t_quantity" type="number" min=0 max="{{$chick->hatched_eggs}}" class="validate" name="t_quantity" required>
+                      <label for="t_quantity">Total Quantity</label>
+                    </div>
                     <div class="input-field col s12 m6 l6">
-                      <input id="weight" type="number" min=0 class="validate" name="weight" required>
-                      <label for="weight">Weight</label>
-                      <input type="hidden" name="animal_id" value="{{$animal->id}}">
+                      <input id="t_weight" type="number" min=0 class="validate" name="t_weight" required>
+                      <label for="t_weight">Total Weight</label>
                     </div>
                   </div>
                 </div>

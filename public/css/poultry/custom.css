@@ -7,3 +7,30 @@
   width: 600px;
   height: 250px;
 }
+
+#breeder_removal_card{
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 30px;
+  border-radius: 25px;
+}
+
+#replacement_removal_card{
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 30px;
+  border-radius: 25px;
+}
+
+#broodersgrowers_removal_card{
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 30px;
+  border-radius: 25px;
+}

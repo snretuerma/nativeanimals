@@ -25,22 +25,22 @@
                   <div class="card-panel">
                     <div class="row">
                       <div class="col s12 m12 l12">
-                        <h5>0001</h5>
+                        <h5>{{$animal->registryid}}</h5>
                       </div>
                     </div>
                     <table class="responsive-table">
                       <tbody>
                         <tr>
                           <td>Generation</td>
-                          <td><strong>0001</strong></td>
+                          <td><strong>{{$animal->getGeneration()->value}}</strong></td>
                         </tr>
                         <tr>
                           <td>Line</td>
-                          <td><strong>0001</strong></td>
+                          <td><strong>{{$animal->getLine()->value}}</strong></td>
                         </tr>
                         <tr>
                           <td>Family</td>
-                          <td><strong>0002</strong></td>
+                          <td><strong>{{$animal->getFamily()->value}}</strong></td>
                         </tr>
                       </tbody>
                     </table>
@@ -61,63 +61,63 @@
                     <tbody>
                       <tr>
                         <td>Plummage Color</td>
-                        <td><strong>Brown</strong></td>
+                        <td><strong>{{$properties[8]->value}}</strong></td>
                       </tr>
                       <tr>
                         <td>Plummage Pattern</td>
-                        <td><strong>Laced</strong></td>
+                        <td><strong>{{$properties[9]->value}}</strong></td>
                       </tr>
                       <tr>
                         <td>Hackle Color</td>
-                        <td><strong>Red</strong></td>
+                        <td><strong>{{$properties[10]->value}}</strong></td>
                       </tr>
                       <tr>
                         <td>Hackle Pattern</td>
-                        <td><strong>Plain</strong></td>
+                        <td><strong>{{$properties[11]->value}}</strong></td>
                       </tr>
                       <tr>
                         <td>Body Carriage</td>
-                        <td><strong>Upright</strong></td>
+                        <td><strong>{{$properties[12]->value}}</strong></td>
                       </tr>
 
                       <tr>
                         <td>Comb Type</td>
-                        <td><strong>Single</strong></td>
+                        <td><strong>{{$properties[13]->value}}</strong></td>
                       </tr>
 
                       <tr>
                         <td>Comb Color</td>
-                        <td><strong>Red</strong></td>
+                        <td><strong>{{$properties[14]->value}}</strong></td>
                       </tr>
 
                       <tr>
                         <td>Earlobe Color</td>
-                        <td><strong>White</strong></td>
+                        <td><strong>{{$properties[15]->value}}</strong></td>
                       </tr>
 
                       <tr>
                         <td>Iris Color</td>
-                        <td><strong>Orange</strong></td>
+                        <td><strong>{{$properties[16]->value}}</strong></td>
                       </tr>
 
                       <tr>
                         <td>Beak Color</td>
-                        <td><strong>White</strong></td>
+                        <td><strong>{{$properties[17]->value}}</strong></td>
                       </tr>
 
                       <tr>
                         <td>Shank Color</td>
-                        <td><strong>White</strong></td>
+                        <td><strong>{{$properties[18]->value}}</strong></td>
                       </tr>
 
                       <tr>
                         <td>Skin Color</td>
-                        <td><strong>White</strong></td>
+                        <td><strong>{{$properties[19]->value}}</strong></td>
                       </tr>
 
                       <tr>
                         <td>Other Unique Features</td>
-                        <td><strong>None</strong></td>
+                        <td><strong>{{$properties[20]->value}}</strong></td>
                       </tr>
                     </tbody>
                   </table>
@@ -132,31 +132,31 @@
                     <tbody>
                       <tr>
                         <td>Height</td>
-                        <td><strong>27 cm</strong></td>
+                        <td><strong>{{$properties[21]->value}}</strong></td>
                       </tr>
                       <tr>
                         <td>Weight</td>
-                        <td><strong>1.7 kg</strong></td>
+                        <td><strong>{{$properties[22]->value}}</strong></td>
                       </tr>
                       <tr>
                         <td>Body Length</td>
-                        <td><strong>34 cm</strong></td>
+                        <td><strong>{{$properties[23]->value}}</strong></td>
                       </tr>
                       <tr>
                         <td>Chest Circumference</td>
-                        <td><strong>37 cm</strong></td>
+                        <td><strong>{{$properties[24]->value}}</strong></td>
                       </tr>
                       <tr>
                         <td>Wing Span</td>
-                        <td><strong>38 cm</strong></td>
+                        <td><strong>{{$properties[25]->value}}</strong></td>
                       </tr>
                       <tr>
                         <td>Shank Lenghth</td>
-                        <td><strong>10 cm</strong></td>
+                        <td><strong>{{$properties[26]->value}}</strong></td>
                       </tr>
                       <tr>
                         <td>Date Hatched</td>
-                        <td><strong>01-01-2018</strong></td>
+                        <td><strong>{{$properties[27]->value}}</strong></td>
                       </tr>
                     </tbody>
                   </table>

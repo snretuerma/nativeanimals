@@ -9,8 +9,9 @@ class ChickFeeding extends Model
   protected $table = 'chick_feedings';
   public $timestamps = false;
   protected $fillable = [
-      'feed_offered', 'feed_refused', 'feed_type',
-      'date_fed'
+      'month', 'feed_offered', 'feed_refused', 'feed_type',
+      'date_fed', 'amount_fed', 'amount_refused',
+      'mortality', 'culled', 'remarks', 'classification'
     ];
 
   public function chick()

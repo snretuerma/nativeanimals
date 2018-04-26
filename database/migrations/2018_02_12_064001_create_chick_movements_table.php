@@ -18,7 +18,7 @@ class CreateChickMovementsTable extends Migration
             $table->integer('chick_id')->unsigned();
             $table->integer('pen_id')->unsigned();
             $table->date('date_moved');
-            $table->string('remarks');
+            $table->string('remarks')->nullable();
         });
     }
 

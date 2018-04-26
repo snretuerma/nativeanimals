@@ -48,24 +48,27 @@
                     </thead>
 
                   <tbody>
-                    <tr>
-                      <td>0001</td>
-                      <td>Active</td>
-                      <td><a class="waves-effect waves-light btn yellow darken-3" href="{{route('farm.poultry.page_view_breeders_family')}}"><i class="fas fa-info-circle"></i></a></td>
-                      {{-- <td class="center"><a href="{{ URL::route('farm.poultry.animal_records_id', [$animal->id]) }}"><i class="material-icons">search</i></a></td> --}}
-                    </tr>
-                    <tr>
-                      <td>0002</td>
-                      <td>Active</td>
-                      <td><a class="waves-effect waves-light btn yellow darken-3" href="{{route('farm.poultry.page_view_breeders_family')}}"><i class="fas fa-info-circle"></i></a></td>
-                      {{-- <td class="center"><a href="{{ URL::route('farm.poultry.animal_records_id', [$animal->id]) }}"><i class="material-icons">search</i></a></td> --}}
-                    </tr>
-                    <tr>
-                      <td>0003</td>
-                      <td>Active</td>
-                      <td><a class="waves-effect waves-light btn yellow darken-3" href="{{route('farm.poultry.page_view_breeders_family')}}"><i class="fas fa-info-circle"></i></a></td>
-                      {{-- <td class="center"><a href="{{ URL::route('farm.poultry.animal_records_id', [$animal->id]) }}"><i class="material-icons">search</i></a></td> --}}
-                    </tr>
+                     @forelse ($families as $family)
+                        <tr>
+                         <td>{{$family->number}}</td>
+                         <td>
+                            @if ($family->is_active)
+                              Active
+                            @else
+                              Culled
+                            @endif
+
+                         </td>
+                         <td><a class="waves-effect waves-light btn yellow darken-3" href="{{ URL::route('farm.poultry.page_view_breeders_family', [$family->id]) }}"><i class="fas fa-info-circle"></i></a></td>
+                         {{-- <td class="center"><a href="{{ URL::route('farm.poultry.animal_records_id', [$animal->id]) }}"><i class="material-icons">search</i></a></td> --}}
+                       </tr>
+                     @empty
+                        <tr>
+                         <td class="right">List Empty</td>
+                         <td></td>
+                         <td></td>
+                       </tr>
+                     @endforelse
                   </tbody>
                   </table>
                 </div>

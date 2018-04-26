@@ -25,32 +25,32 @@
                   <div class="card-panel">
                     <div class="row">
                       <div class="col s12 m12 l12">
-                        <h5>0001</h5>
+                        <h5>{{$famproperties[0]->value}}</h5>
                       </div>
                     </div>
                     <table class="responsive-table">
                       <tbody>
                         <tr>
                           <td>Generation</td>
-                          <td><strong>0001</strong></td>
+                          <td><strong>{{$famproperties[2]->value}}</strong></td>
                         </tr>
                         <tr>
                           <td>Line</td>
-                          <td><strong>0001</strong></td>
+                          <td><strong>{{$famproperties[4]->value}}</strong></td>
                         </tr>
                         <tr>
                           <td>No. of Males</td>
-                          <td><strong>2</strong></td>
+                          <td><strong>{{$family->getNumberOfMaleAndFemale()[0]}}</strong></td>
                         </tr>
                         <tr>
                           <td>No. of Females</td>
-                          <td><strong>10</strong></td>
+                          <td><strong>{{$family->getNumberOfMaleAndFemale()[1]}}</strong></td>
                         </tr>
                       </tbody>
                     </table>
                     <div class="row">
                       <div class="col s12 m12 l12 center">
-                        <a class="waves-effect waves-light btn yellow darken-3" href="{{route('farm.poultry.page_view_breeders_individual_list')}}"><i class="fas fa-list-ul left"></i>Animal List</a>
+                        <a class="waves-effect waves-light btn yellow darken-3" href="{{ URL::route('farm.poultry.page_view_breeders_individual_list', [$family->id]) }}"><i class="fas fa-list-ul left"></i>Animal List</a>
                       </div>
                     </div>
                   </div>

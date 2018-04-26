@@ -17,7 +17,7 @@ class CreateFamilyPropertiesTable extends Migration
             $table->increments('id');
             $table->integer('family_id')->unsigned();
             $table->integer('property_id')->unsigned();
-            $table->string('value');
+            $table->string('value')->nullable();
             $table->date('date_added');
         });
     }

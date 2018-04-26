@@ -9,9 +9,9 @@ class Sale extends Model
 {
 
   protected $table = 'sales';
+  public $timestamps = false;
   protected $fillable = [
-      'weight',
-      'age'
+    'date_sold', 'classification', 'quantity', 'price', 'remarks'
   ];
 
   public function sales()
@@ -19,9 +19,10 @@ class Sale extends Model
     return $this->belongsTo('App\Models\Animal');
   }
 
-  public function getAnimal(){
+  public function getAnimal()
+  {
     $animal = Animal::where('id', $this->animal_id)->first();
-    $return $animal;
+    return $animal;
   }
 
 }

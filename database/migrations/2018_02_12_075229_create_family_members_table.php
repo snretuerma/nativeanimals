@@ -17,8 +17,8 @@ class CreateFamilyMembersTable extends Migration
             $table->increments('id');
             $table->integer('family_id')->unsigned();
             $table->integer('animal_id')->unsigned();
-            $table->date('date_start');
-            $table->date('date_end');
+            $table->date('date_start')->nullable();
+            $table->date('date_end')->nullable();
         });
     }
 

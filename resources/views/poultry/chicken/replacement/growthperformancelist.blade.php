@@ -24,7 +24,7 @@
                     <div class="row">
                       <div class="input-field col s12 m8 l8">
                         <input id="id_no" type="text" class="validate" name="id_no">
-                        <label for="id_no">Registry ID</label>
+                        <label for="id_no">Date Hatched</label>
                       </div>
                       <div class="col s12 m4 l4">
                         <button class="btn waves-effect waves-light yellow darken-3" type="submit">Search
@@ -41,52 +41,78 @@
                   <table class="bordered centered responsive-table">
                     <thead>
                       <tr>
-                      <th>Registry ID</th>
-                      <th>Weight Recorded</th>
-                      <th>Add Record</th>
+                      <th>ID</th>
+                      <th>Date Hatched</th>
+                      <th>Day 0</th>
+                      <th>Day 21</th>
+                      <th>Day 45</th>
+                      <th>Day 75</th>
+                      <th>Day 100</th>
+                      <th>Day 120</th>
                       </tr>
                     </thead>
 
                   <tbody>
 
-                    @isset($animals)
-                      @foreach ($animals as $animal)
+                    @isset($chicks)
+                      @foreach ($chicks as $chick)
                         <tr>
-                          <td>{{ $animal->registryid }}</td>
-                          @if ($animal->growth == 0)
-                            <td>No Weight Record</td>
-                          @elseif ($animal->growth == 1)
-                            <td>Weight at Day 0</td>
-                          @elseif ($animal->growth == 2)
-                            <td>Weight at Day 21</td>
-                          @elseif ($animal->growth == 3)
-                            <td>Weight at Day 45</td>
-                          @elseif ($animal->growth == 4)
-                            <td>Weight at Day 75</td>
-                          @elseif ($animal->growth == 5)
-                            <td>Weight at Day 100</td>
+                          <td>{{ $chick->id }}</td>
+                          <td>{{ $chick->date_hatched }}</td>
+                          @if (substr($chick->growth, 0, 1) == 0)
+                            <td class="center"><a href="{{ URL::route('farm.poultry.replacement_growth_performance_id', ['id' => $chick->id, 'record' => 0]) }}"><i class="material-icons">add_circle</i></a></td>
                           @else
-                            <td>Weight at Day 120</td>
+                              <td class="center"><i class="material-icons">add_circle</i></td>
                           @endif
-                          @if ($animal->growth < 7)
-                            <td class="center"><a href="{{ URL::route('farm.poultry.page_feeding_records_id', [$animal->id]) }}"><i class="material-icons">add_circle</i></a></td>
+
+                          @if (substr($chick->growth, 1, 1) == 0)
+                            <td class="center"><a href="{{ URL::route('farm.poultry.replacement_growth_performance_id', ['id' => $chick->id, 'record' => 21]) }}"><i class="material-icons">add_circle</i></a></td>
+                          @else
+                              <td class="center"><i class="material-icons">add_circle</i></td>
+                          @endif
+
+                          @if (substr($chick->growth, 2, 1) == 0)
+                            <td class="center"><a href="{{ route('farm.poultry.replacement_growth_performance_id', ['id' => $chick->id, 'record' => 45]) }}"><i class="material-icons">add_circle</i></a></td>
+                          @else
+                              <td class="center"><i class="material-icons">add_circle</i></td>
+                          @endif
+
+                          @if (substr($chick->growth, 3, 1) == 0)
+                            <td class="center"><a href="{{ URL::route('farm.poultry.replacement_growth_performance_id', ['id' => $chick->id, 'record' => 75]) }}"><i class="material-icons">add_circle</i></a></td>
+                          @else
+                              <td class="center"><i class="material-icons">add_circle</i></td>
+                          @endif
+
+                          @if (substr($chick->growth, 4, 1) == 0)
+                            <td class="center"><a href="{{ URL::route('farm.poultry.replacement_growth_performance_id', ['id' => $chick->id, 'record' => 100]) }}"><i class="material-icons">add_circle</i></a></td>
+                          @else
+                              <td class="center"><i class="material-icons">add_circle</i></td>
+                          @endif
+
+                          @if (substr($chick->growth, 5, 1) == 0)
+                            <td class="center"><a href="{{ URL::route('farm.poultry.replacement_growth_performance_id', [$chick->id, 120]) }}"><i class="material-icons">add_circle</i></a></td>
                           @else
                               <td class="center"><i class="material-icons">add_circle</i></td>
                           @endif
                         </tr>
                       @endforeach
                     @endisset
-                    @empty($animals)
+                    @empty($chick)
                       <tr>
                         <td></td>
+                        <td></td>
+                        <td></td>
                         <td>No Data Found</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                       </tr>
                     @endempty
                   </tbody>
                   </table>
 
-                  <ul class="pagination center"> <li>{{ $animals->appends(Request::except('page'))->links() }}</li> </ul>
+                  {{-- <ul class="pagination center"> <li>{{ $animals->appends(Request::except('page'))->links() }}</li> </ul> --}}
 
                 </div>
               </div>

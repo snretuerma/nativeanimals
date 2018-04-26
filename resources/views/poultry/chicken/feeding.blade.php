@@ -65,7 +65,7 @@
                   <div class="row">
                     <div class="col s12 m12 l12">
                       <div class="input-field col s6 m6 l6">
-                        <select>
+                        <select name="month">
                           <option value="" disabled selected>Select Month</option>
                           <option value="January">January</option>
                           <option value="February">February</option>

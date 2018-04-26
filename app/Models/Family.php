@@ -47,4 +47,45 @@ class Family extends Model
     return $this->belongsTo('App\Models\EggQuality');
   }
 
+  public function getLine()
+  {
+    $lines = Line::where("id", $this->line_id)->first();
+    return $lines;
+  }
+
+  public function getGeneration()
+  {
+    $line = $this->getLine();
+    $generation = Generation::where('id', $line->generation_id)->first();
+    return $generation;
+  }
+
+  public function checkAnimalMembership($animal_family, $animal_line)
+  {
+    $line = $this->getLine();
+    if($line->number === $animal_line && $this->number === $animal_family)
+    {
+      return true;
+    }else{
+      return false;
+    }
+
+  }
+
+  public function getNumberOfMaleAndFemale()
+  {
+    $members = FamilyMember::where('family_id', $this->id)->get();
+    $count = [];
+    $male = 0;
+    $female = 0;
+    foreach ($members as $member) {
+      if($member->getAnimalInstance()->getGender() === 'M'){
+        $male = $male + 1;
+      }else{
+        $female = $female + 1;
+      }
+    }
+    array_push($count, $male, $female);
+    return $count;
+  }
 }

@@ -17,6 +17,7 @@ class CreatePensTable extends Migration
           $table->increments('id');
           $table->string('number');
           $table->integer('capacity');
+          $table->integer('current_capacity');
         });
     }
 

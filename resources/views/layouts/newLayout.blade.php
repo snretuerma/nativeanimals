@@ -35,11 +35,11 @@
             <a class="collapsible-header">Breeder<i class="material-icons">add_circle</i></a>
             <div class="collapsible-body">
               <ul class="yellow lighten-3">
-                <li><a href="{{route('farm.poultry.generation')}}">Generation</a></li>
+                <li><a href="{{route('farm.poultry.fetch_generation')}}">Generation</a></li>
                 <li><a href="{{route('farm.poultry.breeder.daily')}}">Daily Records</a></li>
-                <li><a href="{{route('farm.poultry.page_hatchery_parameters')}}">Hatchery Parameters</a></li>
+
                 <li><a href="{{route('farm.poultry.breeder.familymenu')}}">Family Records</a></li>
-                <li><a href="{{route('farm.poultry.breeder.daily')}}">Egg Quality Records</a></li>
+                <li><a href="{{route('farm.poultry.page_egg_quality')}}">Egg Quality Records</a></li>
                 <li><a href="{{route('farm.poultry.page_view_breeders')}}">View Breeders</a></li>
                 {{-- <li><a href="{{route('farm.poultry.page_add_to_breeder')}}">Add to Family</a></li>
                 <li><a href="{{route('farm.poultry.page_family_record')}}">Family Record</a></li>
@@ -59,8 +59,9 @@
             <div class="collapsible-body">
               <ul class="yellow lighten-3">
                 <li><a href="{{route('farm.poultry.page_replacement_individual_record')}}">Individual Record</a></li>
-                <li><a href="{{route('farm.poultry.page_replacement_growth_performance')}}">Growth Performance</a></li>
                 <li><a href="{{route('farm.poultry.page_phenomorphosearchid')}}">Phenotypic and Morphometric</a></li>
+                <li><a href="{{route('farm.poultry.replacement.feeding_list')}}">Feeding Record</a></li>
+
                 {{-- <li><a href="{{route('farm.poultry.page_phenomorphosearchid')}}">Morphometric Characteristics</a></li> --}}
               </ul>
             </div>
@@ -74,10 +75,9 @@
             <a class="collapsible-header">Brooders and Growers<i class="fas fa-cart-plus"></i></a>
             <div class="collapsible-body">
               <ul class="yellow lighten-3">
-                <li><a href="{{route('farm.poultry.page_replacement_individual_record')}}">Individual Record</a></li>
+                <li><a href="{{route('farm.poultry.complete_hatchery_list')}}">Hatchery Parameters</a></li>
                 <li><a href="{{route('farm.poultry.page_replacement_growth_performance')}}">Growth Performance</a></li>
-                <li><a href="{{route('farm.poultry.page_phenomorphosearchid')}}">Phenotypic and Morphometric</a></li>
-                {{-- <li><a href="{{route('farm.poultry.page_phenomorphosearchid')}}">Morphometric Characteristics</a></li> --}}
+                <li><a href="{{route('farm.poultry.broodersgrowers_feedinglist')}}">Feeding Records</a></li>
               </ul>
             </div>
           </li>
@@ -90,8 +90,9 @@
             <a class="collapsible-header">Others<i class="material-icons">trending_up</i></a>
             <div class="collapsible-body">
               <ul class="yellow lighten-3">
-                <li><a href="{{route('farm.poultry.page_feeding_records')}}">Feeding Records</a></li>
-                <li><a href="{{route('farm.poultry.page_monthly_sales')}}">Mortality and Sales  </a></li>
+                {{-- <li><a href="{{route('farm.poultry.page_feeding_records')}}">Feeding Records</a></li> --}}
+                <li><a href="{{route('farm.poultry.removal_menu')}}">Mortality, Culling and Sales</a></li>
+                <li><a href="{{route('farm.poultry.create_pens_page')}}">Create Pens</a></li>
               </ul>
             </div>
           </li>
@@ -134,12 +135,12 @@
     {{-- <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a> --}}
 
     <header class="yellow lighten-3 nav-wrapper center">
-      <div class="logo">
+      <div class="logo center">
         <a href="{{route('farm.index')}}" class="brand-logo"><img src="/images/logo-poultry.png" height="70" / ></a>
       </div>
     </header>
 
-    <main id="vue">
+    <main id="root">
       <div class="container">
         @yield('content')
       </div>
@@ -172,6 +173,7 @@
         </footer>
 
     <script type="text/javascript" src="/thirdparty/vue.js"></script>
+    <script type="text/javascript" src="/thirdparty/axios-master/dist/axios.min.js"></script>
     <script type="text/javascript" src="/thirdparty/jquery-3.2.1.js"></script>
     <script type="text/javascript" src="/thirdparty/materialize/js/materialize.min.js"></script>
     <script type="text/javascript" src="/js/global.js"></script>

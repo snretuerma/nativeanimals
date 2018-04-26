@@ -10,11 +10,38 @@ use App\Models\AnimalProperty;
 use App\Models\Property;
 use App\Models\Breed;
 use App\Models\Grouping;
-use App\Models\GroupingMember;
+use App\Models\Generation;
+use App\Models\Line;
+use App\Models\Pen;
+use App\Models\Family;
 
 
 class UsersTableSeeder extends Seeder
 {
+
+    public function createProperty($propname, $propfname, $propdesc)
+    {
+      $property = new Property;
+      $property->name = $propname;
+      $property->fname = $propfname;
+      $property->description = $propdesc;
+      $property->save();
+
+      return;
+    }
+
+    public function addAnimalProperty($animalid, $propid, $value, $date)
+    {
+      $aniprop = new AnimalProperty;
+      $aniprop->animal_id = $animalid;
+      $aniprop->property_id = $propid;
+      $aniprop->value = $value;
+      $aniprop->date_collected = $date;
+      $aniprop->save();
+
+      return;
+    }
+
     /**
      * Run the database seeds.
      *
@@ -40,225 +67,118 @@ class UsersTableSeeder extends Seeder
         /**********************************/
 
         // Individual Records Seeder (Chicken)
-        $individuale1 = new Property;
-        $individuale1->name = "Date Hatched";
-        $individuale1->fname = "date_hatched";
-        $individuale1->description = "Date when chicken/duck hatched";
-        $individuale1->save();
-
-        $individuale2 = new Property;
-        $individuale2->name = "Individual ID";
-        $individuale2->fname = "individual_id";
-        $individuale2->description = "Individual ID derived from the wing band";
-        $individuale2->save();
-
-        $individuale3 = new Property;
-        $individuale3->name = "Generation";
-        $individuale3->fname = "generation";
-        $individuale3->description = "Generation of the animal add";
-        $individuale3->save();
-
-        $individuale4 = new Property;
-        $individuale4->name = "Line";
-        $individuale4->fname = "line";
-        $individuale4->description = "Line property of the animal to add";
-        $individuale4->save();
-
-        $individuale5 = new Property;
-        $individuale5->name = "Family";
-        $individuale5->fname = "family";
-        $individuale5->description = "Family of the animal to add";
-        $individuale5->save();
-
-        $individuale6 = new Property;
-        $individuale6->name = "Gender";
-        $individuale6->fname = "gender";
-        $individuale6->description = "Gender of the animal to add";
-        $individuale6->save();
-
-        $individuale7 = new Property;
-        $individuale7->name = "Date Transferred";
-        $individuale7->fname = "date_transferred";
-        $individuale7->description = "Date when the animal was transferred to the replacement stocks";
-        $individuale7->save();
-
-        $individuale8 = new Property;
-        $individuale8->name = "Moved to Grower Pen No.";
-        $individuale8->fname = "moved_to_pen";
-        $individuale8->description = "Where the animal was moved after brooder stage";
-        $individuale8->save();
-
+        $this->createProperty("Date Hatched", "date_hatched", "Date when chicken/duck hatched");
+        $this->createProperty("Individual ID", "individual_id", "Individual ID derived from the wing band");
+        $this->createProperty("Generation", "generation", "Generation of the animal add");
+        $this->createProperty("Line", "line", "Line property of the animal to add");
+        $this->createProperty("Family", "family", "Family of the animal to add");
+        $this->createProperty("Gender", "gender", "Gender of the animal to add");
+        $this->createProperty("Date Transferred", "date_transferred", "Date when the animal was transferred to the replacement stocks");
+        $this->createProperty("Moved to Grower Pen No.", "moved_to_pen", "Where the animal was moved after brooder stage");
         $this->command->info('Chicken individual properties seeded');
 
         // Phenotypic Characteristics Seeder (Chicken)
-        $pheno1 = new Property;
-        $pheno1->name = "Plummage Color";
-        $pheno1->fname = "plummage_color";
-        $pheno1->description = "Plummage color of the chicken";
-        $pheno1->save();
-
-        $pheno2 = new Property;
-        $pheno2->name = "Plummage Pattern";
-        $pheno2->fname = "plummage_pattern";
-        $pheno2->description = "Plummage pattern of the chicken";
-        $pheno2->save();
-
-        $pheno3 = new Property;
-        $pheno3->name = "Hackle Color";
-        $pheno3->fname = "hackle_color";
-        $pheno3->description = "Hackle color of the chicken";
-        $pheno3->save();
-
-        $pheno4 = new Property;
-        $pheno4->name = "Hackle Pattern";
-        $pheno4->fname = "hackle_pattern";
-        $pheno4->description = "Hackle pattern of the chicken";
-        $pheno4->save();
-
-        $pheno5 = new Property;
-        $pheno5->name = "Body Carriage";
-        $pheno5->fname = "body_carriage";
-        $pheno5->description = "Body carriage of the chicken";
-        $pheno5->save();
-
-        $pheno6 = new Property;
-        $pheno6->name = "Comb Type";
-        $pheno6->fname = "comb_type";
-        $pheno6->description = "Comb type of the chicken";
-        $pheno6->save();
-
-        $pheno7 = new Property;
-        $pheno7->name = "Comb Color";
-        $pheno7->fname = "comb_color";
-        $pheno7->description = "Comb color of the chicken";
-        $pheno7->save();
-
-        $pheno8 = new Property;
-        $pheno8->name = "Earlobe Color";
-        $pheno8->fname = "earlobe_color";
-        $pheno8->description = "Earlobe color of the chicken";
-        $pheno8->save();
-
-        $pheno9 = new Property;
-        $pheno9->name = "Iris Color";
-        $pheno9->fname = "iris_color";
-        $pheno9->description = "Iris color of the chicken";
-        $pheno9->save();
-
-        $pheno10 = new Property;
-        $pheno10->name = "Beak Color";
-        $pheno10->fname = "beak_color";
-        $pheno10->description = "Beak color of the chicken";
-        $pheno10->save();
-
-        $pheno11 = new Property;
-        $pheno11->name = "Shank Color";
-        $pheno11->fname = "shank_color";
-        $pheno11->description = "Shank color of the chicken";
-        $pheno11->save();
-
-        $pheno12 = new Property;
-        $pheno12->name = "Skin Color";
-        $pheno12->fname = "skin_color";
-        $pheno12->description = "Skin color of the chicken";
-        $pheno12->save();
-
-        $pheno13 = new Property;
-        $pheno13->name = "Other Unique Features";
-        $pheno13->fname = "other_features";
-        $pheno13->description = "Other noticeable features of the chicken";
-        $pheno13->save();
-
+        $this->createProperty("Plummage Color", "plummage_color", "Plummage color of the chicken");
+        $this->createProperty("Plummage Pattern", "plummage_pattern", "Plummage pattern of the chicken");
+        $this->createProperty("Hackle Color", "hackle_color", "Hackle color of the chicken");
+        $this->createProperty("Hackle Pattern", "hackle_pattern", "Hackle pattern of the chicken");
+        $this->createProperty("Body Carriage", "body_carriage", "Body carriage of the chicken");
+        $this->createProperty("Comb Type", "comb_type", "Comb type of the chicken");
+        $this->createProperty("Comb Color", "comb_color", "Comb color of the chicken");
+        $this->createProperty("Earlobe Color", "earlobe_color", "Earlobe color of the chicken");
+        $this->createProperty("Iris Color", "iris_color", "Iris color of the chicken");
+        $this->createProperty("Beak Color", "beak_color", "Beak color of the chicken");
+        $this->createProperty("Shank Color", "shank_color", "Shank color of the chicken");
+        $this->createProperty("Skin Color", "skin_color", "Skin color of the chicken");
+        $this->createProperty("Other Unique Features", "other_features", "Other noticeable features of the chicken");
         $this->command->info('Chicken phenotypic properties seeded');
 
         // Morphometric Characteristics
-        $morpho1 = new Property;
-        $morpho1->name = "Height";
-        $morpho1->fname = "height";
-        $morpho1->description = "Height of the chicken";
-        $morpho1->save();
-
-        $morpho2 = new Property;
-        $morpho2->name = "Weight";
-        $morpho2->fname = "weight";
-        $morpho2->description = "Weight of the chicken";
-        $morpho2->save();
-
-        $morpho3 = new Property;
-        $morpho3->name = "Body Lenght";
-        $morpho3->fname = "body_lenght";
-        $morpho3->description = "Body lenght of the chicken";
-        $morpho3->save();
-
-        $morpho4 = new Property;
-        $morpho4->name = "Chest Circumference";
-        $morpho4->fname = "chest_circumference";
-        $morpho4->description = "Chest circumference of the chicken";
-        $morpho4->save();
-
-        $morpho5 = new Property;
-        $morpho5->name = "Wing Span";
-        $morpho5->fname = "wing_span";
-        $morpho5->description = "Wing span of the chicken";
-        $morpho5->save();
-
-        $morpho6 = new Property;
-        $morpho6->name = "Shank Lenghth";
-        $morpho6->fname = "shank_length";
-        $morpho6->description = "Shank length of the chicken";
-        $morpho6->save();
-
-        $morpho7 = new Property;
-        $morpho7->name = "Date at First Lay";
-        $morpho7->fname = "date_first_lay";
-        $morpho7->description = "Date when the chicken first layed it's eggs";
-        $morpho7->save();
-
+        $this->createProperty("Height", "height", "Height of the chicken");
+        $this->createProperty("Weight", "weight", "Weight of the chicken");
+        $this->createProperty("Body Lenght", "body_lenght", "Body lenght of the chicken");
+        $this->createProperty("Chest Circumference", "chest_circumference", "Chest circumference of the chicken");
+        $this->createProperty("Wing Span", "wing_span", "Wing span of the chicken");
+        $this->createProperty("Shank Length", "shank_length", "Shank length of the chicken");
+        $this->createProperty("Date at First Lay", "date_first_lay", "Date when the chicken first layed it's eggs");
         $this->command->info('Chicken morphometric properties seeded');
 
-        // Family Properties
-        $fprop1 = new Property;
-        $fprop1->name = "Family ID";
-        $fprop1->fname = "family_id";
-        $fprop1->description = "Family ID when creating family";
-        $fprop1->save();
-
-        $fprop2 = new Property;
-        $fprop2->name = "Date Transferred to Breeder Area";
-        $fprop2->fname = "date_transferred";
-        $fprop2->description = "Date when replacement was transferred";
-        $fprop2->save();
-
-        $fprop3 = new Property;
-        $fprop3->name = "Generation";
-        $fprop3->fname = "generation";
-        $fprop3->description = "Generation of family created";
-        $fprop3->save();
-
-        $fprop4 = new Property;
-        $fprop4->name = "Date Hatched";
-        $fprop4->fname = "date_hatched";
-        $fprop4->description = "Date hatched of family";
-        $fprop4->save();
-
-        $fprop5 = new Property;
-        $fprop5->name = "Line";
-        $fprop5->fname = "line";
-        $fprop5->description = "Line of family";
-        $fprop5->save();
-
-        $fprop6 = new Property;
-        $fprop6->name = "Age at First Egg";
-        $fprop6->fname = "age_first_egg";
-        $fprop6->description = "Age when eggs first eggs where layed";
-        $fprop6->save();
-
-        $fprop7 = new Property;
-        $fprop7->name = "Pen No.";
-        $fprop7->fname = "pen_no";
-        $fprop7->description = "Pen no. of the family";
-        $fprop7->save();
-
+        /*** Family Properties ***/
+        // Family Records
+        $this->createProperty("Family ID", "family_id", "Family ID of the replacement");
+        $this->createProperty("Date Transferred", "date_transferred", "Date the family was transferred");
+        $this->createProperty("Generation", "generation", "Generation of the family");
+        $this->createProperty("Date Hatched", "date_hatched", "Date when the family hatched");
+        $this->createProperty("Line", "line", "Line of the family");
+        $this->createProperty("Age at First Egg", "age_first_egg", "Age of the animals when first egg was recorded");
+        $this->command->info('Family Record Properties Created');
+        // Daily Records
+        // + Egg Production
+        $this->createProperty("Date Eggs Collected", "date_eggs_collected", "Date when eggs were collected for the day");
+        $this->createProperty("Total Eggs Collected", "total_eggs_collected", "Total number of eggs collected for the day");
+        $this->createProperty("Total Egg Weight", "total_egg_weight", "Total weight of the eggs for the day");
+        $this->createProperty("No. of Broken Eggs", "no_broken_eggs", "Count of broken eggs for the day");
+        $this->createProperty("No. of Soft-shelled/Shell-less", "no_soft_shelled", "Count of eggs that are shell-less or soft-shelled");
+        $this->createProperty("Feed Offered", "feed_offered", "Feed offered for the day");
+        $this->createProperty("Feed Refused", "feed_refused", "Feed refused for the day");
+        $this->createProperty("No. of Dead Birds", "no_dead_birds", "Number of dead birds for the day");
+        $this->createProperty("No. of Culled Birds", "no_culled_birds", "No of culled birds for the day");
+        $this->createProperty("Remarks", "remarks", "Remarks");
+        // + Feeding Records
+        $this->createProperty("Date Collected", "date_collected", "Date when feeding record was collected");
+        $this->createProperty("Pen No.", "pen_no", "Pen number where the data was collected");
+        $this->createProperty("Type of Feed Offered", "type_feed_offered", "Type of feed offered");
+        $this->createProperty("Amount of Feed Offered", "amount_feed_offered", "Amount of feed offered for the day");
+        $this->createProperty("Amount of Feed Refusal", "amount_feed_refused", "Feed refused for the day");
+        $this->createProperty("Mortality", "mortality", "Number of mortality recorded for the day");
+        $this->createProperty("Culled", "culled", "Number of culled animal recorded for the day");
+        // + Hatchery parameters
+        // $this->createProperty("Date Eggs Set", "date_eggs_set", "Date when eggs were set");
+        // $this->createProperty("Generation of Parents", "generation_parents", "Generation of the parents where the eggs where collected");
+        // $this->createProperty("Line", "line", "Line where the eggs were collected");
+        // $this->createProperty("Family", "family", "Family where the eggs were collected");
+        // $this->createProperty("Pen No.", "pen_no", "Pen number where the eggs were collected");
+        // $this->createProperty("No. of Eggs Set", "no_eggs_set", "Number of eggs set in pieces");
+        // $this->createProperty("No. of Fertile Eggs", "no_fertile_eggs", "Number of fertile eggs in the batch in pieces");
+        // $this->createProperty("Date Hatched", "date_hatched", "Date when eggs hatched");
+        // $this->createProperty("No. of Hatched Eggs", "no_hatched_eggs", "Number of hatched eggs in the batch");
+        // $this->createProperty("Moved to Brooder Pen No.", "moved_to_pen", "Pen number where the animal was moved");
+        // $this->createProperty("Remarks", "remarks", "Remarks");
+        // + Feeding Performance
+        $this->createProperty("Date Collected", "date_collected", "Date when data is collected");
+        $this->createProperty("Pen No.", "pen_no", "Pen number where data was gathered");
+        $this->createProperty("Type of Feed Offered", "type_feed_offered", "Type of feed offered");
+        $this->createProperty("Amount of Feed Offered", "amount_feed_offered", "Amount of feed offered in grams");
+        $this->createProperty("Amount of Feed Refusal", "amount_feed_refusal", "Amoung of feed refusal in grams");
+        $this->createProperty("Mortality", "mortality", "Mortality");
+        $this->createProperty("Culled", "culled", "Culled animals");
+        $this->createProperty("Remarks", "remarks", "Remarks");
+        // + Growth Performance
+        $this->createProperty("Date_collected", "date_collected", "Date when data is collected");
+        $this->createProperty("Pen No.", "pen_number", "Pen number where the data is collected");
+        $this->createProperty("Individual ID", "individual_id", "Individual ID of the animal");
+        $this->createProperty("Gender", "gender", "Gender of the animal");
+        $this->createProperty("Family", "family", "Family of the animal");
+        $this->createProperty("Weight", "weight", "Weight of the animal");
+        // // + Egg Quality
+        // $this->createProperty("Egg Quality At", "egg_quality_at", "Egg qulaity at certain day");
+        // $this->createProperty("Sample No.", "sample_no", "Sample number");
+        // $this->createProperty("Generation", "generation", "Generation");
+        // $this->createProperty("Line", "line", "Line");
+        // $this->createProperty("Family", "family", "Family");
+        // $this->createProperty("Egg Weight", "egg_weight", "Egg weight");
+        // $this->createProperty("Egg Color", "egg_color", "Egg color");
+        // $this->createProperty("Egg Shape", "egg_shape", "Egg shape");
+        // $this->createProperty("Length", "length", "Length of egg");
+        // $this->createProperty("Width", "width", "Width of egg");
+        // $this->createProperty("Albumen Height", "albumen_height", "Albumen height");
+        // $this->createProperty("Albumen Weight", "albumen_weight", "Albumen weight");
+        // $this->createProperty("Yolk Weight", "yolk_weight", "Yolk weight");
+        // $this->createProperty("Yolk Color", "yolk_color", "Yolk color");
+        // $this->createProperty("Shell Weight", "shell_weight", "Shell weight");
+        // $this->createProperty("Top", "top", "Top");
+        // $this->createProperty("Middle", "middle", "Middle");
+        // $this->createProperty("Bottom", "bottom", "Bottom");
 
         $duck = new AnimalType;
         $chicken = new AnimalType;
@@ -301,133 +221,153 @@ class UsersTableSeeder extends Seeder
 
         $sampleFarm->animaltypes()->attach($chicken->id);
 
-        // $animal = new Animal;
-        // $animalbreeder = new Animal;
-        //
-        // $animal->animaltype_id = $chicken->id;
-        // $animal->farm_id = $sampleFarm->id;
-        // $animal->breed_id = $quezon->id;
-        // $animal->status = "replacement";
-        // $animal->growth = 0;
-        // $animal->save();
-        //
-        // $animalbreeder->animaltype_id = $chicken->id;
-        // $animalbreeder->farm_id = $sampleFarm->id;
-        // $animalbreeder->breed_id = $quezon->id;
-        // $animalbreeder->status = "breeder";
-        // $animalbreeder->growth = 0;
-        // $animalbreeder->save();
-        //
-        // $this->command->info('Animal seeded');
-        //
-        // $animalproperty1 = new AnimalProperty;
-        // $animalproperty1->animal_id = $animal->id;
-        // $animalproperty1->property_id = $individuale1->id;
-        // $date = new Carbon();
-        // $animalproperty1->value = $date->subMonths(2)->toDateString();
-        // $animalproperty1->save();
-        //
-        // $breederproperty1 = new AnimalProperty;
-        // $breederproperty1->animal_id = $animalbreeder->id;
-        // $breederproperty1->property_id = $individuale1->id;
-        // $date2 = new Carbon();
-        // $breederproperty1->value = $date2->subMonths(1)->toDateString();
-        // $breederproperty1->save();
-        //
-        // $animalproperty2 = new AnimalProperty;
-        // $animalproperty2->animal_id = $animal->id;
-        // $animalproperty2->property_id = $individuale2->id;
-        // $animalproperty2->value = "13";
-        // $animalproperty2->save();
-        //
-        // $breederproperty2 = new AnimalProperty;
-        // $breederproperty2->animal_id = $animalbreeder->id;
-        // $breederproperty2->property_id = $individuale2->id;
-        // $breederproperty2->value = "33";
-        // $breederproperty2->save();
-        //
-        // $animalproperty3 = new AnimalProperty;
-        // $animalproperty3->animal_id = $animal->id;
-        // $animalproperty3->property_id = $individuale3->id;
-        // $animalproperty3->value = "A";
-        // $animalproperty3->save();
-        //
-        // $breederproperty3 = new AnimalProperty;
-        // $breederproperty3->animal_id = $animalbreeder->id;
-        // $breederproperty3->property_id = $individuale3->id;
-        // $breederproperty3->value = "C";
-        // $breederproperty3->save();
-        //
-        // $animalproperty4 = new AnimalProperty;
-        // $animalproperty4->animal_id = $animal->id;
-        // $animalproperty4->property_id = $individuale4->id;
-        // $animalproperty4->value = "C";
-        // $animalproperty4->save();
-        //
-        // $breederproperty4 = new AnimalProperty;
-        // $breederproperty4->animal_id = $animalbreeder->id;
-        // $breederproperty4->property_id = $individuale4->id;
-        // $breederproperty4->value = "D";
-        // $breederproperty4->save();
-        //
-        // $animalproperty5 = new AnimalProperty;
-        // $animalproperty5->animal_id = $animal->id;
-        // $animalproperty5->property_id = $individuale5->id;
-        // $animalproperty5->value = "B";
-        // $animalproperty5->save();
-        //
-        // $breederproperty5 = new AnimalProperty;
-        // $breederproperty5->animal_id = $animalbreeder->id;
-        // $breederproperty5->property_id = $individuale5->id;
-        // $breederproperty5->value = "D";
-        // $breederproperty5->save();
-        //
-        // $animalproperty6 = new AnimalProperty;
-        // $animalproperty6->animal_id = $animal->id;
-        // $animalproperty6->property_id = $individuale6->id;
-        // $animalproperty6->value = "F";
-        // $animalproperty6->save();
-        //
-        // $breederproperty6 = new AnimalProperty;
-        // $breederproperty6->animal_id = $animalbreeder->id;
-        // $breederproperty6->property_id = $individuale6->id;
-        // $breederproperty6->value = "M";
-        // $breederproperty6->save();
-        //
-        // $animalproperty7 = new AnimalProperty;
-        // $animalproperty7->animal_id = $animal->id;
-        // $animalproperty7->property_id = $individuale7->id;
-        // $animalproperty7->value = $now->toDateString();
-        // $animalproperty7->save();
-        //
-        // $breederproperty7 = new AnimalProperty;
-        // $breederproperty7->animal_id = $animalbreeder->id;
-        // $breederproperty7->property_id = $individuale7->id;
-        // $breederproperty7->value = $now->toDateString();
-        // $breederproperty7->save();
-        //
-        // $this->command->info('AnimalProperty seeded');
-        //
-        // $year = $date->subMonths(2)->year;
-        // $year2 = $date2->subMonths(1)->year;
-        // $animal->registryid = $sampleFarm->code."-".$year.$animalproperty3->value.$animalproperty4->value.$animalproperty5->value.$animalproperty6->value.$animalproperty2->value;
-        // $animal->save();
-        // $animalbreeder->registryid = $sampleFarm->code."-".$year.$breederproperty3->value.$breederproperty4->value.$breederproperty5->value.$breederproperty6->value.$breederproperty2->value;
-        // $animalbreeder->save();
-        // $this->command->info('Registry ID added to animal');
+        // Create Generation
+        // $generation0 = new Generation;
+        // $generation0->number = "0000";
+        // $generation0->is_active = true;
+        // $generation0->save();
+        // $this->command->info('Generation 0000 seeded');
 
-        // Seeding a group
-        // $group->registryid = $animalbreeder->registryid;
-        // $group->father_id = $animalbreeder->id;
-        // $group->save();
-        // $this->command->info('Group Seeded');
+        // Add Lines to Generation
+        // $line1 = new Line;
+        // $line1->number = "0001";
+        // $line1->generation_id = $generation0->id;
+        // $line1->is_active = true;
+        // $line1->save();
 
-        // Seeding a group member
-        // $breedermember = new GroupingMember;
-        // $breedermember->grouping_id = $group->id;
-        // $breedermember->animal_id = $animalbreeder->id;
-        // $breedermember->save();
-        // $this->command->info('Breeder added to Group');
+        // $line2 = new Line;
+        // $line2->number = "0002";
+        // $line2->generation_id = $generation0->id;
+        // $line2->is_active = true;
+        // $line2->save();
+        //
+        // $line3 = new Line;
+        // $line3->number = "0003";
+        // $line3->generation_id = $generation0->id;
+        // $line3->is_active = false;
+        // $line3->save();
+        // $this->command->info('Lines 0001 (active), 0002 (active), 0003 (inactive) seeded');
+
+        // Generate Pens
+        // $p1 = new Pen;
+        // $p1->number = "01";
+        // $p1->capacity = 10;
+        // $p1->current_capacity = 10;
+        // $p1->save();
+        //
+        // $p2 = new Pen;
+        // $p2->number = "02";
+        // $p2->capacity = 10;
+        // $p2->current_capacity = 10;
+        // $p2->save();
+        //
+        // $p3 = new Pen;
+        // $p3->number = "03";
+        // $p3->capacity = 10;
+        // $p3->current_capacity = 10;
+        // $p3->save();
+        //
+        // $p4 = new Pen;
+        // $p4->number = "04";
+        // $p4->capacity = 10;
+        // $p4->current_capacity = 10;
+        // $p4->save();
+        //
+        // $p5 = new Pen;
+        // $p5->number = "05";
+        // $p5->capacity = 5;
+        // $p5->current_capacity = 5;
+        // $p5->save();
+        // $this->command->info('Pens 01, 02, 03, 04 and 05 seeded');
+
+        // Generate Family
+        // $f1 = new Family;
+        // $f1->number = "0001";
+        // $f1->line_id = $line2->id;
+        // $f1->is_active = true;
+        // $f1->pen_id = $p5->id;
+        // $f1->save();
+        //
+        // $f2 = new Family;
+        // $f2->number = "0002";
+        // $f2->line_id = $line3->id;
+        // $f2->is_active = false;
+        // $f2->pen_id = $p2->id;
+        // $f2->save();
+        //
+        // $f3 = new Family;
+        // $f3->number = "0003";
+        // $f3->line_id = $line1->id;
+        // $f3->is_active = true;
+        // $f3->pen_id = $p3->id;
+        // $f3->save();
+        // $this->command->info('Families 0001, 0002, 0003 seeded');
+
+        // Create Animal
+        // $a1 = new Animal;
+        // $a1->animaltype_id = $chicken->id;
+        // $a1->farm_id = $sampleFarm->id;
+        // $a1->breed_id = $darag->id;
+        // $a1->status = "replacement";
+        // $a1->growth = "000000";
+        // $a1->pen_id = $p5->id;
+        // $a1->registryid = $sampleFarm->code.'-'.'2015'.$generation0->number.$line2->number.$f1->number.'F'.'0001';
+        // $a1->save();
+        // $p5->current_capacity = $p5->current_capacity - 1;
+        // $p5->save();
+        //
+        // $a2 = new Animal;
+        // $a2->animaltype_id = $chicken->id;
+        // $a2->farm_id = $sampleFarm->id;
+        // $a2->breed_id = $darag->id;
+        // $a2->status = "replacement";
+        // $a2->growth = "000000";
+        // $a2->pen_id = $p5->id;
+        // $a2->registryid = $sampleFarm->code.'-'.'2015'.$generation0->number.$line2->number.$f1->number.'M'.'0002';
+        // $a2->save();
+        // $p5->current_capacity = $p5->current_capacity - 1;
+        // $p5->save();
+        //
+        // $a3 = new Animal;
+        // $a3->animaltype_id = $chicken->id;
+        // $a3->farm_id = $sampleFarm->id;
+        // $a3->breed_id = $darag->id;
+        // $a3->status = "replacement";
+        // $a3->growth = "000000";
+        // $a3->pen_id = $p5->id;
+        // $a3->registryid = $sampleFarm->code.'-'.'2015'.$generation0->number.$line2->number.$f1->number.'F'.'0003';
+        // $a3->save();
+        // $p5->current_capacity = $p5->current_capacity - 1;
+        // $p5->save();
+        //
+        // $a4 = new Animal;
+        // $a4->animaltype_id = $chicken->id;
+        // $a4->farm_id = $sampleFarm->id;
+        // $a4->breed_id = $darag->id;
+        // $a4->status = "replacement";
+        // $a4->growth = "000000";
+        // $a4->pen_id = $p5->id;
+        // $a4->registryid = $sampleFarm->code.'-'.'2015'.$generation0->number.$line1->number.$f3->number.'F'.'0004';
+        // $a4->save();
+        // $p3->current_capacity = $p3->current_capacity - 1;
+        // $p3->save();
+        //
+        // $a5 = new Animal;
+        // $a5->animaltype_id = $chicken->id;
+        // $a5->farm_id = $sampleFarm->id;
+        // $a5->breed_id = $darag->id;
+        // $a5->status = "replacement";
+        // $a5->growth = "000000";
+        // $a5->pen_id = $p5->id;
+        // $a5->registryid = $sampleFarm->code.'-'.'2015'.$generation0->number.$line1->number.$f3->number.'F'.'0005';
+        // $a5->save();
+        // $p3->current_capacity = $p3->current_capacity - 1;
+        // $p3->save();
+        //
+        // $this->command->info('Animal 1, 2, 3, 4, 5 seeded');
+
+        // Generate Animal Property Values
+        // $this->addAnimalProperty($animalid, $propid, $value, $date);
 
         // Seed Group Properties
 

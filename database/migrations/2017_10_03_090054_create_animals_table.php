@@ -21,7 +21,7 @@ class CreateAnimalsTable extends Migration
             $table->integer('breed_id')->unsigned();
             $table->boolean('phenotypic')->default(false);
             $table->boolean('morphometric')->default(false);
-            $table->integer('growth')->default(0);
+            $table->string('growth')->default("000000");
             $table->string('status');
             $table->integer('pen_id')->unsigned();
             $table->timestamps();

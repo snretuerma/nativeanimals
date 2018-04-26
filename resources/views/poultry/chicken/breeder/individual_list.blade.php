@@ -48,12 +48,17 @@
                     </thead>
 
                   <tbody>
-                    <tr>
-                      <td>0001</td>
-                      <td>Active</td>
-                      <td><a class="waves-effect waves-light btn yellow darken-3" href="{{route('farm.poultry.page_view_breeders_individual_data')}}"><i class="fas fa-info-circle"></i></a></td>
-                      {{-- <td class="center"><a href="{{ URL::route('farm.poultry.animal_records_id', [$animal->id]) }}"><i class="material-icons">search</i></a></td> --}}
-                    </tr>
+                     @forelse ($animals as $animal)
+                        <tr>
+                         <td>{{$animal->getAnimalInstance()->registryid}}</td>
+                         <td>{{ucfirst($animal->getAnimalInstance()->status)}}</td>
+                         <td><a class="waves-effect waves-light btn yellow darken-3" href="{{URL::route('farm.poultry.page_view_breeders_individual_data', [$animal->getAnimalInstance()->id])}}"><i class="fas fa-info-circle"></i></a></td>
+                         {{-- <td class="center"><a href="{{ URL::route('farm.poultry.animal_records_id', [$animal->id]) }}"><i class="material-icons">search</i></a></td> --}}
+                       </tr>
+                     @empty
+
+                     @endforelse
+
                   </tbody>
                   </table>
                 </div>

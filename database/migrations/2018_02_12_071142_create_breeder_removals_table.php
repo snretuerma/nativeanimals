@@ -19,8 +19,8 @@ class CreateBreederRemovalsTable extends Migration
             $table->string('status');
             $table->string('reason');
             $table->date('date_removed');
-            $table->double('weight');
-            $table->float('price');
+            $table->double('weight')->nullable();
+            $table->float('price')->nullable();
         });
     }
 

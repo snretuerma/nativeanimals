@@ -21,6 +21,7 @@ class CreateEggCollectionsTable extends Migration
             $table->integer('broken_eggs');
             $table->integer('soft_shelled_eggs');
             $table->date('date_collected');
+            $table->string('remarks')->nullable();
         });
     }
 

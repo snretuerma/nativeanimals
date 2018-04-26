@@ -1,4 +1,6 @@
 $(document).ready(function(){
+  var pen = 10;
+  var cap = 10;
   $('.inactive_button').each(function(){
     $(this).click(function(){
       $('#gen_confirmation').attr('value', $(this).attr('data-generation'));
@@ -23,14 +25,6 @@ $(document).ready(function(){
     $('#line_edit_div').append('\
       <div class="input-field col s12 m6 l6">\
         <input type="text" name="line_edit[]">\
-      </div>\
-    ');
-  });
-
-  $('#add_pen_button').click(function(){
-    $('#pen_div').append('\
-      <div class="input-field col s12 m6 l6">\
-        <input type="text" name="pen[]">\
       </div>\
     ');
   });

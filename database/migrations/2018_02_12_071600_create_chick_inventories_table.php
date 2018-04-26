@@ -16,13 +16,16 @@ class CreateChickInventoriesTable extends Migration
         Schema::create('chick_inventories', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('chick_id')->unsigned();
-            $table->integer('male_qty');
-            $table->integer('female_qty');
+            $table->integer('male_qty')->nullable();
+            $table->integer('female_qty')->nullable();
             $table->integer('total');
             $table->string('activity');
-            $table->date('date');
-            $table->string('remarks');
-            $table->integer('animal_id')->unsigned();
+            $table->dateTime('date');
+            $table->string('remarks')->nullable();
+            $table->integer('family_id')->unsigned();
+            $table->date('date_died')->nullable();
+            $table->date('date_sold')->nullable();
+            $table->date('date_added')->nullable();
         });
     }
 

@@ -15,10 +15,15 @@ class CreatePenFeedingsTable extends Migration
     {
         Schema::create('pen_feedings', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('family_id')->unsigned();
             $table->integer('pen_id')->unsigned();
-            $table->double('feed_offered');
-            $table->double('feed_refused');
+            $table->string('feed_offered');
+            $table->string('feed_refused');
+            $table->string('type_offered')->nullable();
             $table->date('date_fed');
+            $table->double('amount_offered');
+            $table->double('amount_refused');
+            $table->string('remarks')->nullable();
         });
     }
 

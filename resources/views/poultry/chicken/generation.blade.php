@@ -36,7 +36,7 @@
                               <a class="waves-effect waves-light btn green modal-trigger edit_button" href="#edit_generation" data-gennum="{{$generation->number}}" data-generation="{{$generation->id}}">Edit</a>
                             </td>
                             <td>
-                              <a class="waves-effect waves-light btn red modal-trigger inactive_button" href="#inactive_confirm" data-gennum="{{$generation->number}}" data-generation="{{$generation->id}}">Inactive</a>
+                              <a class="waves-effect waves-light btn red modal-trigger inactive_button" @click.prevent="displayConfirmationModal(title='{{$generation->number}}', value='{{$generation->id}}')" v-bind:title="{{$generation->number}}" v-bind:value="{{$generation->id}}" href="#inactive_confirm" data-gennum="{{$generation->number}}" data-generation="{{$generation->id}}">Inactive</a>
                             </td>
                           @else
                             <td>
@@ -89,6 +89,7 @@
     </div>
   </div>
 
+  {{-- <confirmation></confirmation> --}}
 
   <div id="edit_generation" class="modal">
     <div class="modal-content">
@@ -104,17 +105,6 @@
       <div class="row center">
         <div class="col s12 m12 l12">
           <a id="edit_line_button" class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add Line Field</a>
-        </div>
-      </div>
-      <label for="pen_div">Add Pens</label>
-      <div id="pen_div" class="row">
-        <div id="pen1" class="input-field col s12 m6 6">
-          <input type="text" name="pen[]">
-        </div>
-      </div>
-      <div class="row center">
-        <div class="col s12 m12 l12">
-          <a id="add_pen_button" class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add Pen Field</a>
         </div>
       </div>
       <div class="row right">
@@ -134,14 +124,14 @@
       {!! Form::open(['route' => 'farm.poultry.add_generation', 'method' => 'post']) !!}
       <div class="row">
         <div class="input-field col s12 m12 l12">
-          <input id="generation" type="text" required name="generation">
+          <input id="generation" type="text" maxlength="4" required name="generation">
           <label for="generation">Generation</label>
         </div>
       </div>
       <label for="line_div">Add Lines</label>
       <div id="line_div" class="row">
         <div id="line1" class="input-field col s12 m6 6">
-          <input type="text" name="line[]">
+          <input type="text" maxlength="4" name="line[]">
         </div>
       </div>
       <div class="row center">
@@ -163,5 +153,5 @@
 
 @section('scripts')
   <script type="text/javascript" src="/js/vue/addGeneration.js"></script>
-
+  {{-- <script type="text/javascript" src="/js/vue/generations.js"></script> --}}
 @endsection

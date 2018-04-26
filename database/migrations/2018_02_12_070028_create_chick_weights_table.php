@@ -16,10 +16,10 @@ class CreateChickWeightsTable extends Migration
         Schema::create('chick_weights', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('chick_id')->unsigned();
-            $table->integer('male_qty');
-            $table->double('male_wt');
-            $table->integer('female_qty');
-            $table->double('female_wt');
+            $table->integer('male_qty')->nullable();
+            $table->double('male_wt')->nullable();
+            $table->integer('female_qty')->nullable();
+            $table->double('female_wt')->nullable();
             $table->integer('total');
             $table->double('total_wt');
             $table->date('date_collected');

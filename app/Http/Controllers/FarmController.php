@@ -317,9 +317,7 @@ class FarmController extends Controller
       return view('poultry.chicken.breeder.familyrecord');
     }
 
-    public function getIndex(){
-      return view('poultry.dashboard');
-    }
+
 
     public function getPageFamilyRecord(){
       return view('poultry.chicken.breeder.familyrecord');
@@ -404,13 +402,9 @@ class FarmController extends Controller
       return view('poultry.chicken.breeder.eggproductionanddaily');
     }
 
-    public function getPageEggQuality(){
-      return view('poultry.chicken.breeder.eggquality');
-    }
 
-    public function getPageHatcheryParameter(){
-      return view('poultry.chicken.breeder.hatcheryparameters');
-    }
+
+
 
     public function getPagePhenotypicCharacteristic(){
       return view('poultry.chicken.breeder.phenotypic');
@@ -420,142 +414,9 @@ class FarmController extends Controller
       return view('poultry.chicken.breeder.morphometric');
     }
 
-    public function getPageReplacementIndividualRecord(){
-      return view('poultry.chicken.replacement.individualrecord');
-    }
+
 
     // Registry ID -> year.generation.line.family.gender.wingband_id
-    public function addReplacementIndividualRecord(Request $request){
-      $now = new Carbon;
-      $animal = new Animal;
-      $farm = $this->user->getFarm();
-      $breed = $farm->getBreed();
-      $animaltype = $farm->getFarmType();
-      $request->individual_id = str_pad($request->individual_id, 4, "0", STR_PAD_LEFT);
-      $request->generation = str_pad($request->generation, 4, "0", STR_PAD_LEFT);
-      $request->line = str_pad($request->line, 4, "0", STR_PAD_LEFT);
-      $request->family = str_pad($request->family, 4, "0", STR_PAD_LEFT);
-      $request->moved_to_pen = str_pad($request->moved_to_pen, 4, "0", STR_PAD_LEFT);
-      $registryid = $farm->code.'-'.$now->year.$request->generation.$request->line.$request->family.$request->gender.$request->individual_id;
-
-      $animal->animaltype_id = $animaltype->id;
-      $animal->farm_id = $farm->id;
-      $animal->breed_id = $breed->id;
-      $animal->status = "replacement";
-      $animal->registryid = $registryid;
-      $animal->pen_id = $request->moved_to_pen;
-      $animal->save();
-
-      // $generations = Generation::get();
-      // $lines = Line::get();
-      // $famillies = Family::get();
-      // $pens = Pen::get();
-      // foreach($generations as $generation){
-      //   if($request->generation == $generation->number){
-      //     break;
-      //   }
-      //   $newgen = new Generation;
-      //   $newgen->number = $request->generation;
-      //   $newgen->is_active = true;
-      //   $newgen->save();
-      //
-      // }
-      //
-      // foreach($lines as $line){
-      //   if($request->line == $line->number){
-      //     break;
-      //   }
-      //   $newline = new Line;
-      //   $newline->number = $request->line;
-      //   $newline->is_active = true;
-      //   $generation = Generation::where('number', $request->generation)->first();
-      //   $newline->generation_id = $generation->id;
-      //   $newline->save();
-      // }
-      //
-      // foreach($pens as $pen){
-      //   if($request->moved_to_pen == $pen->number){
-      //     break;
-      //   }
-      //   $newpen = new Pen;
-      //   $newpen->number = $request->moved_to_pen;
-      //   $newpen->is_active = true;
-      //   $newpen->capacity = 10;
-      //   $newpen->save();
-      // }
-
-      $animalproperty1 = new AnimalProperty;
-      $animalproperty1->animal_id = $animal->id;
-      $animalproperty1->property_id = 1;
-      $animalproperty1->value = $request->date_hatched;
-      $animalproperty1->date_collected = $now;
-      $animalproperty1->save();
-
-      $animalproperty2 = new AnimalProperty;
-      $animalproperty2->animal_id = $animal->id;
-      $animalproperty2->property_id = 2;
-      $animalproperty2->value = $request->individual_id;
-      $animalproperty2->date_collected = $now;
-      $animalproperty2->save();
-
-      $animalproperty3 = new AnimalProperty;
-      $animalproperty3->animal_id = $animal->id;
-      $animalproperty3->property_id = 3;
-      $animalproperty3->value = $request->generation;
-      $animalproperty3->date_collected = $now;
-      $animalproperty3->save();
-
-      $animalproperty4 = new AnimalProperty;
-      $animalproperty4->animal_id = $animal->id;
-      $animalproperty4->property_id = 4;
-      $animalproperty4->value = $request->line;
-      $animalproperty4->date_collected = $now;
-      $animalproperty4->save();
-
-      $animalproperty5 = new AnimalProperty;
-      $animalproperty5->animal_id = $animal->id;
-      $animalproperty5->property_id = 5;
-      $animalproperty5->value = $request->family;
-      $animalproperty5->date_collected = $now;
-      $animalproperty5->save();
-
-      $animalproperty6 = new AnimalProperty;
-      $animalproperty6->animal_id = $animal->id;
-      $animalproperty6->property_id = 6;
-      $animalproperty6->value = $request->gender;
-      $animalproperty6->date_collected = $now;
-      $animalproperty6->save();
-
-      $animalproperty7 = new AnimalProperty;
-      $animalproperty7->animal_id = $animal->id;
-      $animalproperty7->property_id = 7;
-      $animalproperty7->value = $request->date_transferred;
-      $animalproperty7->date_collected = $now;
-      $animalproperty7->save();
-
-      $animalproperty8 = new AnimalProperty;
-      $animalproperty8->animal_id = $animal->id;
-      $animalproperty8->property_id = 8;
-      $animalproperty8->value = $request->moved_to_pen;
-      $animalproperty8->date_collected = $now;
-      $animalproperty8->save();
-
-      return Redirect::back()->with('message','Animal record successfully saved');
-    }
-
-    public function getPageReplacementGrowthPerformance(){
-      $animals = Animal::where(function ($query) {
-                    $query->where('status', 'replacement')
-                          ->orWhere('status', 'breeder');
-                        })->paginate(10);
-
-      return view('poultry.chicken.replacement.growthperformancelist', compact('animals'));
-    }
-
-    public function getPageAnimalFeedingRecord($id){
-      $animal = Animal::where('id', $id)->first();
-      return view('poultry.chicken.replacement.growthperformance', compact('animal'));
-    }
 
     public function submitAnimalFeedingRecord(Request $request){
       $collection = new WeightCollection;
@@ -908,15 +769,7 @@ class FarmController extends Controller
       return view('poultry.chicken.monthlysales', compact('replacement'));
     }
 
-    public function getFamilyRecord(Request $request){
-      $farm = $this->user->getFarm();
-      // $animaltype = $farm->getFarmType();
-      // $breed = $farm->getBreed();
-      $date_transferred = new Carbon($request->date_transferred);
-      $date_hatched = new Carbon($request->date_hatched);
-      $registry_id = $farm->code."-".$date_transferred->year."-".$request->family_id;
 
-    }
 
     public function addToCulled(Request $request){
       $mortality = new Mortality;
@@ -944,10 +797,7 @@ class FarmController extends Controller
       return Redirect::back()->with('message','Animal sold');
     }
 
-    public function getPageBreederList(){
-      $animals = Animal::where('status', 'breeder')->paginate(10);
-      return view('poultry.chicken.breederlist', compact('animals'));
-    }
+
 
     public function getPageReplacementList(){
       $animals = Animal::where('status', 'replacement')->paginate(10);
@@ -976,74 +826,5 @@ class FarmController extends Controller
       return view('poultry.chicken.generation', compact('generations'));
     }
 
-    public function addGeneration(Request $request){
-      $lines = array_filter($request->line);
-      $newgen = new Generation;
-      $newgen->number = str_pad($request->generation, 4, "0", STR_PAD_LEFT);
-      $newgen->is_active = true;
-      $newgen->save();
-      if(!empty($lines)){
-        foreach ($lines as $line) {
-          $newline = new Line;
-          $newline->number = str_pad($line, 4, "0", STR_PAD_LEFT);
-          $newline->generation_id = $newgen->id;
-          $newline->is_active = true;
-          $newline->save();
-        }
-      }
-
-      return Redirect::back()->with('message','Generation  added');
-    }
-
-    public function editGeneration(Request $request){
-      $generation = Generation::where('id', $request->generation_edit)->first();
-      $lines = array_filter($request->line_edit);
-      $pens =  array_filter($request->pen);
-      if(!empty($lines)){
-        foreach ($lines as $line) {
-          $newline = new Line;
-          $newline->number = str_pad($line, 4, "0", STR_PAD_LEFT);
-          $newline->generation_id = $generation->id;
-          $newline->is_active = true;
-          $newline->save();
-        }
-      }
-
-      if(!empty($pens)){
-        foreach ($pens as $pen) {
-          $newpen = new Pen;
-          $newpen->number = str_pad($line, 4, "0", STR_PAD_LEFT);
-          $newpen->capacity = 10;
-          $newpen->save();
-        }
-      }
-      return Redirect::back()->with('message','Generation  edit complete');
-    }
-
-    public function breederDailyRecords()
-    {
-      return view('poultry.chicken.breeder.daily_records');
-    }
-
-    public function breederFamilyRecords()
-    {
-      return view('poultry.chicken.breeder.addfamilymenu');
-    }
-
-
-    public function getPageBreederFamilyList()
-    {
-      return view('poultry.chicken.breeder.family_summary');
-    }
-
-    public function getPageBreederIndividualList()
-    {
-      return view('poultry.chicken.breeder.individual_list');
-    }
-
-    public function getPageIndividualData()
-    {
-      return view('poultry.chicken.breeder.individualdata');
-    }
 
 }

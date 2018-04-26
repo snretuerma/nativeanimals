@@ -15,18 +15,24 @@ class CreateEggQualitiesTable extends Migration
     {
         Schema::create('egg_qualities', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('family_id')->unsigned();
+            $table->integer('egg_quality_at')->unsigned();
+            $table->string('sample_no')->nullable();
+            $table->integer('generation')->unsigned();
+            $table->integer('line')->unsigned();
+            $table->integer('family')->unsigned();
             $table->double('egg_weight');
             $table->string('egg_color');
             $table->string('egg_shape');
             $table->double('egg_length');
             $table->double('egg_width');
+            $table->double('albumen_height');
+            $table->double('albumen_weight');
+            $table->double('yolk_weight');
+            $table->string('yolk_color');
             $table->double('shell_weight');
             $table->double('thickness_top');
             $table->double('thickness_mid');
             $table->double('thickness_bot');
-            $table->double('albumen_height');
-            $table->string('yolk_color');
             $table->date('date_collected');
         });
     }

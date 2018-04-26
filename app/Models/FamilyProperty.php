@@ -21,4 +21,11 @@ class FamilyProperty extends Model
   {
     return $this->belongsTo('App\Models\Family');
   }
+
+  public function getPropertyName()
+  {
+    $property = Property::where('id', $this->property_id)->first();
+    return $property->name;
+  }
+
 }
