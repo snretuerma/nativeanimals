@@ -40,6 +40,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('create_family/{id}', ['as' => 'farm.poultry.create_family_id', 'uses' => 'FarmController@createFamily']);
     Route::get('add_to_family', ['as' => 'farm.poultry.add_to_family_animal', 'uses' => 'FarmController@addToFamily']);
     Route::get('daily_records', ['as' => 'farm.poultry.page_daily_records', 'uses' => 'FarmController@getDailyRecords']);
+
     Route::get('morphometric_characteristics', ['as' => 'farm.poultry.page_morphometric_characteristics', 'uses' => 'FarmController@getPageMorphometricCharacteristic']);
     Route::get('phenotypic_characteristics', ['as' => 'farm.poultry.page_phenotypic_characteristics', 'uses' => 'FarmController@getPagePhenotypicCharacteristic']);
 
@@ -76,26 +77,47 @@ Route::group(['middleware' => ['web']], function () {
     // Route::get('breeder_generation', ['as' => 'farm.poultry.generation', 'uses' => 'FarmController@generationPage']);
 
     // new Controller for poultry to Migrate all methods
-    // Breeders
+    /********************** BREEDERS **********************/
     Route::get('breeder_generations', ['as' => 'farm.poultry.fetch_generation', 'uses' => 'PoultryController@fetchGeneration']);
     Route::post('breeder_add_generation', ['as' => 'farm.poultry.add_generation', 'uses' => 'PoultryController@createGeneration']);
     Route::post('breeder_edit_generation', ['as' => 'farm.poultry.breeder.edit_generation', 'uses' => 'PoultryController@editGeneration']);
-    Route::post('fetch_family_record', ['as' => 'farm.chicken.submit_family_record', 'uses' => 'PoultryController@getFamilyRecord']);
-    Route::get('add_animals_to_family/{id}', ['as' => 'farm.chicken.add_animals_to_family', 'uses' => 'PoultryController@addToCreatedFamily']);
-    Route::get('add_family_menu', ['as' => 'farm.poultry.breeder.familymenu', 'uses' => 'PoultryController@familyRecordsMenu']);
+    Route::post('fetch_family_record', ['as' => 'farm.poultry.submit_family_record', 'uses' => 'PoultryBreederController@getFamilyRecord']);
+    Route::get('add_family/{generation}', ['as' => 'farm.poultry.add_family_display_lines', 'uses' => 'PoultryController@ajaxReturnLine']);
+    Route::get('add_animals_to_family/{id}', ['as' => 'farm.chicken.add_animals_to_family', 'uses' => 'PoultryBreederController@addToCreatedFamily']);
+    Route::get('add_family_menu', ['as' => 'farm.poultry.breeder.familymenu', 'uses' => 'PoultryBreederController@familyRecordsMenu']);
     Route::get('family_record', ['as' => 'farm.poultry.page_family_record', 'uses' => 'PoultryController@getPageFamilyRecord']);
-    Route::get('add_family', ['as' => 'farm.poultry.page_add_family', 'uses' => 'PoultryController@getAddFamily']);
-    Route::post('add_animals', ['as' => 'farm.poultry.page_add_animals', 'uses' => 'PoultryController@addAnimalsToFamimly']);
+    Route::get('add_family', ['as' => 'farm.poultry.page_add_family', 'uses' => 'PoultryBreederController@getAddFamily']);
+    Route::get('add_animals_to_family/{id}/get_male', ['as' => 'farm.poultry.get_male', 'uses' => 'PoultryBreederController@showAvailableMales']);
+    Route::post('add_male', ['as' => 'farm.poultry.add_male', 'uses' => 'PoultryBreederController@addMaleToFamily']);
+    Route::get('add_animals_to_family/{id}/get_female', ['as' => 'farm.poultry.get_female', 'uses' => 'PoultryBreederController@showAvailableFemales']);
+    Route::post('show_females', ['as' => 'farm.poultry.get_female_content', 'uses' => 'PoultryBreederController@getFemalePerFamily']);
+    Route::post('add_female', ['as' => 'farm.poultry.add_female', 'uses' => 'PoultryBreederController@addFemaleToFamily']);
 
+    Route::post('add_animals', ['as' => 'farm.poultry.page_add_animals', 'uses' => 'PoultryBreederController@addAnimalsToFamily']);
+
+    // Daily Records
     Route::get('breeder_daily_records', ['as' => 'farm.poultry.breeder.daily', 'uses' => 'PoultryController@breederDailyRecords']);
     Route::post('fetch_breeder_daily_records', ['as' => 'farm.poultry.breeder.fetch.daily', 'uses' => 'PoultryController@fetchBreederDailyRecords']);
     Route::get('breeder_daily_records/member_list', ['as' => 'farm.poultry.breeder.daily_members', 'uses' => 'PoultryController@dailyFamilyMembers']);
+    Route::get('breeder/familylist_daily_record', ['as' => 'farm.poultry.breeder.family_daily_records', 'uses' => 'PoultryBreederController@familylistDailyRecords']);
+    Route::get('breeder/daily_records/{id}', ['as' => 'farm.poultry.breeder.daily_records', 'uses' => 'PoultryBreederController@dailyRecords']);
+    Route::get('breeder/daily_records/egg_production/{id}', ['as' => 'farm.poultry.breeder.daily_records_egg_prod', 'uses' => 'PoultryBreederController@eggProductionForm']);
+    Route::post('breeder/daily_records/egg_production/submit', ['as' => 'farm.poultry.breeder.daily_records_egg_prod_submit', 'uses' => 'PoultryBreederController@eggProductionSubmit']);
+    Route::get('breeder/daily_records/egg_production/edit/{id}', ['as' => 'farm.poultry.breeder.daily_records_egg_prod_edit', 'uses' => 'PoultryBreederController@eggProductionEditForm']);
+    Route::put('breeder/daily_records/egg_production/edit/edit_submit', ['as' => 'farm.poultry.breeder.daily_records_egg_prod_edit_submit', 'uses' => 'PoultryBreederController@eggProductionEditFormSubmit']);
+    Route::delete('breeder/daily_records/egg_production/edit/delete', ['as' => 'farm.poultry.breeder.daily_records_egg_prod_delete', 'uses' => 'PoultryBreederController@eggProductionDeleteRecord']);
+    Route::get('breeder/daily_records/feeding_record/{id}', ['as' => 'farm.poultry.breeder.daily_records_feeding_record', 'uses' => 'PoultryBreederController@feedingRecordForm']);
+    Route::post('breeder/daily_records/feeding_record/submit', ['as' => 'farm.poultry.breeder.daily_records_feeding_record_submit', 'uses' => 'PoultryBreederController@feedingRecordSubmit']);
+    Route::get('breeder/daily_records/feeding_record/edit/{id}', ['as' => 'farm.poultry.breeder.daily_records_feeding_record_edit', 'uses' => 'PoultryBreederController@feedingRecordEditForm']);
+    Route::put('breeder/daily_records/feeding_record/edit/edit_submit', ['as' => 'farm.poultry.breeder.daily_records_feeding_record_edit_submit', 'uses' => 'PoultryBreederController@feedingRecordEditFormSubmit']);
+    Route::delete('breeder/daily_records/feeding_record/edit/delete', ['as' => 'farm.poultry.breeder.daily_records_feeding_record_delete', 'uses' => 'PoultryBreederController@feedingRecordDeleteRecord']);
 
+    // Egg Quality
     Route::get('egg_quality', ['as' => 'farm.poultry.page_egg_quality', 'uses' => 'PoultryController@getPageEggQuality']);
     Route::post('fetch_egg_quality', ['as' => 'farm.poultry.fetch_egg_quality', 'uses' => 'PoultryController@fetchEggQuality']);
     Route::get('egg_quality/{generation}', ['as' => 'farm.poultry.egg_quality_display_lines', 'uses' => 'PoultryController@eggQualityReturnLine']);
     Route::get('egg_quality/line/{line}', ['as' => 'farm.poultry.egg_quality_display_family', 'uses' => 'PoultryController@eggQualityReturnFamily']);
-
+    
 
     Route::get('view_breeders', ['as' => 'farm.poultry.page_view_breeders', 'uses' => 'PoultryController@getPageBreederList']);
     Route::get('view_breeders_family/{id}', ['as' => 'farm.poultry.page_view_breeders_family', 'uses' => 'PoultryController@getPageBreederFamilySummary']);
@@ -104,6 +126,8 @@ Route::group(['middleware' => ['web']], function () {
 
 
     // Replacement
+    Route::get('replacement_individual_record/{generation}', ['as' => 'farm.poultry.fetch_line', 'uses' => 'PoultryReplacementController@fetchLine']);
+    Route::get('replacement_individual_record/line/{line}', ['as' => 'farm.poultry.fetch_family', 'uses' => 'PoultryReplacementController@fetchFamily']);
     Route::get('replacement_feeding_list', ['as' => 'farm.poultry.replacement.feeding_list', 'uses' => 'PoultryController@replacementFeedingList']);
     Route::get('replacement_feeding_form/{id}', ['as' => 'farm.poultry.replacement.feeding_form', 'uses' => 'PoultryController@replacementFeedingForm']);
     Route::post('replacement_feeding_fetch', ['as' => 'farm.poultry.replacement.feeding_fetch', 'uses' => 'PoultryController@replacementFeedingFetchData']);
@@ -131,13 +155,19 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('removal_menu',['as' => 'farm.poultry.removal_menu', 'uses' => 'PoultryController@removalMenuPage']);
     Route::get('breeder_family_removal_list', ['as' => 'farm.poultry.breeder_family_removal_list', 'uses' => 'PoultryController@breederFamilyRemovalList']);
-    Route::get('replacement_family_removal_list', ['as' => 'farm.poultry.replacement_family_removal_list', 'uses' => 'PoultryController@replacementFamilyRemovalList']);
     Route::get('breeder_removal_list_culling/{id}', ['as' => 'farm.poultry.breeder_removal_list_culling', 'uses' => 'PoultryController@breederCullingRemovalList']);
     Route::post('breeder_removal_list_culling_submit', ['as' => 'farm.poultry.breeder_removal_list_culling_submit', 'uses' => 'PoultryController@breederCullingRemovalListSubmit']);
     Route::get('breeder_removal_list_mortality/{id}', ['as' => 'farm.poultry.breeder_removal_list_mortality', 'uses' => 'PoultryController@breederMortalityRemovalList']);
     Route::post('breeder_removal_list_mortality_submit', ['as' => 'farm.poultry.breeder_removal_list_mortality_submit', 'uses' => 'PoultryController@breederMortalityRemovalListSubmit']);
     Route::get('breeder_removal_list_sales/{id}', ['as' => 'farm.poultry.breeder_removal_list_sales', 'uses' => 'PoultryController@breederSalesRemovalList']);
     Route::post('breeder_removal_list_sales_submit', ['as' => 'farm.poultry.breeder_removal_list_sales_submit', 'uses' => 'PoultryController@breederSalesRemovalListSubmit']);
+    Route::get('replacement_family_removal_list', ['as' => 'farm.poultry.replacement_family_removal_list', 'uses' => 'PoultryController@replacementFamilyRemovalList']);
+    Route::get('replacement_removal_list_culling/{id}', ['as' => 'farm.poultry.replacement_removal_list_culling', 'uses' => 'PoultryController@replacementCullingRemovalList']);
+    Route::post('replacement_removal_list_culling_submit', ['as' => 'farm.poultry.replacement_removal_list_culling_submit', 'uses' => 'PoultryController@replacementCullingRemovalListSubmit']);
+    Route::get('replacement_removal_list_mortality/{id}', ['as' => 'farm.poultry.replacement_removal_list_mortality', 'uses' => 'PoultryController@replacementMortalityRemovalList']);
+    Route::post('replacement_removal_list_mortality_submit', ['as' => 'farm.poultry.replacement_removal_list_mortality_submit', 'uses' => 'PoultryController@replacementMortalityRemovalListSubmit']);
+    Route::get('replacement_removal_list_sales/{id}', ['as' => 'farm.poultry.replacement_removal_list_sales', 'uses' => 'PoultryController@replacementSalesRemovalList']);
+    Route::post('replacement_removal_list_sales_submit', ['as' => 'farm.poultry.replacement_removal_list_sales_submit', 'uses' => 'PoultryController@replacementSalesRemovalListSubmit']);
 
     Route::get('replacement_removal_list', ['as' => 'farm.poultry.replacement_removal_list', 'uses' => 'PoultryController@replacementRemovalList']);
     Route::get('broodersgrowers_removal_list', ['as' => 'farm.poultry.broodersgrowers_removal_list', 'uses' => 'PoultryController@broodersgrowersRemovalList']);

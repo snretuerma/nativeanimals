@@ -34,9 +34,9 @@ class Animal extends Model
     return $this->belongsTo('App\Models\Breed');
   }
 
-  public function groupings()
+  public function families()
   {
-    return $this->hasMany('App\Models\Grouping');
+    return $this->belongsTo('App\Models\Family');
   }
 
   public function animalproperties()

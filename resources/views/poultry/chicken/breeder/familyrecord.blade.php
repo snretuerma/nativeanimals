@@ -25,7 +25,7 @@
         </div>
 
         <div class="divider"></div>
-          {!! Form::open(['route' => 'farm.chicken.submit_family_record', 'method' => 'post']) !!}
+          {!! Form::open(['route' => 'farm.poultry.submit_family_record', 'method' => 'post']) !!}
           <div class="row">
             <div class="input-field col s12 m6 l6">
               <input id="family_id" type="text" class="validate" name="family_id">
@@ -33,54 +33,54 @@
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s6">
-              <input id="date_transferred" type="text" class="datepicker" name="date_transferred">
-              <label for="date_transferred">Date Transferred</label>
+            <div class="col s6">
+               <label for="date_transferred">Date Transferred</label>
+               <input id="date_transferred" type="text" class="datepicker" name="date_transferred">
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s12 m6 l6">
-              <select name = "generation" validate>
-              <option value="" disabled selected>Choose generation</option>
-              @foreach ($generations as $generation)
-                <option value="{{$generation->number}}">{{$generation->number}}</option>
-              @endforeach
+            <div class="col s12 m6 l6">
+               <label for="generation">Generation</label>
+              <select id="generation" class="validate browser-default" name="generation">
+                <option value="" disabled selected>Choose Generation</option>
+                @forelse ($generations as $generation)
+                  <option class="chosen_generation" data-genid="{{$generation->id}}" value="{{$generation->id}}">{{$generation->number}}</option>
+                @empty
+                  <option value="" disabled selected>No Available Generation</option>
+                @endforelse
               </select>
-              <label>Generation</label>
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s12 m6 l6">
-              <input id="date_hatched" type="text" class="datepicker" name="date_hatched">
-              <label for="date_hatched">Date Hatched</label>
+            <div class="col s12 m6 l6">
+               <label for="date_hatched">Date Hatched</label>
+               <input id="date_hatched" type="text" class="datepicker" name="date_hatched">
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s12 m6 l6">
-              <select name="line" validate >
-              <option value="" disabled selected>Choose line</option>
-              @foreach ($lines as $line)
-                <option value="{{$line->number}}">{{$line->number}} (Generation : {{$line->getGeneration()->number}})</option>
-              @endforeach
+            <div class="col s12 m6 l6">
+               <label for="line">Line</label>
+              <select id="line" class="validate browser-default" name="line" disabled="disabled">
+               <option value="" disabled selected>Choose Line</option>
               </select>
-              <label>Line</label>
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s12 m6 l6">
-              <input id="age_first_egg" type="number" min=0 class="validate" name="age_first_egg">
-              <label for="age_first_egg">Age at First Egg</label>
+            <div class="col s12 m6 l6">
+               <label for="date_first_egg">Date of First Egg</label>
+               <input id="date_first_egg" type="text" min=0 class="datepicker" name="date_first_egg">
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s12 m6 l6">
-              <select name = "pen_no" validate>
+            <div class="col s12 m6 l6">
+              <label for="pen_no">Moved to Pen Number</label>
+              <select id="pen_no" class="validate browser-default" name = "pen_no" validate>
               <option value="" disabled selected>Choose pen</option>
               @foreach ($pens as $pen)
-                <option value="{{$pen->number}}">{{$pen->number}}</option>
+                <option value="{{$pen->id}}">{{$pen->number}}</option>
               @endforeach
               </select>
-              <label>Moved to Pen Number</label>
+
             </div>
           </div>
           <div class="row">
@@ -99,5 +99,10 @@
 @endsection
 
 @section('scripts')
-  {{-- <script type="text/javascript" src="/js/vue/createfamily.js"></script> --}}
+  <script type="text/javascript" src="/js/poultry/ajax_requests.js"></script>
+  @if(Session::has('family-create'))
+     <script>
+        Materialize.toast('Family Added', 4000)
+     </script>
+  @endif
 @endsection

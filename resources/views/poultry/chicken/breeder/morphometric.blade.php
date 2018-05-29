@@ -1,7 +1,7 @@
 @extends('layouts.newLayout')
 
 @section('title')
-  Breeder - Morphometric Characteristics{{-- Specify if breeder or replacement when backend added through variable passed --}}
+  Breeder - Morphometric Characteristics
 @endsection
 
 @section('initScriptsAndStyles')
@@ -11,7 +11,7 @@
 @section('content')
   <div class="row">
     <div class="col s12 m12 1l2">
-      <h4>Morphometric Characteristics</h4> {{-- Specify if breeder or replacement when backend added through variable passed --}}
+      <h5>Morphometric Characteristics</h5>
       <div class="divider"></div>
       <div class="row">
         <div class="row">
@@ -74,7 +74,7 @@
                   <div class="col s12 m12 l12">
                     <div class="row">
                       <div class="input-field col s12 m12 l12">
-                        <input id="height" type="number" class="validate" name="height" min=0 required>
+                        <input id="height" type="number" class="validate" name="height" min=0 step="any" required>
                         <label for="height">Height (cm)</label>
                       </div>
                     </div>
@@ -84,7 +84,7 @@
                   <div class="col s12 m12 l12">
                     <div class="row">
                       <div class="input-field col s12 m12 l12">
-                        <input id="weight" type="number" class="validate" name="weight" min=0 required>
+                        <input id="weight" type="number" class="validate" name="weight" min=0 step="any" required>
                         <label for="height">Weight (kg)</label>
                       </div>
                     </div>
@@ -94,7 +94,7 @@
                   <div class="col s12 m12 l12">
                     <div class="row">
                       <div class="input-field col s12 m12 l12">
-                        <input id="body_length" type="number" class="validate" name="body_length" min=0 required>
+                        <input id="body_length" type="number" class="validate" name="body_length" min=0 step="any" required>
                         <label for="body_length">Body Length (cm)</label>
                       </div>
                     </div>
@@ -104,7 +104,7 @@
                   <div class="col s12 m12 l12">
                     <div class="row">
                       <div class="input-field col s12 m12 l12">
-                        <input id="chest_circumference" type="number" class="validate" name="chest_circumference" min=0 required>
+                        <input id="chest_circumference" type="number" class="validate" name="chest_circumference" min=0 step="any" required>
                         <label for="chest_circumference">Chest Circumference (cm)</label>
                       </div>
                     </div>
@@ -114,7 +114,7 @@
                   <div class="col s12 m12 l12">
                     <div class="row">
                       <div class="input-field col s12 m12 l12">
-                        <input id="wing_span" type="number" class="validate" name="wing_span" min=0 required>
+                        <input id="wing_span" type="number" class="validate" name="wing_span" min=0 step="any" required>
                         <label for="wing_span">Wing Span (cm)</label>
                       </div>
                     </div>
@@ -124,7 +124,7 @@
                   <div class="col s12 m12 l12">
                     <div class="row">
                       <div class="input-field col s12 m12 l12">
-                        <input id="shank_length" type="number" class="validate" name="shank_length" min=0 required>
+                        <input id="shank_length" type="number" class="validate" name="shank_length" min=0 step="any" required>
                         <label for="shank_length">Shank Length (cm)</label>
                       </div>
                     </div>

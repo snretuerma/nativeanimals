@@ -16,6 +16,7 @@ class CreateFamiliesTable extends Migration
         Schema::create('families', function (Blueprint $table) {
             $table->increments('id');
             $table->string('number');
+            $table->integer('male_id')->unsigned()->nullable();
             $table->integer('line_id')->unsigned();
             $table->string('is_active');
             $table->integer('pen_id')->unsigned();

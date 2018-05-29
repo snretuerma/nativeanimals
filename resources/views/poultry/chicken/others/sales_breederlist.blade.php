@@ -23,7 +23,7 @@
                      @forelse ($familymembers as $member)
                         <div class="row valign-wrapper">
                            <div class="col s12 m5 l5">
-                              <input type="checkbox" class="filled-in" id="{{$member->id}}" name="animal_id[]" value="{{$member->animal_id}}" />
+                              <input type="checkbox" class="filled-in" id="{{$member->id}}" name="animal_id[]" value="{{$member->id}}" />
                               <label for="{{$member->id}}">{{$member->registryid}}</label>
                            </div>
                            <div class="input-field col s12 m2 l2">

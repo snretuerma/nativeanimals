@@ -36,6 +36,7 @@ use App\Models\ChickFeeding;
 use App\Models\EggCollection;
 use App\Models\PenFeeding;
 use App\Models\BreederRemoval;
+use App\Models\Sessions;
 
 class PoultryController extends Controller
 {
@@ -118,6 +119,20 @@ class PoultryController extends Controller
       return;
     }
 
+    /*************************
+    *** Ajax Methods ***
+    *************************/
+
+    public function ajaxReturnLine($id)
+    {
+      $lines = Line::where('generation_id', $id)->where('is_active', true)->get();
+      return $lines;
+    }
+
+    // public function ajaxReturnFamily($id)
+    // {
+    //
+    // }
 
     /*************************
     *** Generation Methods ***
@@ -125,7 +140,7 @@ class PoultryController extends Controller
 
     public function fetchGeneration()
     {
-      $generations = Generation::all()->reverse();
+      $generations = Generation::latest('id')->paginate(15);
       return view('poultry.chicken.generation', compact('generations'));
     }
 
@@ -145,7 +160,7 @@ class PoultryController extends Controller
           $newline->save();
         }
       }
-
+      $request->session()->flash('generation-create', 'Generation added');
       return Redirect::back()->with('message','Generation  added');
     }
 
@@ -167,7 +182,7 @@ class PoultryController extends Controller
           $newline->save();
         }
       }
-      return Redirect::back()->with('message','Generation  edit complete');
+      return Redirect::back()->with('message','Generation edit complete');
     }
 
     public function cullGeneration()
@@ -177,24 +192,25 @@ class PoultryController extends Controller
 
     public function createPensPage()
     {
-      $pens = Pen::all();
-      return view('poultry.sample_page', compact('pens'));
+      $pens = Pen::paginate(15);
+      return view('poultry.pens_page', compact('pens'));
     }
 
     public function createPens(Request $request)
     {
       $this->validate(request(), [
-        'pennumber' => 'required',
-        'pencap' => 'required'
+        'pen_no' => 'required',
+        'capacity' => 'required',
+        'pen_type' => 'required'
       ]);
-
       $pen = new Pen;
-      $pen->number = str_pad($request->pennumber, 1, "0", STR_PAD_LEFT);
-      $pen->capacity = $request->pencap;
-      $pen->current_capacity = $request->pencap;
+      $pen->pen_type = $request->pen_type;
+      $pen->capacity = $request->capacity;
+      $pen->current_capacity = $request->capacity;
+      $pen->number = ucfirst(substr($request->pen_type, 0, 1)).str_pad($request->pen_no, 2, "0", STR_PAD_LEFT);
       $pen->save();
-
-      return [$pen ,'message' => 'Pen Created'];
+      $request->session()->flash('pen-create', 'Pen created');
+      return Redirect::back()->with('message','Pen created');
     }
 
     public function getAllPens()
@@ -205,10 +221,11 @@ class PoultryController extends Controller
     /*
       Form 6
     */
-    public function getPageReplacementIndividualRecord(){
-      $families = Family::where('is_active', true)->get();
-      $pens = Pen::all();
-      return view('poultry.chicken.replacement.individualrecord', compact('pens', 'families'));
+    public function getPageReplacementIndividualRecord()
+    {
+      $pens = Pen::where('pen_type', 'grower')->get();
+      $generations = Generation::where('is_active', true)->get();
+      return view('poultry.chicken.replacement.individualrecord', compact('pens', 'families', 'generations'));
     }
 
     public function addReplacementIndividualRecord(Request $request){
@@ -231,6 +248,7 @@ class PoultryController extends Controller
       $animal->status = "replacement";
       $animal->registryid = $registryid;
       $animal->pen_id = $request->moved_to_pen;
+      $animal->family_id = $family->id;
       $animal->save();
 
       $animalproperty1 = new AnimalProperty;
@@ -292,100 +310,8 @@ class PoultryController extends Controller
       $pen = Pen::where('id', $request->moved_to_pen)->first();
       $pen->current_capacity = $pen->current_capacity-1;
       $pen->save();
+      $request->session()->flash('individual-record-success', 'Individual record saved');
       return Redirect::back()->with('message','Animal record successfully saved');
-    }
-
-    /*
-      Form 1
-    */
-    public function familyRecordsMenu()
-    {
-      $families = Family::all();
-      return view('poultry.chicken.breeder.familylist', compact('families'));
-    }
-
-    public function getAddFamily()
-    {
-      $generations = Generation::where('is_active', true)->get();
-      $lines = Line::where('is_active', true)->get();
-      $pens = Pen::all();
-      return view('poultry.chicken.breeder.familyrecord', compact('generations', 'lines', 'pens'));
-    }
-
-    public function getFamilyRecord(Request $request)
-    {
-      $this->validate(request(), [
-        'family_id' => 'required',
-        'date_transferred' => 'required',
-        'generation' => 'required',
-        'date_hatched' => 'required',
-        'line' => 'required',
-        'pen_no' => 'required'
-      ]);
-      $now = new Carbon;
-      $family_id = str_pad($request->family_id, 4, "0", STR_PAD_LEFT);
-      $family = new Family;
-      $family->number = $family_id;
-      $family->line_id = $request->line;
-      $family->is_active = true;
-      $family->pen_id = $request->pen_no;
-      $family->save();
-
-      // $animalid, $propid, $value, $date
-      $this->addFamilyProperty($family->id, 29, $family->number, $now);
-      $this->addFamilyProperty($family->id, 30, $this->carbonParseDate($request->date_transferred), $now);
-      $this->addFamilyProperty($family->id, 31, $request->generation, $now);
-      $this->addFamilyProperty($family->id, 32, $this->carbonParseDate($request->date_hatched), $now);
-      $this->addFamilyProperty($family->id, 33, $request->line, $now);
-      if($request->age_first_egg === null){
-        $this->addFamilyProperty($family->id, 34, null, $now);
-      }else{
-        $this->addFamilyProperty($family->id, 34, $request->age_first_egg, $now);
-      }
-      return Redirect::back()->with('message','Animal successfully added');
-    }
-
-    public function addToCreatedFamily($id)
-    {
-      $family = Family::where('id', $id)->first();
-      $members = FamilyMember::where('family_id', $id)->get();
-      $animals = Animal::where('status', 'replacement')->get();
-      $line = Line::where('id', $family->line_id)->first();
-      $family_animals = [];
-      // foreach ($animals as $animal) {
-      //   if($animal->getFamily()->value === $family->number){
-      //     if($line->number === $animal->getLine()->value){
-      //       if($line->is_active){
-      //         array_push($family_animals, $animal);
-      //       }
-      //     }
-      //   }
-      // }
-      foreach ($animals as $animal) {
-        if($family->checkAnimalMembership($animal->getFamily()->value, $animal->getLine()->value)){
-           array_push($family_animals, $animal);
-        }
-      }
-
-      $add_animals = collect($family_animals);
-      return view('poultry.chicken.breeder.addanimalstocreatedfamily', compact('family', 'members', 'add_animals'));
-    }
-
-    public function addAnimalsToFamimly(Request $request)
-    {
-      $now = Carbon::now();
-      foreach ($request->animals as $animal) {
-        $addmember = new FamilyMember;
-        $addmember->family_id = $request->family_id;
-        $addmember->animal_id = $animal;
-        $addmember->date_start = $now;
-        $addmember->save();
-        $breeder = Animal::where('id', $animal)->first();
-        $breeder->status = "breeder";
-        $breeder->save();
-      }
-
-      return Redirect::back()->with('message','Animal successfully added');
     }
 
     // Daily Records
@@ -621,8 +547,31 @@ class PoultryController extends Controller
     {
       $famproperties = FamilyProperty::where('family_id', $id)->get();
       $family = Family::where('id', $id)->first();
+      $familymembers = FamilyMember::join('animals', 'animals.id', '=','family_members.animal_id')->where('family_members.family_id', $id)->get();
+      $animalprop = AnimalProperty::get()->groupBy('animal_id');
+      $includeproperty = [];
+      // dd($animalprop);
+      foreach ($familymembers as $fam) {
+        foreach ($animalprop as $property) {
+          if($fam->animal_id == $property[0]->animal_id){
+            array_push($includeproperty, $property);
+          }
+        }
+      }
+      //
+      // $plummagecolor = [];
+      //
+      // foreach ($includeproperty as $prop) {
+      //   if(in_array($prop[8]->value)){
+      //
+      //   }else{
+      //     array_push($plummagecolor, $prop[8]->value);
+      //   }
+      //
+      // }
+      // dd($plummagecolor);
       // $members = FamilyMember::where('family_id', $id)->join('animal_properties', 'family_members.animal_id', 'animal_properties.animal_id')->groupBy('animal_properties.animal_id')->get();
-      //  dd($members);
+      // dd($includeproperty);
 
       return view('poultry.chicken.breeder.family_summary', compact('famproperties', 'family'));
     }
@@ -817,12 +766,12 @@ class PoultryController extends Controller
 
     public function breederCullingRemovalList($id)
     {
-      $familymembers = FamilyMember::join('animals', 'family_members.animal_id', '=', 'animals.id')
-                      ->where('date_end', null)
-                      ->where('family_id', $id)
-                      ->get();
+      // $familymembers = FamilyMember::join('animals', 'family_members.animal_id', '=', 'animals.id')
+      //                 ->where('date_end', null)
+      //                 ->where('family_id', $id)
+      //                 ->get();
 
-      // $breeders = Animal::where('status', 'breeder')->get();
+      $familymembers = Animal::where('status', 'breeder')->where('family_id', $id)->get();
       return view('poultry.chicken.others.culling_breederlist', compact('familymembers'));
     }
 
@@ -857,11 +806,7 @@ class PoultryController extends Controller
 
     public function breederMortalityRemovalList($id)
     {
-      $familymembers = FamilyMember::join('animals', 'family_members.animal_id', '=', 'animals.id')
-                      ->where('date_end', null)
-                      ->where('family_id', $id)
-                      ->get();
-
+      $familymembers = Animal::where('status', 'breeder')->where('family_id', $id)->get();
       // $breeders = Animal::where('status', 'breeder')->get();
       return view('poultry.chicken.others.mortality_breederlist', compact('familymembers'));
     }
@@ -897,10 +842,7 @@ class PoultryController extends Controller
 
     public function breederSalesRemovalList($id)
     {
-      $familymembers = FamilyMember::join('animals', 'family_members.animal_id', '=', 'animals.id')
-                      ->where('date_end', null)
-                      ->where('family_id', $id)
-                      ->get();
+      $familymembers = Animal::where('status', 'breeder')->where('family_id', $id)->get();
 
       return view('poultry.chicken.others.sales_breederlist', compact('familymembers'));
     }
@@ -950,13 +892,115 @@ class PoultryController extends Controller
 
     public function replacementFamilyRemovalList()
     {
-      
+      $families = DB::table('animals')->where('status', 'replacement')->get();
+      $family_id = [];
+      foreach ($families as $family) {
+        if(!in_array($family->family_id, $family_id)){
+          array_push($family_id, $family->family_id);
+        }
+      }
+      return view('poultry.chicken.others.replacement_family_removal', compact('family_id'));
     }
 
-    public function replacementRemovalList()
+    public function replacementCullingRemovalList($id)
     {
-      $replacements = Animal::where('status', 'replacement')->get();
-      return view('poultry.chicken.others.replacementlist', compact('replacements'));
+      $animals = Animal::where('status', 'replacement')->where('family_id', $id)->get();
+      return view('poultry.chicken.others.culling_replacementlist', compact('animals'));
+    }
+
+    public function replacementCullingRemovalListSubmit(Request $request)
+    {
+      $index = 0;
+      if(!empty($request->animal_id) && !empty($request->cull_reason)){
+        foreach ($request->animal_id as $animal) {
+          $cull = Animal::where('id', $animal)->first();
+          $cull->status = "culled";
+          $cull->save();
+          $pen = Pen::where('id', $cull->pen_id)->first();
+          $pen->current_capacity = $pen->current_capacity + 1;
+          $pen->save();
+          // $removal = new BreederRemoval;
+          // $removal->animal_id = $animal;
+          // $removal->status = "culled";
+          // $removal->reason = $request->cull_reason[$index];
+          // $removal->date_removed = $this->carbonParseDate($request->date[$index]);
+          // $removal->save();
+          $index++;
+        }
+      }else{
+          return Redirect::back()->with('message','No record saved');
+      }
+      return Redirect::back()->with('message','Culling recorded');
+    }
+
+    public function replacementMortalityRemovalList($id)
+    {
+      $animals = Animal::where('status', 'replacement')->where('family_id', $id)->get();
+      return view('poultry.chicken.others.mortality_replacementlist', compact('animals'));
+    }
+
+    public function replacementMortalityRemovalListSubmit(Request $request)
+    {
+      $index = 0;
+      if(!empty($request->animal_id) && !empty($request->sales_reason)){
+        foreach ($request->animal_id as $animal) {
+          $sale = Animal::where('id', $animal)->first();
+          $sale->status = "died";
+          $sale->save();
+          $pen = Pen::where('id', $mort->pen_id)->first();
+          $pen->current_capacity = $pen->current_capacity + 1;
+          $pen->save();
+          // $removal = new BreederRemoval;
+          // $removal->animal_id = $animal;
+          // $removal->status = "culled";
+          // $removal->reason = $request->mort_reason[$index];
+          // $removal->date_removed = $this->carbonParseDate($request->date[$index]);
+          // $removal->save();
+          $sales = new Sales;
+          $sales->animal_id = $sale->id;
+          $sales->family_id = $sale->family_id;
+          $sales->pen_id = $sale->pen_id;
+          $sales->date_sold = $this->carbonParseDate($request->date[$index]);
+          $sales->classification = "live";
+          $sales->price = $request->price[$index];
+          $sales->reason = $request->sales_reason[$index];
+          $index++;
+        }
+      }else{
+          return Redirect::back()->with('message','No record saved');
+      }
+      return Redirect::back()->with('message','Mortality recorded');
+    }
+
+    public function replacementSalesRemovalList($id)
+    {
+      $animals = Animal::where('status', 'replacement')->where('family_id', $id)->get();
+      return view('poultry.chicken.others.sales_replacementlist', compact('animals'));
+    }
+
+    public function replacementSalesRemovalListSubmit(Request $request)
+    {
+      $index = 0;
+      if(!empty($request->animal_id) && !empty($request->mort_reason)){
+        foreach ($request->animal_id as $animal) {
+          $mort = Animal::where('id', $animal)->first();
+          $mort->status = "died";
+          $mort->save();
+          $pen = Pen::where('id', $mort->pen_id)->first();
+          $pen->current_capacity = $pen->current_capacity + 1;
+          $pen->save();
+          // $removal = new BreederRemoval;
+          // $removal->animal_id = $animal;
+          // $removal->status = "culled";
+          // $removal->reason = $request->mort_reason[$index];
+          // $removal->date_removed = $this->carbonParseDate($request->date[$index]);
+          // $removal->save();
+          $index++;
+        }
+      }else{
+          return Redirect::back()->with('message','No record saved');
+      }
+      return Redirect::back()->with('message','Sales recorded');
     }
 
     public function broodersgrowersRemovalList()
@@ -1016,22 +1060,6 @@ class PoultryController extends Controller
           $inventory->date_sold = $this->carbonParseDate($request->date_sold);
           $inventory->save();
 
-        }else{
-          $animal = Animal::where('id', $request->id)->first();
-          $sales->date_sold = $this->carbonParseDate($request->date_sold);
-          $sales->animal_id = $request->id;
-          $sales->pen_id = $animal->getPen();
-          $sales->family_id = $animal->getFamily()->value;
-          $sales->classification = "live";
-          $sales->quantity = $request->quantity;
-          $sales->price = $request->price;
-          $sales->remarks = $request->remarks;
-          $sales->save();
-          $animal->status = "sold";
-          $animal->save();
-          $pen = Pen::where('id', $sales->pen_id)->first();
-          $pen->current_capacity = $pen->current_capacity+1;
-          $pen->save();
         }
       }
       return Redirect::back()->with('message','Sales successfully recorded');

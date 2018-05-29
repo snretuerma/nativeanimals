@@ -23,6 +23,7 @@ class CreateAnimalsTable extends Migration
             $table->boolean('morphometric')->default(false);
             $table->string('growth')->default("000000");
             $table->string('status');
+            $table->integer('family_id')->unsigned();
             $table->integer('pen_id')->unsigned();
             $table->timestamps();
         });

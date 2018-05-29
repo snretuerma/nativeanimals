@@ -2,7 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Native Chickens and Ducks | @yield('title')</title>
+    <title>Native Chicken and Duck | @yield('title')</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="/thirdparty/fontawesome-free-5.0.4/web-fonts-with-css/css/fontawesome-all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/thirdparty/materialize/css/materialize.min.css">
@@ -36,10 +37,12 @@
             <div class="collapsible-body">
               <ul class="yellow lighten-3">
                 <li><a href="{{route('farm.poultry.fetch_generation')}}">Generation</a></li>
-                <li><a href="{{route('farm.poultry.breeder.daily')}}">Daily Records</a></li>
-
                 <li><a href="{{route('farm.poultry.breeder.familymenu')}}">Family Records</a></li>
-                <li><a href="{{route('farm.poultry.page_egg_quality')}}">Egg Quality Records</a></li>
+                {{-- <li><a href="{{route('farm.poultry.breeder.daily')}}">Daily Records (OLD)</a></li> --}}
+                <li><a href="{{route('farm.poultry.breeder.family_daily_records')}}">Daily Records</a></li>
+                <li><a href="{{route('farm.poultry.complete_hatchery_list')}}">Hatchery Records</a></li>
+                <li><a href="{{route('farm.poultry.page_egg_quality')}}">Egg Quality Records (OLD)</a></li>
+                <li><a href="{{route('farm.poultry.page_egg_quality')}}">Egg Quality Records (NEW)</a></li>
                 <li><a href="{{route('farm.poultry.page_view_breeders')}}">View Breeders</a></li>
                 {{-- <li><a href="{{route('farm.poultry.page_add_to_breeder')}}">Add to Family</a></li>
                 <li><a href="{{route('farm.poultry.page_family_record')}}">Family Record</a></li>
@@ -75,7 +78,6 @@
             <a class="collapsible-header">Brooders and Growers<i class="fas fa-cart-plus"></i></a>
             <div class="collapsible-body">
               <ul class="yellow lighten-3">
-                <li><a href="{{route('farm.poultry.complete_hatchery_list')}}">Hatchery Parameters</a></li>
                 <li><a href="{{route('farm.poultry.page_replacement_growth_performance')}}">Growth Performance</a></li>
                 <li><a href="{{route('farm.poultry.broodersgrowers_feedinglist')}}">Feeding Records</a></li>
               </ul>
@@ -150,7 +152,7 @@
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="black-text">Native Chicken and Ducks</h5>
+                <h5 class="black-text">Native Chicken and Duck</h5>
                 <p class="black-text">You can use rows and columns here to organize your footer content.</p>
               </div>
               <div class="col l4 offset-l2 s12">
@@ -171,7 +173,7 @@
             </div>
           </div>
         </footer>
-
+    <script src="/js/laroute.js"></script>
     <script type="text/javascript" src="/thirdparty/vue.js"></script>
     <script type="text/javascript" src="/thirdparty/axios-master/dist/axios.min.js"></script>
     <script type="text/javascript" src="/thirdparty/jquery-3.2.1.js"></script>

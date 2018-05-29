@@ -12,6 +12,11 @@ class Family extends Model
       'number', 'is_active'
     ];
 
+  public function animals()
+  {
+    return $this->hasMany('App\Models\Animal');
+  }
+
   public function pens()
   {
     return $this->belongsTo('App\Models\Pen');
@@ -88,4 +93,11 @@ class Family extends Model
     array_push($count, $male, $female);
     return $count;
   }
+
+  public function getPen()
+  {
+    $pen = Pen::where('id', $this->pen_id)->first();
+    return $pen;
+  }
+
 }

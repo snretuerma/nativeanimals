@@ -23,12 +23,12 @@
                      @forelse ($familymembers as $member)
                         <div class="row valign-wrapper">
                            <div class="col s12 m6 l6">
-                              <input type="checkbox" class="filled-in" id="{{$member->id}}" name="animal_id[]" value="{{$member->animal_id}}" />
+                              <input type="checkbox" class="filled-in" id="{{$member->id}}" name="animal_id[]" value="{{$member->id}}" />
                               <label for="{{$member->id}}">{{$member->registryid}}</label>
                            </div>
                            <div class="input-field col s12 m2 l2">
-                              <input id="date_sold" type="text" class="datepicker" name="date[]">
-                              <label for="date_sold">Date Sold</label>
+                              <input id="date_died" type="text" class="datepicker" name="date[]">
+                              <label for="date_died">Date Died</label>
                            </div>
                            <div class="col s12 m4 l4">
                               <label>Remarks</label>

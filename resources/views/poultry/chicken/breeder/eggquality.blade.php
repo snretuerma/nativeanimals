@@ -20,20 +20,29 @@
               {!! Form::open(['route' => 'farm.poultry.fetch_egg_quality', 'method' => 'post']) !!}
                 {{-- structure  row -> col -> col: input-field --}}
                 <div class="row">
-                  <div class="col s12 m3 l3">
+                  <div class="col s12 m4 l4">
                     Egg Quality at
                   </div>
-                  <div class="col s12 m3 l3">
+                  <div class="col s12 m4 l4">
                     <input class="with-gap" name="egg_quality_at" type="radio" id="egg_quality_35" value = "35" required/>
-                    <label for="egg_quality_35">35 days</label>
+                    <label for="egg_quality_35">35 Weeks of Age</label>
                   </div>
-                  <div class="col s12 m3 l3">
+                  <div class="col s12 m4 l4">
                     <input class="with-gap" name="egg_quality_at" type="radio" id="egg_quality_40" value = "40" required/>
-                    <label for="egg_quality_40">40 days</label>
+                    <label for="egg_quality_40">40 Weeks of Age</label>
                   </div>
-                  <div class="col s12 m3 l3">
+                  <div class="col s12 m4 l4">
+
+                  </div>
+                  <div class="col s12 m4 l4">
                     <input class="with-gap" name="egg_quality_at" type="radio" id="egg_quality_60" value = "60" required/>
-                    <label for="egg_quality_60">60 days</label>
+                    <label for="egg_quality_60">60 Weeks of Age</label>
+                  </div>
+                  <div class="col s12 m4 l4">
+                    <input class="with-gap" name="egg_quality_at" type="radio" id="egg_quality_others" value = "others" required/>
+                    <label for="egg_quality_others">Others</label>
+
+                    <input id="age-others" type="number" name="week-age" value="">
                   </div>
                 </div>
                 <div class="row">

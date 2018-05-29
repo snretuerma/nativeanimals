@@ -110,7 +110,7 @@ class UsersTableSeeder extends Seeder
         $this->createProperty("Generation", "generation", "Generation of the family");
         $this->createProperty("Date Hatched", "date_hatched", "Date when the family hatched");
         $this->createProperty("Line", "line", "Line of the family");
-        $this->createProperty("Age at First Egg", "age_first_egg", "Age of the animals when first egg was recorded");
+        $this->createProperty("Date of First Egg", "date_first_egg", "Date when first egg was recorded");
         $this->command->info('Family Record Properties Created');
         // Daily Records
         // + Egg Production

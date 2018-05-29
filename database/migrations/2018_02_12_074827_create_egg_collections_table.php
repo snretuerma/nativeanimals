@@ -18,10 +18,12 @@ class CreateEggCollectionsTable extends Migration
             $table->integer('family_id')->unsigned();
             $table->integer('number_of_eggs');
             $table->double('weight');
-            $table->integer('broken_eggs');
-            $table->integer('soft_shelled_eggs');
+            $table->integer('broken_eggs')->nullable();
+            $table->integer('soft_shelled_eggs')->nullable();
             $table->date('date_collected');
             $table->string('remarks')->nullable();
+            $table->date('date_deleted')->nullable();
+            $table->softDeletes();
         });
     }
 

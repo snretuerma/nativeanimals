@@ -1,7 +1,7 @@
 @extends('layouts.newLayout')
 
 @section('title')
-  Breeder - Phenotypic Characteristics {{-- Specify if breeder or replacement when backend added through variable passed --}}
+  Breeder - Phenotypic Characteristics
 @endsection
 
 @section('initScriptsAndStyles')
@@ -11,7 +11,7 @@
 @section('content')
   <div class="row">
     <div class="col s12 m12 1l2">
-      <h4>Phenotypic Characteristics</h4> {{-- Specify if breeder or replacement when backend added through variable passed --}}
+      <h5>Phenotypic Characteristics</h5>
       <div class="divider"></div>
       <div class="row">
         <div class="row">

@@ -16,6 +16,7 @@ class CreatePensTable extends Migration
         Schema::create('pens', function (Blueprint $table) {
           $table->increments('id');
           $table->string('number');
+          $table->string('pen_type');
           $table->integer('capacity');
           $table->integer('current_capacity');
         });

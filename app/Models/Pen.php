@@ -10,6 +10,7 @@ class Pen extends Model
   public $timestamps = false;
   protected $fillable = [
       'number',
+      'pen_type',
       'capacity',
       'current_capacity'
   ];
