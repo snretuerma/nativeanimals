@@ -23,10 +23,9 @@ class CreateChicksTable extends Migration
             $table->date('date_hatched')->nullable();
             $table->integer('hatched_eggs')->nullable();
             $table->integer('current_pen_id')->unsigned()->nullable();
-            $table->string('growth')->default('000000');
-            $table->boolean('hatchery_record')->default(false);
-            $table->string('feeding')->default('000');
+            $table->string('hatchery_record')->default('00');
             $table->string('remarks')->nullable();
+            $table->softDeletes();
         });
     }
 

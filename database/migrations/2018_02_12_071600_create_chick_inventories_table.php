@@ -16,6 +16,7 @@ class CreateChickInventoriesTable extends Migration
         Schema::create('chick_inventories', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('chick_id')->unsigned();
+            $table->integer('days')->unsigned();
             $table->integer('male_qty')->nullable();
             $table->integer('female_qty')->nullable();
             $table->integer('total');

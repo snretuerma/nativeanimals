@@ -79,7 +79,7 @@
                     </div>
                     <div class="row">
                       <div class="col s12 m4 l4">
-                        <input class="with-gap" name="plummage_color" type="radio" id="plummage_color_white" value="White" />
+                        <input class="with-gap" name="plummage_color" type="radio" id="plummage_color_white" value="White" required/>
                         <label for="plummage_color_white">White</label>
                       </div>
                       <div class="col s12 m4 l4">
@@ -122,7 +122,7 @@
                     </div>
                     <div class="row">
                       <div class="col s12 m6 l6">
-                        <input class="with-gap" name="plummage_pattern" type="radio" id="plummage_pattern_plain" value="Plain" />
+                        <input class="with-gap" name="plummage_pattern" type="radio" id="plummage_pattern_plain" value="Plain" required/>
                         <label for="plummage_pattern_plain">Plain</label>
                       </div>
                       <div class="col s12 m6 l6">
@@ -262,7 +262,7 @@
                     </div>
                     <div class="row">
                       <div class="col s12 m4 l4">
-                        <input class="with-gap" name="comb_type" type="radio" id="comb_type_single" value="Single" />
+                        <input class="with-gap" name="comb_type" type="radio" id="comb_type_single" value="Single" required/>
                         <label for="comb_type_single">Single</label>
                       </div>
                       <div class="col s12 m4 l4">
@@ -420,7 +420,7 @@
                     </div>
                     <div class="row">
                       <div class="col s12 m4 l4">
-                        <input class="with-gap" name="shank_color" type="radio" id="shank_color_white" value="White" />
+                        <input class="with-gap" name="shank_color" type="radio" id="shank_color_white" value="White" required/>
                         <label for="shank_color_white">White</label>
                       </div>
                       <div class="col s12 m4 l4">

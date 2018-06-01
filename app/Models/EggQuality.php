@@ -3,16 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EggQuality extends Model
 {
+  use SoftDeletes;
+  
   protected $table = 'egg_qualities';
   public $timestamps = false;
   protected $fillable = [
       'sample_no', 'egg_weight', 'egg_color', 'egg_shape',
       'egg_length', 'egg_width', 'shell_weight',
       'thickness_top', 'thickness_mid', 'thickness_bot',
-      'albumen_height', 'yolk_color', 'date_collected', 'count'
+      'albumen_height', 'yolk_color', 'date_collected', 'count',
+      'deleted_at'
     ];
 
   public function family()

@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\View;
 
 use App\Models\User;
 use App\Models\Farm;
@@ -36,6 +37,7 @@ use App\Models\ChickFeeding;
 use App\Models\EggCollection;
 use App\Models\PenFeeding;
 use App\Models\BreederRemoval;
+use App\Models\ReplacementFeeding;
 use App\Models\Sessions;
 
 class PoultryReplacementController extends Controller
@@ -61,5 +63,78 @@ class PoultryReplacementController extends Controller
   {
     $families = Family::where('line_id', $id)->where('is_active', true)->get();
     return $families;
+  }
+
+  public function feedingRecordList()
+  {
+    $pens = Pen::where('pen_type', 'grower')->where('capacity', '!=', 'current_capacity')->paginate(15);
+    return view('poultry.chicken.replacement.feeding_records_list', compact('pens'));
+  }
+
+  public function feedingRecordLog($id)
+  {
+    $pen = Pen::where('id', $id)->firstOrFail();
+    $feedings = ReplacementFeeding::where('pen_id', $id)->paginate(15);
+    return view('poultry.chicken.replacement.feeding_records_log', compact('feedings', 'pen'));
+  }
+
+  public function feedingRecordForm($id)
+  {
+    $pen = Pen::where('id', $id)->firstOrFail();
+    return view('poultry.chicken.replacement.feeding_form', compact('pen'));
+  }
+
+  public function feedingFetchData(Request $request)
+  {
+    $this->validate(request(), [
+      'feed_offered' => 'required',
+      'feed_refused' => 'required',
+      'date_fed' => 'required',
+      'amount_offered' => 'required',
+      'amount_refused' => 'required',
+    ]);
+    $feeding = new ReplacementFeeding;
+    $feeding->pen_id = $request->pen_id;
+    $feeding->feed_offered = $request->feed_offered;
+    $feeding->feed_refused = $request->feed_refused;
+    $feeding->date_fed = $request->date_fed;
+    $feeding->amount_offered = $request->amount_offered;
+    $feeding->amount_refused = $request->amount_refused;
+    $feeding->remarks = $request->remarks;
+    $feeding->save();
+    return $this->feedingRecordLog($feeding->pen_id);
+  }
+  public function feedingRecordEdit($id)
+  {
+    $feeding = ReplacementFeeding::where('id', $id)->firstOrFail();
+    $pen = Pen::where('id', $feeding->pen_id)->firstOrFail();
+    return view('poultry.chicken.replacement.feeding_record_edit', compact('pen', 'feeding'));
+  }
+
+  public function feedingFetchDataEdit(Request $request)
+  {
+    $this->validate(request(), [
+      'feed_offered' => 'required',
+      'feed_refused' => 'required',
+      'date_fed' => 'required',
+      'amount_offered' => 'required',
+      'amount_refused' => 'required'
+    ]);
+    $feeding = ReplacementFeeding::where('id', $request->record_id)->firstOrFail();
+    $feeding->feed_offered = $request->feed_offered;
+    $feeding->feed_refused = $request->feed_refused;
+    $feeding->date_fed = $request->date_fed;
+    $feeding->amount_offered = $request->amount_offered;
+    $feeding->amount_refused = $request->amount_refused;
+    $feeding->remarks = $request->remarks;
+    $feeding->save();
+    return $this->feedingRecordLog($feeding->pen_id);
+  }
+
+  public function feedingFetchDataDelete(Request $request)
+  {
+    $edit = ReplacementFeeding::where('id', $request->delete)->firstOrFail();
+    $edit->delete();
+    return $this->feedingRecordLog($request->delete_pen);
   }
 }

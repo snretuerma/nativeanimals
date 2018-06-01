@@ -133,7 +133,7 @@
                 <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="row">
-                      <div class="input-field col s12 m12 l12">
+                      <div class="  col s12 m12 l12">
                         <input id="date_first_lay" type="text" class="datepicker" name="date_first_lay">
                         <label for="date_first_lay">Date at First Lay</label>
                       </div>

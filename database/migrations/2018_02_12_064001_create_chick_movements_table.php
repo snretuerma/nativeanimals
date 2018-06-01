@@ -19,6 +19,7 @@ class CreateChickMovementsTable extends Migration
             $table->integer('pen_id')->unsigned();
             $table->date('date_moved');
             $table->string('remarks')->nullable();
+            $table->softDeletes();
         });
     }
 

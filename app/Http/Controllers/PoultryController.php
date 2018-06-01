@@ -235,7 +235,7 @@ class PoultryController extends Controller
       $farm = $this->user->getFarm();
       $breed = $farm->getBreed();
       $animaltype = $farm->getFarmType();
-      $request->individual_id = str_pad($request->individual_id, 4, "0", STR_PAD_LEFT);
+      $request->individual_id = str_pad($request->individual_id, 5, "0", STR_PAD_LEFT);
       $request->generation = $family->getGeneration()->number;
       $request->line = $family->getLine()->number;
       $request->family = $family->number;

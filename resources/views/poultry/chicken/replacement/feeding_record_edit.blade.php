@@ -14,15 +14,19 @@
       <h5>Replacement : Feeding Performance</h5>
       <div class="divider"></div>
       <div class="row">
-         <div class="col s12 m12 l12">
+         <div class="col s12 m6 l6">
             Pen Number: <strong>{{$pen->number}}</strong>
+         </div>
+         <div class="col s12 m6 l6">
+            <a class="waves-effect waves-light btn red modal-trigger" href="#delete_confirm"><i class="material-icons left">close</i>Delete</a>
          </div>
       </div>
 
       <div class="row">
           <div class="col s12 m12 l12">
-            {!! Form::open([ 'route' => 'farm.poultry.replacement.feeding_fetch', 'method' => 'post']) !!}
+            {!! Form::open([ 'route' => 'farm.poultry.replacement.feeding_edit_submit', 'method' => 'put']) !!}
             <input type="hidden" name="pen_id" value="{{$pen->id}}">
+            <input type="hidden" name="record_id" value="{{$feeding->id}}">
              <div class="row">
                <div class="col s12 m12 l12">
                    <div class="col s12 m6 l6">
@@ -84,8 +88,43 @@
       </div>
     </div>
   </div>
+  <div id="delete_confirm" class="modal modal-close">
+    <div class="modal-content">
+     <h5 id="confirmation_title">Delete</h5>
+     <div class="row">
+        <div class="col s12 m12 l12">
+         Click confirm to <strong>Delete</strong> this record.
+         This action is permanent and cannot be undone.
+        </div>
+     </div>
+
+     <div class="row">
+        <div class="col s6 m6 l6 center">
+         {!! Form::open(['route'=> 'farm.poultry.replacement.feeding_edit_delete','method' => 'delete']) !!}
+         <input type="hidden" name="delete" value="{{$feeding->id}}">
+         <input type="hidden" name="delete_pen" value="{{$pen->id}}">
+         <button class="btn waves-effect waves-light"><i class="material-icons left">check_circle</i>Confirm</button>
+         {!!Form::close()!!}
+        </div>
+        <div class="col s6 m6 l6 center">
+         <a class="btn waves-effect waves-light"><i class="material-icons left">cancel</i>Cancel</a>
+        </div>
+     </div>
+    </div>
+  </div>
+
 @endsection
 
 @section('scripts')
-   <script type="text/javascript" src="/js/poultry/replacement_feeding_form.js"></script>
+   <script>
+   $(document).ready(function()
+   {
+     $("#date_fed").val({!! json_encode($feeding->date_fed) !!});
+     $("#feed_offered").val({!! json_encode($feeding->feed_offered) !!});
+     $("#feed_refused").val({!! json_encode($feeding->feed_refused) !!});
+     $("#amount_offered").val({!! json_encode($feeding->amount_offered) !!});
+     $("#amount_refused").val({!! json_encode($feeding->amount_refused) !!});
+     $("#remarks").val({!! json_encode($feeding->remarks) !!});
+   });
+   </script>
 @endsection

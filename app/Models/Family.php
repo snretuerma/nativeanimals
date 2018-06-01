@@ -100,4 +100,17 @@ class Family extends Model
     return $pen;
   }
 
+  public function getDateOfFirstEgg()
+  {
+
+    $date = FamilyProperty::where('property_id', 34 )->where('family_id', $this->id)->firstOrFail();
+    return $date;
+  }
+
+  public function getDateOfFirstLay()
+  {
+    $date = FamilyProperty::where('property_id', 28)->where('family_id', $this->id)->firstOrFail();
+    return $date;
+  }
+
 }

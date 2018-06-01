@@ -227,6 +227,10 @@ class PoultryBreederController extends Controller
           $request->session()->flash('add-male-success', 'Males added to family');
           return Redirect::back()->with('message','Males added to family');
         }
+        else{
+          $request->session()->flash('add-male-empty', 'Pen full');
+          return Redirect::back()->with('message','No animal selected');
+        }
       }
     }
   }
@@ -494,7 +498,263 @@ class PoultryBreederController extends Controller
     return $this->dailyRecords($request->del_family);
   }
 
-      /***************Egg Quality**************/
-      
+  /***************Egg Quality**************/
+  public function familylistEggQuality()
+  {
+    $families = Family::where('is_active', true)->paginate(15);
+    return view('poultry.chicken.breeder.eggquality_familylist', compact('families'));
+  }
+
+  public function eggQualityRecords($id)
+  {
+    $family = Family::where('id', $id)->firstOrFail();
+    $eggqualities = EggQuality::where('family', $id)->paginate(10);
+    return view('poultry.chicken.breeder.egg_quality_log', compact('family', 'eggqualities'));
+  }
+
+  public function eggQualityForm($id)
+  {
+    $family = Family::where('id', $id)->firstOrFail();
+    return view('poultry.chicken.breeder.egg_quality_form', compact('family'));
+  }
+
+  public function eggQualityFormSubmit(Request $request)
+  {
+    $this->validate(request(), [
+      'egg_quality_at' => 'required',
+      'generation' => 'required',
+      'line' => 'required',
+      'family' => 'required',
+      'egg_weight' => 'required',
+      'egg_color' => 'required',
+      'egg_shape' => 'required',
+      'egg_length' => 'required',
+      'egg_width' => 'required',
+      'albumen_height' => 'required',
+      'albumen_weight' => 'required',
+      'yolk_weight' => 'required',
+      'yolk_color' => 'required',
+      'shell_weight' => 'required',
+      'thickness_top' => 'required',
+      'thickness_mid' => 'required',
+      'thickness_bot' => 'required',
+      'date_collected' => 'required'
+    ]);
+    $now = new Carbon;
+    $data = new EggQuality;
+    $eggqualities = EggQuality::where('family', $request->family)->get()->last();
+    $data->egg_quality_at = $request->egg_quality_at;
+    if(!empty($eggqualities)){
+      $data->sample_no = $eggqualities->id+1;
+    }else{
+      $data->sample_no = 1;
+    }
+    $data->generation = $request->generation;
+    $data->line = $request->line;
+    $data->family = $request->family;
+    $data->egg_weight = $request->egg_weight;
+    $data->egg_color = $request->egg_color;
+    $data->egg_shape = $request->egg_shape;
+    $data->egg_length = $request->egg_length;
+    $data->egg_width = $request->egg_width;
+    $data->albumen_height = $request->albumen_height;
+    $data->albumen_weight = $request->albumen_weight;
+    $data->yolk_weight = $request->yolk_weight;
+    $data->yolk_color = $request->yolk_color;
+    $data->shell_weight = $request->shell_weight;
+    $data->thickness_top = $request->thickness_top;
+    $data->thickness_mid = $request->thickness_mid;
+    $data->thickness_bot = $request->thickness_bot;
+    $data->date_collected = $this->carbonParseDate($request->date_collected);
+    $data->save();
+
+    return $this->eggQualityRecords($request->family);
+  }
+
+  public function eggQualityFormEdit($id)
+  {
+    $eggquality = EggQuality::where('id', $id)->firstOrFail();
+    $family = Family::where('id', $eggquality->family)->firstOrFail();
+    return view('poultry.chicken.breeder.egg_quality_form_edit', compact('eggquality', 'family'));
+  }
+
+  public function eggQualityFormEditSubmit(Request $request)
+  {
+    $this->validate(request(), [
+      'egg_quality_at' => 'required',
+      'family' => 'required',
+      'egg_weight' => 'required',
+      'egg_color' => 'required',
+      'egg_shape' => 'required',
+      'egg_length' => 'required',
+      'egg_width' => 'required',
+      'albumen_height' => 'required',
+      'albumen_weight' => 'required',
+      'yolk_weight' => 'required',
+      'yolk_color' => 'required',
+      'shell_weight' => 'required',
+      'thickness_top' => 'required',
+      'thickness_mid' => 'required',
+      'thickness_bot' => 'required',
+      'date_collected' => 'required'
+    ]);
+
+    $data = EggQuality::where('id', $request->record)->firstOrFail();
+    $data->egg_quality_at = $request->egg_quality_at;
+    $data->egg_weight = $request->egg_weight;
+    $data->egg_color = $request->egg_color;
+    $data->egg_shape = $request->egg_shape;
+    $data->egg_length = $request->egg_length;
+    $data->egg_width = $request->egg_width;
+    $data->albumen_height = $request->albumen_height;
+    $data->albumen_weight = $request->albumen_weight;
+    $data->yolk_weight = $request->yolk_weight;
+    $data->yolk_color = $request->yolk_color;
+    $data->shell_weight = $request->shell_weight;
+    $data->thickness_top = $request->thickness_top;
+    $data->thickness_mid = $request->thickness_mid;
+    $data->thickness_bot = $request->thickness_bot;
+    $data->date_collected = $this->carbonParseDate($request->date_collected);
+    $data->save();
+
+    return $this->eggQualityRecords($request->family);
+  }
+
+  public function eggQualityFormDelete(Request $request)
+  {
+    $edit = EggQuality::where('id', $request->delete)->firstOrFail();
+    $edit->delete();
+    return $this->eggQualityRecords($request->del_family);
+  }
+
+  /***************Hatchery Parameters**************/
+  public function hatcheryFamilyList()
+  {
+    $families = Family::where('is_active', true)->paginate(15);
+    return view('poultry.chicken.breeder.hatchery_familylist', compact('families'));
+  }
+
+  public function hatcheryFamilyLogs($id)
+  {
+    $family = Family::where('id', $id)->firstOrFail();
+    $chicks = Chick::where('family_id', $id)->paginate(15);
+    return view('poultry.chicken.breeder.hatchery_family_log', compact('family', 'chicks'));
+  }
+
+  public function hatcheryPartialForm1($id)
+  {
+    $family = Family::where('id', $id)->firstOrFail();
+    return view('poultry.chicken.breeder.hatchery_form1' ,compact('family'));
+  }
+
+  public function hatcheryPartialForm1Submit(Request $request)
+  {
+    $this->validate(request(), [
+      'date_eggs_set' => 'required',
+      'no_eggs_set' => 'required',
+    ]);
+    $family = Family::where('id', $request->family)->firstOrFail();
+    $date_first_egg = Carbon::parse($family->getDateOfFirstEgg()->value);
+    $chick = new Chick;
+    $chick->family_id = $request->family;
+    $chick->date_eggs_set = $this->carbonParseDate($request->date_eggs_set);
+    $chick->number_eggs_set = $request->no_eggs_set;
+    $chick->week_of_lay = $date_first_egg->diffInWeeks(Carbon::parse($request->date_eggs_set));
+    $chick->hatchery_record = "01";
+    $chick->save();
+
+    return $this->hatcheryFamilyLogs($request->family);
+  }
+
+  public function hatcheryPartialForm1Edit()
+  {
+
+  }
+
+  public function hatcheryPartialForm2($id)
+  {
+    $chick = Chick::where('id', $id)->firstOrFail();
+    $family = Family::where('id', $chick->family_id)->firstOrFail();
+    return view('poultry.chicken.breeder.hatchery_form2' ,compact('family', 'chick'));
+  }
+
+  public function hatcheryPartialForm2Submit(Request $request)
+  {
+    $this->validate(request(), [
+      'fertile_eggs' => 'required'
+    ]);
+
+    $chick = Chick::where('id', $request->chick)->firstOrFail();
+    $family = Family::where('id', $request->family)->firstOrFail();
+    $chick->fertile_eggs = $request->fertile_eggs;
+    $chick->hatchery_record = "10";
+    $chick->save();
+    return $this->hatcheryFamilyLogs($request->family);
+  }
+
+  public function hatcheryPartialForm2Edit()
+  {
+
+  }
+
+
+  public function hatcheryPartialForm3($id)
+  {
+    $chick = Chick::where('id', $id)->firstOrFail();
+    $family = Family::where('id', $chick->family_id)->firstOrFail();
+    $pens = Pen::where('pen_type', 'brooder')->where('current_capacity', '>=' ,$chick->fertile_eggs)->get();
+    return view('poultry.chicken.breeder.hatchery_form3' ,compact('family', 'chick', 'pens'));
+  }
+
+  public function hatcheryPartialForm3Submit(Request $request)
+  {
+    $this->validate(request(), [
+      'hatched_eggs' => 'required',
+      'date_hatched' => 'required',
+      'moved_to_pen' => 'required',
+      'remarks' => 'required',
+    ]);
+
+    $chick = Chick::where('id', $request->chick)->first();
+    $chick->date_hatched = $this->carbonParseDate($request->date_hatched);
+    $chick->hatched_eggs = $request->hatched_eggs;
+    $chick->current_pen_id = $request->moved_to_pen;
+    $chick->remarks = $request->remarks;
+    $chick->hatchery_record = '11';
+    $chick->save();
+
+    $movement = new ChickMovement;
+    $movement->chick_id = $chick->id;
+    $movement->pen_id = $chick->current_pen_id;
+    $movement->date_moved = $this->carbonParseDate($request->date_hatched);
+    $movement->remarks = null;
+    $movement->save();
+
+    $pen = Pen::where('id', $chick->current_pen_id)->firstOrFail();
+    $pen->current_capacity = $pen->current_capacity - $chick->hatched_eggs;
+    $pen->save();
+    return $this->hatcheryFamilyLogs($request->family);
+  }
+
+  public function hatcheryPartialForm3Edit()
+  {
+
+  }
+
+  public function hatcheryFamilyLogsDelete(Request $request)
+  {
+    $delete = Chick::where('id', $request->delete)->firstOrFail();
+    if($delete->current_pen_id != NULL){
+      $pen = Pen::where('id', $delete->current_pen_id)->firstOrFail();
+      $pen->current_capacity = $pen->current_capacity + $chick->hatched_eggs;
+      $pen->save();
+      $movement = ChickMovement::where('chick_id', $delete->id)->where('date_moved', $delete->date_hatched)->where('pen_id', $delete->current_pen_id)->firstOrFail();
+      $movement->delete;
+      $movement->save();
+    }
+    $delete->delete();
+    return $this->hatcheryFamilyLogs($request->family);
+  }
+
 
 }

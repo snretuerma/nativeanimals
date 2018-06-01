@@ -34,6 +34,7 @@ class CreateEggQualitiesTable extends Migration
             $table->double('thickness_mid');
             $table->double('thickness_bot');
             $table->date('date_collected');
+            $table->softDeletes();
         });
     }
 

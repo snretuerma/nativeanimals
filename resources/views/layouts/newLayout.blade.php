@@ -33,16 +33,24 @@
       <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
           <li>
-            <a class="collapsible-header">Breeder<i class="material-icons">add_circle</i></a>
+             <a href="{{route('farm.poultry.create_pens_page')}}" class="collapsible-header">Create Pens<i class="material-icons">add_circle</i></a>
+          </li>
+        </ul>
+      </li>
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+             <a class="collapsible-header">Breeder<i class="material-icons">add_circle</i></a>
             <div class="collapsible-body">
               <ul class="yellow lighten-3">
                 <li><a href="{{route('farm.poultry.fetch_generation')}}">Generation</a></li>
                 <li><a href="{{route('farm.poultry.breeder.familymenu')}}">Family Records</a></li>
                 {{-- <li><a href="{{route('farm.poultry.breeder.daily')}}">Daily Records (OLD)</a></li> --}}
                 <li><a href="{{route('farm.poultry.breeder.family_daily_records')}}">Daily Records</a></li>
-                <li><a href="{{route('farm.poultry.complete_hatchery_list')}}">Hatchery Records</a></li>
-                <li><a href="{{route('farm.poultry.page_egg_quality')}}">Egg Quality Records (OLD)</a></li>
-                <li><a href="{{route('farm.poultry.page_egg_quality')}}">Egg Quality Records (NEW)</a></li>
+                {{-- <li><a href="{{route('farm.poultry.complete_hatchery_list')}}">Hatchery Records (OLD)</a></li> --}}
+                <li><a href="{{route('farm.poultry.hatchery_familylist')}}">Hatchery Records</a></li>
+                {{-- <li><a href="{{route('farm.poultry.page_egg_quality')}}">Egg Quality Records (OLD)</a></li> --}}
+                <li><a href="{{route('farm.poultry.page_egg_quality_familylist')}}">Egg Quality Records</a></li>
                 <li><a href="{{route('farm.poultry.page_view_breeders')}}">View Breeders</a></li>
                 {{-- <li><a href="{{route('farm.poultry.page_add_to_breeder')}}">Add to Family</a></li>
                 <li><a href="{{route('farm.poultry.page_family_record')}}">Family Record</a></li>
@@ -63,8 +71,8 @@
               <ul class="yellow lighten-3">
                 <li><a href="{{route('farm.poultry.page_replacement_individual_record')}}">Individual Record</a></li>
                 <li><a href="{{route('farm.poultry.page_phenomorphosearchid')}}">Phenotypic and Morphometric</a></li>
-                <li><a href="{{route('farm.poultry.replacement.feeding_list')}}">Feeding Record</a></li>
-
+                {{-- <li><a href="{{route('farm.poultry.replacement.feeding_list')}}">Feeding Record (OLD)</a></li> --}}
+                <li><a href="{{route('farm.poultry.replacement.feeding_record_list')}}">Feeding Record</a></li>
                 {{-- <li><a href="{{route('farm.poultry.page_phenomorphosearchid')}}">Morphometric Characteristics</a></li> --}}
               </ul>
             </div>
@@ -75,7 +83,7 @@
       <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
           <li>
-            <a class="collapsible-header">Brooders and Growers<i class="fas fa-cart-plus"></i></a>
+            <a class="collapsible-header">Brooders<i class="fas fa-cart-plus"></i></a>
             <div class="collapsible-body">
               <ul class="yellow lighten-3">
                 <li><a href="{{route('farm.poultry.page_replacement_growth_performance')}}">Growth Performance</a></li>
@@ -89,17 +97,24 @@
       <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
           <li>
+            <a class="collapsible-header" href="{{route('farm.poultry.removal_menu')}}">Mortality, Culling and Sales<i class="material-icons">trending_up</i></a>
+          </li>
+        </ul>
+      </li>
+      {{-- <li><a href="{{route('farm.poultry.create_pens_page')}}">Create Pens</a></li> --}}
+      {{-- <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
             <a class="collapsible-header">Others<i class="material-icons">trending_up</i></a>
             <div class="collapsible-body">
               <ul class="yellow lighten-3">
-                {{-- <li><a href="{{route('farm.poultry.page_feeding_records')}}">Feeding Records</a></li> --}}
                 <li><a href="{{route('farm.poultry.removal_menu')}}">Mortality, Culling and Sales</a></li>
-                <li><a href="{{route('farm.poultry.create_pens_page')}}">Create Pens</a></li>
+
               </ul>
             </div>
           </li>
         </ul>
-      </li>
+      </li> --}}
 {{--
       <li class="no-padding">
         <ul class="collapsible collapsible-accordion">

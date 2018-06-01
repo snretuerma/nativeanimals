@@ -24,7 +24,6 @@ class CreatePenFeedingsTable extends Migration
             $table->date('date_fed');
             $table->double('amount_offered');
             $table->double('amount_refused');
-            $table->date('date_deleted')->nullable();
             $table->string('remarks')->nullable();
             $table->softDeletes();
         });

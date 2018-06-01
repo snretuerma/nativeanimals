@@ -5,17 +5,21 @@ use App\Models\Generation;
 use App\Models\Line;
 use App\Models\Family;
 use App\Models\Pen;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Chick extends Model
 {
+  use SoftDeletes;
+
   protected $table = 'chicks';
   public $timestamps = false;
+  protected $dates = ['deleted_at'];
   protected $fillable = [
       'date_eggs_set', 'number_eggs_set', 'week_of_lay',
       'fertile_eggs', 'date_hatched', 'hatched_eggs',
-      'growth','feeding', 'remarks',
+      'remarks', 'hatchery_record'
     ];
 
   public function family()
@@ -56,7 +60,7 @@ class Chick extends Model
 
   public function getPen()
   {
-    $pen = Pen::where('id', $this->current_pen_id)->first();
+    $pen = Pen::where('id', $this->current_pen_id)->firstOrFail();
     return $pen->number;
   }
 

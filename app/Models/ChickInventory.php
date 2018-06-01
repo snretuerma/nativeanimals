@@ -10,7 +10,7 @@ class ChickInventory extends Model
   public $timestamps = false;
   protected $fillable = [
       'male_qty', 'female_qty', 'total',
-      'activity', 'date', 'remarks'
+      'activity', 'date', 'remarks', 'days'
     ];
 
   public function chick()

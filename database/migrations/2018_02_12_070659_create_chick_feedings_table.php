@@ -17,14 +17,11 @@ class CreateChickFeedingsTable extends Migration
             $table->increments('id');
             $table->integer('chick_id')->unsigned();
             $table->string('classification');
-            $table->string('month');
             $table->double('feed_offered');
             $table->double('feed_refused');
             $table->string('feed_type');
             $table->double('amount_fed');
             $table->double('amount_refused');
-            $table->integer('mortality')->unsigned();
-            $table->integer('culled')->unsigned();
             $table->date('date_fed');
             $table->string('remarks');
         });
