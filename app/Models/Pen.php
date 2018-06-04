@@ -40,5 +40,5 @@ class Pen extends Model
     return $this->belongsTo('App\Models\Family');
   }
 
-   
+
 }

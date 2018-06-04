@@ -185,9 +185,19 @@ class PoultryController extends Controller
       return Redirect::back()->with('message','Generation edit complete');
     }
 
-    public function cullGeneration()
+    public function cullGeneration($id)
     {
-
+      $family = Family::where('id', $id)->firstOrFail();
+      $family->is_active = false;
+      $family->save();
+      $pen = Pen::where('id', $family->pen_id)->firstOrFail;
+      $pen->current_capacity = 10;
+      $animals = Animal::where('family_id', $family->id)->get();
+      foreach ($animals as $animal) {
+        $animal->status = 'culled';
+        $animal->save();
+      }
+      return Redirect::back()->with('message','Generation culled');
     }
 
     public function createPensPage()
@@ -203,14 +213,20 @@ class PoultryController extends Controller
         'capacity' => 'required',
         'pen_type' => 'required'
       ]);
-      $pen = new Pen;
-      $pen->pen_type = $request->pen_type;
-      $pen->capacity = $request->capacity;
-      $pen->current_capacity = $request->capacity;
-      $pen->number = ucfirst(substr($request->pen_type, 0, 1)).str_pad($request->pen_no, 2, "0", STR_PAD_LEFT);
-      $pen->save();
-      $request->session()->flash('pen-create', 'Pen created');
-      return Redirect::back()->with('message','Pen created');
+      $check = Pen::where('number', ucfirst(substr($request->pen_type, 0, 1)).str_pad($request->pen_no, 2, "0", STR_PAD_LEFT))->first();
+      if($check){
+        $request->session()->flash('pen-fail', 'Pen creation fail');
+        return Redirect::back()->with('message','Pen creation fail');
+      }else{
+        $pen = new Pen;
+        $pen->pen_type = $request->pen_type;
+        $pen->capacity = $request->capacity;
+        $pen->current_capacity = $request->capacity;
+        $pen->number = ucfirst(substr($request->pen_type, 0, 1)).str_pad($request->pen_no, 2, "0", STR_PAD_LEFT);
+        $pen->save();
+        $request->session()->flash('pen-create', 'Pen created');
+        return Redirect::back()->with('message','Pen created');
+      }
     }
 
     public function getAllPens()

@@ -21,7 +21,7 @@
          </div>
          <div class="row">
             <div class="col s12 m12 l12">
-               <table class="centered responsive-table bordered">
+               <table class="centered responsive-table bordered highlight">
                   <thead>
                     <tr>
                       <th>Pen Number</th>
@@ -58,7 +58,11 @@
                 </table>
             </div>
          </div>
-         {{ $pens->links() }}
+         <div class="row center">
+            <div class="col s12 m12 l12">
+               {{ $pens->links() }}
+            </div>
+         </div>
       </div>
     </div>
     <div class="fixed-action-btn">
@@ -118,6 +122,10 @@
   @if(Session::has('pen-create'))
      <script>
         Materialize.toast('Pen Created', 4000);
+     </script>
+  @elseif (Session::has('pen-fail'))
+     <script>
+       Materialize.toast('Pen Creation Fail', 4000);
      </script>
   @endif
 @endsection

@@ -15,7 +15,7 @@ class CreateGenerationsTable extends Migration
     {
         Schema::create('generations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('number');
+            $table->string('number')->distinct();
             $table->boolean('is_active')->default(false);
         });
     }

@@ -130,7 +130,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                   <div class="col s12 m12 l12">
                     <div class="row">
                       <div class="  col s12 m12 l12">
@@ -139,7 +139,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> --}}
                 <div class="row">
                   <div class="col s12 m12 l12 center">
                     <button class="btn waves-effect waves-light yellow darken-3" type="submit">Submit
