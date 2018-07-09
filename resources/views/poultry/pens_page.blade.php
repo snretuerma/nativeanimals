@@ -1,23 +1,18 @@
 @extends('layouts.newLayout')
 
 @section('title')
-  Create Pens
+    Pens
 @endsection
 
 @section('initScriptsAndStyles')
-  {{-- <script>
-    var data ={!! json_encode($pens) !!};
-  </script> --}}
+
 @endsection
 
 @section('content')
-  {{-- <template :pens={{$pens}}></template> --}}
   <div class="row">
-      {{-- <add-pens></add-pens> --}}
-
       <div class="col s12 m12 l12">
          <div class="row">
-            <h4>Pens</h4>
+            <h5>Pens</h5>
          </div>
          <div class="row">
             <div class="col s12 m12 l12">
@@ -25,7 +20,7 @@
                   <thead>
                     <tr>
                       <th>Pen Number</th>
-                      <th>Type</th>
+                      <th>Pen Type</th>
                       <th>Capacity</th>
                       <th>Content</th>
                     </tr>
@@ -44,16 +39,11 @@
                     @empty
                        <tr>
                          <td></td>
-                         <td>No Pens Available</td>
+                         <td>No Pens</td>
                          <td></td>
                          <td></td>
                        </tr>
                     @endforelse
-                    {{-- <tr v-for="(pen, index) in pens">
-                      <td>@{{ pen.number }}</td>
-                      <td>@{{ pen.capacity }}</td>
-                      <td>sample</td>
-                    </tr> --}}
                   </tbody>
                 </table>
             </div>
@@ -108,7 +98,6 @@
                      <button class="btn waves-effect waves-light yellow darken-3"><i class="material-icons left">add</i>Add</button>
                   </div>
                </div>
-
             {!!Form::close()!!}
          </div>
        </div>
@@ -125,7 +114,7 @@
      </script>
   @elseif (Session::has('pen-fail'))
      <script>
-       Materialize.toast('Pen Creation Fail', 4000);
+       Materialize.toast('Pen Creation Failed', 4000);
      </script>
   @endif
 @endsection

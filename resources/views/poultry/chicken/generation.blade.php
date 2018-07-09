@@ -11,7 +11,7 @@
 @section('content')
   <div class="row">
     <div class="col s12 m12 1l2">
-      <h4>Breeder Generations</h4>
+      <h5>Breeder Generations</h5>
       <div class="row">
         <div class="row">
           <div class="col s12 m12 l12">
@@ -21,8 +21,8 @@
                     <thead>
                       <tr>
                         <th>Generation</th>
-                        <th>Action</th>
-                        <th>Status</th>
+                        <th>Edit</th>
+                        <th>Cull</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -83,7 +83,7 @@
 
       <div class="row">
         <div class="col s6 m6 l6 center">
-          {!! Form::open(['method' => 'post']) !!}
+          {!! Form::open(['route' => 'farm.poultry.breeder.cull_generation', 'method' => 'post']) !!}
           <input id="gen_confirmation" type="hidden" name="generation_id" value="">
           <button class="btn waves-effect waves-light"><i class="material-icons left">check_circle</i>Confirm</button>
           {!!Form::close()!!}
@@ -94,8 +94,6 @@
       </div>
     </div>
   </div>
-
-  {{-- <confirmation></confirmation> --}}
 
   <div id="edit_generation" class="modal">
     <div class="modal-content">

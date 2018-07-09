@@ -153,28 +153,40 @@ class PoultryBreederController extends Controller
       'line' => 'required',
       'pen_no' => 'required'
     ]);
-    $now = new Carbon;
-    $family_id = str_pad($request->family_id, 4, "0", STR_PAD_LEFT);
-    $family = new Family;
-    $family->number = $family_id;
-    $family->line_id = $request->line;
-    $family->is_active = true;
-    $family->pen_id = $request->pen_no;
-    $family->save();
-
-    // $animalid, $propid, $value, $date
-    $this->addFamilyProperty($family->id, 29, $family->number, $now);
-    $this->addFamilyProperty($family->id, 30, $this->carbonParseDate($request->date_transferred), $now);
-    $this->addFamilyProperty($family->id, 31, $request->generation, $now);
-    $this->addFamilyProperty($family->id, 32, $this->carbonParseDate($request->date_hatched), $now);
-    $this->addFamilyProperty($family->id, 33, $request->line, $now);
-    if($request->age_first_egg === null){
-      $this->addFamilyProperty($family->id, 34, null, $now);
-    }else{
-      $this->addFamilyProperty($family->id, 34, $this->carbonParseDate($request->date_first_egg), $now);
+    $flag = false;
+    $checks = Family::where('is_active', true)->get();
+    foreach ($checks as $check)
+    {
+        if(str_pad($request->family_id, 4, "0", STR_PAD_LEFT)==$check->number){
+            $flag = true;
+        }
     }
-    $request->session()->flash('family-create', 'Family added');
-    return Redirect::back()->with('message','Animal successfully added');
+    if(!$flag){
+        $now = new Carbon;
+        $family_id = str_pad($request->family_id, 4, "0", STR_PAD_LEFT);
+        $family = new Family;
+        $family->number = $family_id;
+        $family->line_id = $request->line;
+        $family->is_active = true;
+        $family->pen_id = $request->pen_no;
+        $family->save();
+        // $animalid, $propid, $value, $date
+        $this->addFamilyProperty($family->id, 29, $family->number, $now);
+        $this->addFamilyProperty($family->id, 30, $this->carbonParseDate($request->date_transferred), $now);
+        $this->addFamilyProperty($family->id, 31, $request->generation, $now);
+        $this->addFamilyProperty($family->id, 32, $this->carbonParseDate($request->date_hatched), $now);
+        $this->addFamilyProperty($family->id, 33, $request->line, $now);
+        if($request->age_first_egg === null){
+            $this->addFamilyProperty($family->id, 34, null, $now);
+        }else{
+            $this->addFamilyProperty($family->id, 34, $this->carbonParseDate($request->date_first_egg), $now);
+        }
+        $request->session()->flash('family-create', 'Family added');
+        return Redirect::back()->with('message','Animal successfully added');
+    }else{
+        $request->session()->flash('family-fail', 'Family not added');
+        return Redirect::back()->with('message','Family not added');
+    }
   }
 
   public function showAvailableMales($family_id)
@@ -260,7 +272,7 @@ class PoultryBreederController extends Controller
   public function getFemalePerFamily(Request $request)
   {
     $add_to_family = $request->add_to_family;
-    $animals = Animal::where('family_id', $request->family)->where('status', 'replacement')->get();
+    $animals = Animal::where('family_id', $request->family)->where('status', 'replacement')->where('phenotypic', true)->where('morphometric', true)->get();
     $females = [];
     $family = Family::where('id', $request->family)->first();
     foreach ($animals as $animal) {
@@ -296,16 +308,19 @@ class PoultryBreederController extends Controller
           $member->animal_id = $selected->id;
           $member->date_start = $this->carbonParseDate($now);
           $member->save();
-          $request->session()->flash('add-female-success', 'Females added to family');
-          return $this->familyRecordsMenu();
-        }else{
-          $request->session()->flash('add-female-empty', 'No female animal added');
-          return $this->familyRecordsMenu();
+//          $request->session()->flash('add-female-success', 'Females added to family');
+//          return $this->familyRecordsMenu();
         }
+//        else{
+//          $request->session()->flash('add-female-empty', 'No female animal added');
+//          return $this->familyRecordsMenu();
+//        }
       }
     }
-    $request->session()->flash('add-female-empty', 'No female animal selected');
-    return Redirect::back()->with('message','No animal selected');
+      $request->session()->flash('add-female-success', 'Females added to family');
+      return $this->familyRecordsMenu();
+//    $request->session()->flash('add-female-empty', 'No female animal selected');
+//    return Redirect::back()->with('message','No animal selected');
   }
 
   public function addToCreatedFamily($id)
@@ -407,8 +422,6 @@ class PoultryBreederController extends Controller
       'family' => 'required',
       'pen' => 'required',
       'date_collected' => 'required',
-      'type_offered' => 'required',
-      'type_refused' => 'required',
       'amount_offered' => 'required',
       'amount_refused' => 'required',
     ]);
@@ -416,8 +429,6 @@ class PoultryBreederController extends Controller
     $feeding = new PenFeeding;
     $feeding->family_id = $request->family;
     $feeding->pen_id = $request->pen;
-    $feeding->type_offered = $request->type_offered;
-    $feeding->type_refused = $request->type_refused;
     $feeding->date_fed = $request->date_collected;
     $feeding->amount_offered = $request->amount_offered;
     $feeding->amount_refused = $request->amount_refused;
@@ -474,14 +485,10 @@ class PoultryBreederController extends Controller
     $feeding = PenFeeding::where('id', $request->feedingrecid)->firstOrFail();
     $request->validate([
       'date_collected' => 'required',
-      'type_offered' => 'required',
-      'type_refused' => 'required',
       'amount_offered' => 'required',
       'amount_refused' => 'required',
     ]);
 
-    $feeding->type_offered = $request->type_offered;
-    $feeding->type_refused = $request->type_refused;
     $feeding->date_fed = $request->date_collected;
     $feeding->amount_offered = $request->amount_offered;
     $feeding->amount_refused = $request->amount_refused;
@@ -756,5 +763,566 @@ class PoultryBreederController extends Controller
     return $this->hatcheryFamilyLogs($request->family);
   }
 
+    /**********Breeder Summary**********/
+    public function viewsummaryList()
+    {
+        $checks = Family::where('is_active', true)->get();
+        $families = collect();
+        foreach($checks as $check)
+        {
+            $member = FamilyMember::where('family_id', $check->id)->first();
+            if($member != null){
+                $families->push($check);
+            }
+        }
+        return view('poultry.chicken.breederlist', compact('families'));
+    }
+
+    // @TODO Delete after Records Done
+    public function viewSummary($id)
+    {
+        $family = Family::where('id', $id)->firstOrFail();
+        $members = FamilyMember::where('family_id', $id)->get();
+        $hatcheryrec = Chick::where('family_id', $id)->get(['fertile_eggs', 'number_eggs_set', 'hatched_eggs']);
+        //Set all phenotypic characteristics
+        $pheno = [];
+        $plumcolor = array("White" => 0, "Black" => 0, "Red" => 0, "Orange" => 0, "Brown" => 0, "Yellow" => 0);
+        $plumpattern = array("Plain" => 0, "Barred" => 0, "Wild Type" => 0, "Laced" => 0, "Mottled" => 0);
+        $hacklecol = array("Yellow" => 0, "Orange" => 0, "Brown" => 0, "Red" => 0, "Black" => 0);
+        $hacklepat = array("Plain" => 0, "Laced" => 0, "Barred" => 0);
+        $bodycarriage = array("Upright" => 0, "Slight Upright" => 0);
+        $combtype = array("Single" => 0, "Pea" => 0, "Rose" => 0);
+        $combcolor = array("Red" => 0, "Pink" => 0, "Black" => 0);
+        $earlobecolor = array("White" => 0, "Red" => 0, "Red-White" => 0);
+        $iriscolor = array("Red" => 0, "Orange" => 0, "Brown" => 0, "Yellow" => 0);
+        $beakcolor = array("White" => 0, "Black" => 0, "Brown" => 0, "Yellow" => 0);
+        $shankcolor = array("White" => 0, "Black" => 0, "Yellow" => 0, "Green " => 0, "Grey" => 0);
+        $skincolor = array("White" => 0, "Yellow" => 0  );
+        $morpho = [];
+        $height = [];
+        $weight = [];
+        $bodylen = [];
+        $chestcirc = [];
+        $wingspan = [];
+        $shanklen = [];
+        $percentfertility = [];
+        $percenthatchability = [];
+        if(!empty($members)){
+            foreach ($members as $member)
+            {
+                $props = AnimalProperty::where('animal_id', $member->animal_id)->get();
+                foreach ($props as $prop)
+                {
+                    if($prop->property_id == 9){
+                        $propval = explode(',', $prop->value);
+                        foreach($propval as $val){
+                            if(array_key_exists($val, $plumcolor)){
+                                $plumcolor[$val]++;
+                            }else{
+                                $plumcolor[$val] = 1;
+                            }
+                        }
+                    }
+                    if($prop->property_id == 10){
+                        $propval = explode(',', $prop->value);
+                        foreach($propval as $val){
+                            if(array_key_exists($val, $plumpattern)){
+                                $plumpattern[$val]++;
+                            }else{
+                                $plumpattern[$val] = 1;
+                            }
+                        }
+                    }
+                    if($prop->property_id == 11){
+                        $propval = explode(',', $prop->value);
+                        foreach($propval as $val){
+                            if(array_key_exists($val, $hacklecol)){
+                                $hacklecol[$val]++;
+                            }else{
+                                $hacklecol[$val] = 1;
+                            }
+                        }
+                    }
+                    if($prop->property_id == 12){
+                        $propval = explode(',', $prop->value);
+                        foreach($propval as $val){
+                            if(array_key_exists($val, $hacklepat)){
+                                $hacklepat[$val]++;
+                            }else{
+                                $hacklepat[$val] = 1;
+                            }
+                        }
+                    }
+                    if($prop->property_id == 13){
+                        $propval = explode(',', $prop->value);
+                        foreach($propval as $val){
+                            if(array_key_exists($val, $bodycarriage)){
+                                $bodycarriage[$val]++;
+                            }else{
+                                $bodycarriage[$val] = 1;
+                            }
+                        }
+                    }
+                    if($prop->property_id == 14){
+                        $propval = explode(',', $prop->value);
+                        foreach($propval as $val){
+                            if(array_key_exists($val, $combtype)){
+                                $combtype[$val]++;
+                            }else{
+                                $combtype[$val] = 1;
+                            }
+                        }
+                    }
+                    if($prop->property_id == 15){
+                        $propval = explode(',', $prop->value);
+                        foreach($propval as $val){
+                            if(array_key_exists($val, $combcolor)){
+                                $combcolor[$val]++;
+                            }else{
+                                $combcolor[$val] = 1;
+                            }
+                        }
+                    }
+                    if($prop->property_id == 16){
+                        $propval = explode(',', $prop->value);
+                        foreach($propval as $val){
+                            if(array_key_exists($val, $earlobecolor)){
+                                $earlobecolor[$val]++;
+                            }else{
+                                $earlobecolor[$val] = 1;
+                            }
+                        }
+                    }
+                    if($prop->property_id == 17){
+                        $propval = explode(',', $prop->value);
+                        foreach($propval as $val){
+                            if(array_key_exists($val, $iriscolor)){
+                                $iriscolor[$val]++;
+                            }else{
+                                $iriscolor[$val] = 1;
+                            }
+                        }
+                    }
+                    if($prop->property_id == 18){
+                        $propval = explode(',', $prop->value);
+                        foreach($propval as $val){
+                            if(array_key_exists($val, $beakcolor)){
+                                $beakcolor[$val]++;
+                            }else{
+                                $beakcolor[$val] = 1;
+                            }
+                        }
+                    }
+                    if($prop->property_id == 19){
+                        $propval = explode(',', $prop->value);
+                        foreach($propval as $val){
+                            if(array_key_exists($val, $shankcolor)){
+                                $shankcolor[$val]++;    
+                            }else{
+                                $shankcolor[$val] = 1;
+                            }
+                        }
+                    }
+                    if($prop->property_id == 20){
+                        $propval = explode(',', $prop->value);
+                        foreach($propval as $val){
+                            if(array_key_exists($val, $skincolor)){
+                                $skincolor[$val]++;
+                            }else{
+                                $skincolor[$val] = 1;
+                            }
+                        }
+                    }
+
+                    if($prop->property_id == 22){
+                        array_push($height, $prop->value);
+                    }
+
+                    if($prop->property_id == 23){
+                        array_push($weight, $prop->value);
+                    }
+
+                    if($prop->property_id == 24){
+                        array_push($bodylen, $prop->value);
+                    }
+
+                    if($prop->property_id == 25){
+                        array_push($chestcirc, $prop->value);
+                    }
+
+                    if($prop->property_id == 26){
+                        array_push($wingspan, $prop->value);
+                    }
+
+                    if($prop->property_id    == 27){
+                        array_push($shanklen, $prop->value);
+                    }
+                }
+            }
+            array_push($pheno, $plumcolor, $plumpattern, $hacklecol, $hacklepat, $bodycarriage, $combtype, $combcolor, $earlobecolor, $iriscolor, $beakcolor, $shankcolor, $skincolor);
+            array_push($morpho, $height, $weight, $bodylen, $chestcirc, $wingspan, $shanklen);
+
+            if(!empty($hatcheryrec)){
+                foreach ($hatcheryrec as $rec){
+                    array_push($percentfertility, (($rec->fertile_eggs/$rec->number_eggs_set)*100));
+                    array_push($percenthatchability, (($rec->hatched_eggs/$rec->fertile_eggs)*100));
+                }
+            }
+
+
+
+            return view('/poultry/chicken/breeder/breeder_summary', compact('family','pheno', 'morpho', 'percentfertility', 'percenthatchability'));
+        }
+
+        return Redirect::back()->with('message','No animal in the family');
+    }
+
+    public function recordsFamilyView()
+    {
+        $gens = Generation::orderBy('id', 'desc')->get();
+//        $families = Family::get();
+        $families = $gens->first()->getFamilies();
+        $family = [];
+        $male = [];
+        $female = [];
+        $pheno = [];
+        $morpho = [];
+        $plumcolor = array("White" => 0, "Black" => 0, "Red" => 0, "Orange" => 0, "Brown" => 0, "Yellow" => 0);
+        $plumpattern = array("Plain" => 0, "Barred" => 0, "Wild Type" => 0, "Laced" => 0, "Mottled" => 0);
+        $hacklecol = array("Yellow" => 0, "Orange" => 0, "Brown" => 0, "Red" => 0, "Black" => 0);
+        $hacklepat = array("Plain" => 0, "Laced" => 0, "Barred" => 0);
+        $bodycarriage = array("Upright" => 0, "Slight Upright" => 0);
+        $combtype = array("Single" => 0, "Pea" => 0, "Rose" => 0);
+        $combcolor = array("Red" => 0, "Pink" => 0, "Black" => 0);
+        $earlobecolor = array("White" => 0, "Red" => 0, "Red-White" => 0);
+        $iriscolor = array("Red" => 0, "Orange" => 0, "Brown" => 0, "Yellow" => 0);
+        $beakcolor = array("White" => 0, "Black" => 0, "Brown" => 0, "Yellow" => 0);
+        $shankcolor = array("White" => 0, "Black" => 0, "Yellow" => 0, "Green " => 0, "Grey" => 0);
+        $skincolor = array("White" => 0, "Yellow" => 0  );
+        $height = [];
+        $weight = [];
+        $bodylen = [];
+        $chestcirc = [];
+        $wingspan = [];
+        $shanklen = [];
+        array_push($pheno, $plumcolor, $plumpattern, $hacklecol, $hacklepat, $bodycarriage, $combtype, $combcolor, $earlobecolor, $iriscolor, $beakcolor, $shankcolor, $skincolor);
+        array_push($morpho, $height, $weight, $bodylen, $chestcirc, $wingspan, $shanklen);
+        array_push($male, $pheno, $morpho);
+        array_push($female, $pheno, $morpho);
+        foreach ($families as $fam){
+            $members = $fam->getMembers();
+            if(!empty($members)){
+                foreach ($members as $member){
+                    if($member->getMemberGender() == 'M'){
+                        $props = AnimalProperty::where('animal_id', $member->animal_id)->get();
+                        foreach ($props as $prop)
+                        {
+                            if($prop->property_id == 9){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $male[0][0])){
+                                        $male[0][0][$val]++;
+                                    }else{
+                                        $male[0][0][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 10){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $male[0][1])){
+                                        $male[0][1][$val]++;
+                                    }else{
+                                        $male[0][1][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 11){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $male[0][2])){
+                                        $male[0][2][$val]++;
+                                    }else{
+                                        $male[0][2][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 12){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $male[0][3])){
+                                        $male[0][3][$val]++;
+                                    }else{
+                                        $male[0][3][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 13){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $male[0][4])){
+                                        $male[0][4][$val]++;
+                                    }else{
+                                        $male[0][4][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 14){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $male[0][5])){
+                                        $male[0][5][$val]++;
+                                    }else{
+                                        $male[0][5][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 15){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $male[0][6])){
+                                        $male[0][6][$val]++;
+                                    }else{
+                                        $male[0][6][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 16){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $male[0][7])){
+                                        $male[0][7][$val]++;
+                                    }else{
+                                        $male[0][7][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 17){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $male[0][8])){
+                                        $male[0][8][$val]++;
+                                    }else{
+                                        $male[0][8][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 18){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $male[0][9])){
+                                        $male[0][9][$val]++;
+                                    }else{
+                                        $male[0][9][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 19){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $male[0][10])){
+                                        $male[0][10][$val]++;
+                                    }else{
+                                        $male[0][10][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 20){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $male[0][11])){
+                                        $male[0][11][$val]++;
+                                    }else{
+                                        $male[0][11][$val] = 1;
+                                    }
+                                }
+                            }
+
+                            if($prop->property_id == 22){
+                                array_push($male[1][0], $prop->value);
+                            }
+
+                            if($prop->property_id == 23){
+                                array_push($male[1][1], $prop->value);
+                            }
+
+                            if($prop->property_id == 24){
+                                array_push($male[1][2], $prop->value);
+                            }
+
+                            if($prop->property_id == 25){
+                                array_push($male[1][3], $prop->value);
+                            }
+
+                            if($prop->property_id == 26){
+                                array_push($male[1][4], $prop->value);
+                            }
+
+                            if($prop->property_id    == 27){
+                                array_push($male[1][5], $prop->value);
+                            }
+                        }
+                    }else{
+                        $props = AnimalProperty::where('animal_id', $member->animal_id)->get();
+                        foreach ($props as $prop)
+                        {
+                            if($prop->property_id == 9){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $female[0][0])){
+                                        $female[0][0][$val]++;
+                                    }else{
+                                        $female[0][0][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 10){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $female[0][1])){
+                                        $female[0][1][$val]++;
+                                    }else{
+                                        $female[0][1][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 11){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $female[0][2])){
+                                        $female[0][2][$val]++;
+                                    }else{
+                                        $female[0][2][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 12){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $female[0][3])){
+                                        $female[0][3][$val]++;
+                                    }else{
+                                        $female[0][3][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 13){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $female[0][4])){
+                                        $female[0][4][$val]++;
+                                    }else{
+                                        $female[0][4][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 14){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $female[0][5])){
+                                        $female[0][5][$val]++;
+                                    }else{
+                                        $female[0][5][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 15){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $female[0][6])){
+                                        $female[0][6][$val]++;
+                                    }else{
+                                        $female[0][6][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 16){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $female[0][7])){
+                                        $female[0][7][$val]++;
+                                    }else{
+                                        $female[0][7][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 17){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $female[0][8])){
+                                        $female[0][8][$val]++;
+                                    }else{
+                                        $female[0][8][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 18){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $female[0][9])){
+                                        $female[0][9][$val]++;
+                                    }else{
+                                        $female[0][9][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 19){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $female[0][10])){
+                                        $female[0][10][$val]++;
+                                    }else{
+                                        $female[0][10][$val] = 1;
+                                    }
+                                }
+                            }
+                            if($prop->property_id == 20){
+                                $propval = explode(',', $prop->value);
+                                foreach($propval as $val){
+                                    if(array_key_exists($val, $female[0][11])){
+                                        $female[0][11][$val]++;
+                                    }else{
+                                        $female[0][11][$val] = 1;
+                                    }
+                                }
+                            }
+
+                            if($prop->property_id == 22){
+                                array_push($female[1][0], $prop->value);
+                            }
+
+                            if($prop->property_id == 23){
+                                array_push($female[1][1], $prop->value);
+                            }
+
+                            if($prop->property_id == 24){
+                                array_push($female[1][2], $prop->value);
+                            }
+
+                            if($prop->property_id == 25){
+                                array_push($female[1][3], $prop->value);
+                            }
+
+                            if($prop->property_id == 26){
+                                array_push($female[1][4], $prop->value);
+                            }
+
+                            if($prop->property_id    == 27){
+                                array_push($female[1][5], $prop->value);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        array_push($family, $male, $female);
+        return view('poultry.chicken.records.family_view', compact('gens', 'family'));
+    }
+
+    public function recordsGenerationView()
+    {
+
+    }
 
 }

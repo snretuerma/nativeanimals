@@ -51,7 +51,8 @@
                 <li><a href="{{route('farm.poultry.hatchery_familylist')}}">Hatchery Records</a></li>
                 {{-- <li><a href="{{route('farm.poultry.page_egg_quality')}}">Egg Quality Records (OLD)</a></li> --}}
                 <li><a href="{{route('farm.poultry.page_egg_quality_familylist')}}">Egg Quality Records</a></li>
-                <li><a href="{{route('farm.poultry.page_view_breeders')}}">View Breeders</a></li>
+                <li><a href="{{route('farm.poultry.page_view_breeders')}}">View Breeders (OLD)</a></li>
+                <li><a href="{{route('farm.poultry.summarylist')}}">View Breeders</a></li>
                 {{-- <li><a href="{{route('farm.poultry.page_add_to_breeder')}}">Add to Family</a></li>
                 <li><a href="{{route('farm.poultry.page_family_record')}}">Family Record</a></li>
                 <li><a href="{{route('farm.poultry.page_daily_records')}}">Daily Records</a></li>
@@ -131,7 +132,19 @@
           </li>
         </ul>
       </li> --}}
-
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Reports<i class="fas fa-book"></i></a>
+            <div class="collapsible-body">
+              <ul class="yellow lighten-3">
+                <li><a href="#!s">Generation</a></li>
+                <li><a href="{{ route('farm.poultry.records.family') }}">Family</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
       <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
           <li>

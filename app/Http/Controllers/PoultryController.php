@@ -153,11 +153,14 @@ class PoultryController extends Controller
       $newgen->save();
       if(!empty($lines)){
         foreach ($lines as $line) {
-          $newline = new Line;
-          $newline->number = str_pad($line, 4, "0", STR_PAD_LEFT);
-          $newline->generation_id = $newgen->id;
-          $newline->is_active = true;
-          $newline->save();
+            $check = Line::where('generation_id', $newgen->id)->where('number', $line)->first();
+            if(!$check){
+                $newline = new Line;
+                $newline->number = str_pad($line, 4, "0", STR_PAD_LEFT);
+                $newline->generation_id = $newgen->id;
+                $newline->is_active = true;
+                $newline->save();
+            }
         }
       }
       $request->session()->flash('generation-create', 'Generation added');
@@ -169,35 +172,50 @@ class PoultryController extends Controller
       $this->validate(request(), [
         'line_edit[]' => 'required',
       ]);
-      dd($request);
-      $generation = Generation::where('id', $request->generation_edit)->first();
+      $generation = Generation::where('id', $request->generation_edit)->firstOrFail();
       $lines = array_filter($request->line_edit);
-      $pens =  array_filter($request->pen);
       if(!empty($lines)){
         foreach ($lines as $line) {
-          $newline = new Line;
-          $newline->number = str_pad($line, 4, "0", STR_PAD_LEFT);
-          $newline->generation_id = $generation->id;
-          $newline->is_active = true;
-          $newline->save();
+            $check = Line::where('generation_id', $generation->id)->where('number', $line)->first();
+            if(!$check){
+                $newline = new Line;
+                $newline->number = str_pad($line, 4, "0", STR_PAD_LEFT);
+                $newline->generation_id = $generation->id;
+                $newline->is_active = true;
+                $newline->save();
+            }
         }
       }
       return Redirect::back()->with('message','Generation edit complete');
     }
 
-    public function cullGeneration($id)
+    public function cullGeneration(Request $request)
     {
-      $family = Family::where('id', $id)->firstOrFail();
-      $family->is_active = false;
-      $family->save();
-      $pen = Pen::where('id', $family->pen_id)->firstOrFail;
-      $pen->current_capacity = 10;
-      $animals = Animal::where('family_id', $family->id)->get();
-      foreach ($animals as $animal) {
-        $animal->status = 'culled';
-        $animal->save();
-      }
-      return Redirect::back()->with('message','Generation culled');
+        $now = Carbon::now();
+        $generation = Generation::where('id', $request->generation_id)->first();
+        $generation->is_active = false;
+        $generation->save();
+        $lines = Line::where('generation_id', $generation->id)->get();
+        foreach ($lines as $line){
+            $line->is_active = false;
+            $line->save();
+            $families = Family::where('id', $line->id)->first();
+            foreach ($families as $family){
+                $family->is_active = false;
+                $family->save();
+                $familymember = FamilyMember::where('date_end', null)->where('family_id', $family->id)->get();
+                $pen = Pen::where('id', $family->pen_id)->first();
+                $pen->current_capacity = $pen->capacity;
+                $pen->save();
+                foreach ($familymember as $member){
+                    $member->date_end = $now;
+                    $animal = Animal::where('id', $member->animal_id)->first();
+                    $animal->status = 'culled';
+                    $animal->save();
+                }
+            }
+        }
+        return Redirect::back()->with('message','Generation culled');
     }
 
     public function createPensPage()
@@ -258,76 +276,84 @@ class PoultryController extends Controller
       $request->moved_to_pen = str_pad($request->moved_to_pen, 4, "0", STR_PAD_LEFT);
       $registryid = $farm->code.'-'.$now->year.$request->generation.$request->line.$request->family.$request->gender.$request->individual_id;
 
-      $animal->animaltype_id = $animaltype->id;
-      $animal->farm_id = $farm->id;
-      $animal->breed_id = $breed->id;
-      $animal->status = "replacement";
-      $animal->registryid = $registryid;
-      $animal->pen_id = $request->moved_to_pen;
-      $animal->family_id = $family->id;
-      $animal->save();
+      $check = Animal::where('registryid', $registryid)->first();
+      if($check){
+          $request->session()->flash('individual-record-fail', 'Individual record not saved');
+          return Redirect::back()->with('message','Animal record was not saved');
+      }else{
+          $animal->animaltype_id = $animaltype->id;
+          $animal->farm_id = $farm->id;
+          $animal->breed_id = $breed->id;
+          $animal->status = "replacement";
+          $animal->registryid = $registryid;
+          $animal->pen_id = $request->moved_to_pen;
+          $animal->family_id = $family->id;
+          $animal->save();
 
-      $animalproperty1 = new AnimalProperty;
-      $animalproperty1->animal_id = $animal->id;
-      $animalproperty1->property_id = 1;
-      $animalproperty1->value = $request->date_hatched;
-      $animalproperty1->date_collected = $now;
-      $animalproperty1->save();
+          $animalproperty1 = new AnimalProperty;
+          $animalproperty1->animal_id = $animal->id;
+          $animalproperty1->property_id = 1;
+          $animalproperty1->value = $request->date_hatched;
+          $animalproperty1->date_collected = $now;
+          $animalproperty1->save();
 
-      $animalproperty2 = new AnimalProperty;
-      $animalproperty2->animal_id = $animal->id;
-      $animalproperty2->property_id = 2;
-      $animalproperty2->value = $request->individual_id;
-      $animalproperty2->date_collected = $now;
-      $animalproperty2->save();
+          $animalproperty2 = new AnimalProperty;
+          $animalproperty2->animal_id = $animal->id;
+          $animalproperty2->property_id = 2;
+          $animalproperty2->value = $request->individual_id;
+          $animalproperty2->date_collected = $now;
+          $animalproperty2->save();
 
-      $animalproperty3 = new AnimalProperty;
-      $animalproperty3->animal_id = $animal->id;
-      $animalproperty3->property_id = 3;
-      $animalproperty3->value = $request->generation;
-      $animalproperty3->date_collected = $now;
-      $animalproperty3->save();
+          $animalproperty3 = new AnimalProperty;
+          $animalproperty3->animal_id = $animal->id;
+          $animalproperty3->property_id = 3;
+          $animalproperty3->value = $request->generation;
+          $animalproperty3->date_collected = $now;
+          $animalproperty3->save();
 
-      $animalproperty4 = new AnimalProperty;
-      $animalproperty4->animal_id = $animal->id;
-      $animalproperty4->property_id = 4;
-      $animalproperty4->value = $request->line;
-      $animalproperty4->date_collected = $now;
-      $animalproperty4->save();
+          $animalproperty4 = new AnimalProperty;
+          $animalproperty4->animal_id = $animal->id;
+          $animalproperty4->property_id = 4;
+          $animalproperty4->value = $request->line;
+          $animalproperty4->date_collected = $now;
+          $animalproperty4->save();
 
-      $animalproperty5 = new AnimalProperty;
-      $animalproperty5->animal_id = $animal->id;
-      $animalproperty5->property_id = 5;
-      $animalproperty5->value = $request->family;
-      $animalproperty5->date_collected = $now;
-      $animalproperty5->save();
+          $animalproperty5 = new AnimalProperty;
+          $animalproperty5->animal_id = $animal->id;
+          $animalproperty5->property_id = 5;
+          $animalproperty5->value = $request->family;
+          $animalproperty5->date_collected = $now;
+          $animalproperty5->save();
 
-      $animalproperty6 = new AnimalProperty;
-      $animalproperty6->animal_id = $animal->id;
-      $animalproperty6->property_id = 6;
-      $animalproperty6->value = $request->gender;
-      $animalproperty6->date_collected = $now;
-      $animalproperty6->save();
+          $animalproperty6 = new AnimalProperty;
+          $animalproperty6->animal_id = $animal->id;
+          $animalproperty6->property_id = 6;
+          $animalproperty6->value = $request->gender;
+          $animalproperty6->date_collected = $now;
+          $animalproperty6->save();
 
-      $animalproperty7 = new AnimalProperty;
-      $animalproperty7->animal_id = $animal->id;
-      $animalproperty7->property_id = 7;
-      $animalproperty7->value = $request->date_transferred;
-      $animalproperty7->date_collected = $now;
-      $animalproperty7->save();
+          $animalproperty7 = new AnimalProperty;
+          $animalproperty7->animal_id = $animal->id;
+          $animalproperty7->property_id = 7;
+          $animalproperty7->value = $request->date_transferred;
+          $animalproperty7->date_collected = $now;
+          $animalproperty7->save();
 
-      $animalproperty8 = new AnimalProperty;
-      $animalproperty8->animal_id = $animal->id;
-      $animalproperty8->property_id = 8;
-      $animalproperty8->value = $request->moved_to_pen;
-      $animalproperty8->date_collected = $now;
-      $animalproperty8->save();
+          $animalproperty8 = new AnimalProperty;
+          $animalproperty8->animal_id = $animal->id;
+          $animalproperty8->property_id = 8;
+          $animalproperty8->value = $request->moved_to_pen;
+          $animalproperty8->date_collected = $now;
+          $animalproperty8->save();
 
-      $pen = Pen::where('id', $request->moved_to_pen)->first();
-      $pen->current_capacity = $pen->current_capacity-1;
-      $pen->save();
-      $request->session()->flash('individual-record-success', 'Individual record saved');
-      return Redirect::back()->with('message','Animal record successfully saved');
+          $pen = Pen::where('id', $request->moved_to_pen)->first();
+          $pen->current_capacity = $pen->current_capacity-1;
+          $pen->save();
+          $request->session()->flash('individual-record-success', 'Individual record saved');
+          return Redirect::back()->with('message','Animal record successfully saved');
+      }
+
+
     }
 
     // Daily Records
@@ -615,7 +641,7 @@ class PoultryController extends Controller
       //                     ->orWhere('status', 'breeder');
       //                   })->paginate(10);
 
-      $chicks = Chick::where('hatchery_record', true)->get();
+      $chicks = Chick::where('hatchery_record', "11")->get();
       return view('poultry.chicken.replacement.growthperformancelist', compact('chicks'));
     }
 
@@ -787,7 +813,7 @@ class PoultryController extends Controller
       //                 ->where('family_id', $id)
       //                 ->get();
 
-      $familymembers = Animal::where('status', 'breeder')->where('family_id', $id)->get();
+      $familymembers = FamilyMember::where('family_id', $id)->where('date_end', null)->get();
       return view('poultry.chicken.others.culling_breederlist', compact('familymembers'));
     }
 
@@ -822,7 +848,7 @@ class PoultryController extends Controller
 
     public function breederMortalityRemovalList($id)
     {
-      $familymembers = Animal::where('status', 'breeder')->where('family_id', $id)->get();
+      $familymembers = FamilyMember::where('family_id', $id)->where('date_end', null)->get();
       // $breeders = Animal::where('status', 'breeder')->get();
       return view('poultry.chicken.others.mortality_breederlist', compact('familymembers'));
     }
@@ -858,7 +884,7 @@ class PoultryController extends Controller
 
     public function breederSalesRemovalList($id)
     {
-      $familymembers = Animal::where('status', 'breeder')->where('family_id', $id)->get();
+      $familymembers = FamilyMember::where('family_id', $id)->where('date_end', null)->get();
 
       return view('poultry.chicken.others.sales_breederlist', compact('familymembers'));
     }
@@ -1144,6 +1170,16 @@ class PoultryController extends Controller
         $newInventory->save();
         return Redirect::back()->with('message','Inventory updated');
       }
+
+    }
+
+    public function recordsPerFamily()
+    {
+
+    }
+
+    public function recordsPerGeneration()
+    {
 
     }
 }

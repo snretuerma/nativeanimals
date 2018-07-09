@@ -17,4 +17,25 @@ class Generation extends Model
     return $this->hasMany('App\Models\Line');
   }
 
+  public function hasLine($line)
+  {
+      $check = Lines::where('generation_id', $this->id)->get();
+      if($check->contains('number', $line)){
+          return true;
+      }else{
+          return false;
+      }
+  }
+
+  public function getFamilies()
+  {
+      $families = Family::get();
+      $included = collect([]);
+      foreach ($families as $family){
+          if($family->getGeneration()->id === $this->id){
+              $included->push($family);
+          }
+      }
+      return $included;
+  }
 }

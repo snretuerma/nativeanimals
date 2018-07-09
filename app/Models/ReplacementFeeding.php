@@ -3,18 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ReplacementFeeding extends Model
 {
-  use SoftDeletes;
-
   protected $table = 'replacement_feedings';
   public $timestamps = false;
   protected $fillable = [
-      'feed_offered', 'feed_refused', 'date_fed',
-      'amount_offered','amount_refused', 'remarks',
-      'deleted_at'
+      'date_fed', 'amount_offered','amount_refused', 'remarks',
     ];
 
   public function pens()

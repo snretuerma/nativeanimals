@@ -113,4 +113,9 @@ class Family extends Model
     return $date;
   }
 
+  public function getMembers()
+  {
+      $members = FamilyMember::where('family_id', $this->id)->get();
+      return $members;
+  }
 }

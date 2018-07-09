@@ -125,7 +125,7 @@
 @section('scripts')
    <script>
    $(document).ready(function(){
-     $("#generation").change(function (event) {
+     $("#generation").click (function (event) {
        event.preventDefault();
        $("#line").empty();
        var generation_id = $(this).find(':selected').data("genid");
@@ -152,7 +152,7 @@
 
        $("#line").removeAttr('disabled');
      });
-     $("#line").change(function (e) {
+     $("#line").click(function (e) {
       e.preventDefault();
       $("#family").empty();
       var line_id = $(this).find(':selected').data("lineid");
@@ -184,5 +184,9 @@
       <script>
          Materialize.toast('Individual record saved', 4000)
       </script>
+   @elseif(Session::has('individual-record-fail'))
+       <script>
+           Materialize.toast('Individual record was not saved', 4000)
+       </script>
    @endif
 @endsection

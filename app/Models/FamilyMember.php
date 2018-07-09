@@ -36,4 +36,10 @@ class FamilyMember extends Model
     return $properties;
   }
 
+  public function getMemberGender()
+  {
+      $animal = Animal::where('id', $this->animal_id)->first();
+      return $animal->getGender();
+  }
+
 }

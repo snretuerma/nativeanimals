@@ -440,7 +440,7 @@ class FarmController extends Controller
         $replacement = Animal::where('status', 'replacement')->where(function ($query) {
                       $query->where('phenotypic', '==', false)
                             ->orWhere('morphometric', '==', false);
-                          })->paginate(10);
+                          })->paginate(15);
         return view('poultry.chicken.replacement.phenomorphoidsearch', compact('replacement'));
     }
 
@@ -645,7 +645,7 @@ class FarmController extends Controller
       $replacement = Animal::where('status', 'replacement')->where(function ($query) {
                     $query->where('phenotypic', '==', false)
                           ->orWhere('morphometric', '==', false);
-                          })->get();
+                          })->paginate(15);
       return view('poultry.chicken.replacement.phenomorphoidsearch', compact('replacement'));
     }
 
@@ -727,7 +727,7 @@ class FarmController extends Controller
       $replacement = Animal::where('status', 'replacement')->where(function ($query) {
                     $query->where('phenotypic', '==', false)
                           ->orWhere('morphometric', '==', false);
-                          })->get();
+                          })->paginate(15);
       return view('poultry.chicken.replacement.phenomorphoidsearch', compact('replacement'));
     }
 

@@ -221,19 +221,19 @@ class UsersTableSeeder extends Seeder
 
         $sampleFarm->animaltypes()->attach($chicken->id);
 
-        // Create Generation
-        // $generation0 = new Generation;
-        // $generation0->number = "0000";
-        // $generation0->is_active = true;
-        // $generation0->save();
-        // $this->command->info('Generation 0000 seeded');
+         //Create Generation
+//         $generation0 = new Generation;
+//         $generation0->number = "0000";
+//         $generation0->is_active = true;
+//         $generation0->save();
+//         $this->command->info('Generation 0000 seeded');
 
         // Add Lines to Generation
-        // $line1 = new Line;
-        // $line1->number = "0001";
-        // $line1->generation_id = $generation0->id;
-        // $line1->is_active = true;
-        // $line1->save();
+//         $line1 = new Line;
+//         $line1->number = "000A";
+//         $line1->generation_id = $generation0->id;
+//         $line1->is_active = true;
+//         $line1->save();
 
         // $line2 = new Line;
         // $line2->number = "0002";
@@ -249,24 +249,27 @@ class UsersTableSeeder extends Seeder
         // $this->command->info('Lines 0001 (active), 0002 (active), 0003 (inactive) seeded');
 
         // Generate Pens
-        // $p1 = new Pen;
-        // $p1->number = "01";
-        // $p1->capacity = 10;
-        // $p1->current_capacity = 10;
-        // $p1->save();
-        //
-        // $p2 = new Pen;
-        // $p2->number = "02";
-        // $p2->capacity = 10;
-        // $p2->current_capacity = 10;
-        // $p2->save();
-        //
-        // $p3 = new Pen;
-        // $p3->number = "03";
-        // $p3->capacity = 10;
-        // $p3->current_capacity = 10;
-        // $p3->save();
-        //
+//         $p1 = new Pen;
+//         $p1->number = "B01";
+//         $p1->capacity = 1000;
+//         $p1->current_capacity = 1000;
+//         $p1->pen_type = "brooder";
+//         $p1->save();
+//
+//         $p2 = new Pen;
+//         $p2->number = "G02";
+//         $p2->capacity = 1000;
+//         $p2->current_capacity = 1000;
+//         $p2->pen_type = "brooder";
+//         $p2->save();
+//
+//         $p3 = new Pen;
+//         $p3->number = "L03";
+//         $p3->capacity = 1000;
+//         $p3->current_capacity = 1000;
+//         $p3->pen_type = "layer";
+//         $p3->save();
+
         // $p4 = new Pen;
         // $p4->number = "04";
         // $p4->capacity = 10;
@@ -281,12 +284,12 @@ class UsersTableSeeder extends Seeder
         // $this->command->info('Pens 01, 02, 03, 04 and 05 seeded');
 
         // Generate Family
-        // $f1 = new Family;
-        // $f1->number = "0001";
-        // $f1->line_id = $line2->id;
-        // $f1->is_active = true;
-        // $f1->pen_id = $p5->id;
-        // $f1->save();
+//         $f1 = new Family;
+//         $f1->number = "0001";
+//         $f1->line_id = $line1->id;
+//         $f1->is_active = true;
+//         $f1->pen_id = $p3->id;
+//         $f1->save();
         //
         // $f2 = new Family;
         // $f2->number = "0002";
@@ -304,17 +307,24 @@ class UsersTableSeeder extends Seeder
         // $this->command->info('Families 0001, 0002, 0003 seeded');
 
         // Create Animal
-        // $a1 = new Animal;
-        // $a1->animaltype_id = $chicken->id;
-        // $a1->farm_id = $sampleFarm->id;
-        // $a1->breed_id = $darag->id;
-        // $a1->status = "replacement";
-        // $a1->growth = "000000";
-        // $a1->pen_id = $p5->id;
-        // $a1->registryid = $sampleFarm->code.'-'.'2015'.$generation0->number.$line2->number.$f1->number.'F'.'0001';
-        // $a1->save();
-        // $p5->current_capacity = $p5->current_capacity - 1;
-        // $p5->save();
+//        $counter = 0;
+//        while($counter < 1000){
+//            $a1 = new Animal;
+//            $a1->animaltype_id = $chicken->id;
+//            $a1->farm_id = $sampleFarm->id;
+//            $a1->breed_id = $darag->id;
+//            $a1->status = "replacement";
+//            $a1->family_id = $f1->id;
+//            $a1->growth = "000000";
+//            $a1->pen_id = $p2->id;
+//            $gender = ['M', 'F'];
+//            $regnum = range(1, 1000);
+//            $a1->registryid = $sampleFarm->code.'-'.'2018'.$generation0->number.$line1->number.$f1->number.shuffle($gender).(string)shuffle($regnum);
+//            $a1->save();
+//            $p2->current_capacity = $p1->current_capacity - 1;
+//            $p2->save();
+//        }
+
         //
         // $a2 = new Animal;
         // $a2->animaltype_id = $chicken->id;

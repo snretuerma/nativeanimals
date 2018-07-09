@@ -17,10 +17,6 @@ class CreatePenFeedingsTable extends Migration
             $table->increments('id');
             $table->integer('family_id')->unsigned();
             $table->integer('pen_id')->unsigned()->distinct();
-            $table->string('feed_offered')->nullable();
-            $table->string('feed_refused')->nullable();
-            $table->string('type_offered')->nullable();
-            $table->string('type_refused')->nullable();
             $table->date('date_fed');
             $table->double('amount_offered');
             $table->double('amount_refused');

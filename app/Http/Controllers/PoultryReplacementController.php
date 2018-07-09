@@ -87,16 +87,12 @@ class PoultryReplacementController extends Controller
   public function feedingFetchData(Request $request)
   {
     $this->validate(request(), [
-      'feed_offered' => 'required',
-      'feed_refused' => 'required',
       'date_fed' => 'required',
       'amount_offered' => 'required',
       'amount_refused' => 'required',
     ]);
     $feeding = new ReplacementFeeding;
     $feeding->pen_id = $request->pen_id;
-    $feeding->feed_offered = $request->feed_offered;
-    $feeding->feed_refused = $request->feed_refused;
     $feeding->date_fed = $request->date_fed;
     $feeding->amount_offered = $request->amount_offered;
     $feeding->amount_refused = $request->amount_refused;
@@ -114,15 +110,11 @@ class PoultryReplacementController extends Controller
   public function feedingFetchDataEdit(Request $request)
   {
     $this->validate(request(), [
-      'feed_offered' => 'required',
-      'feed_refused' => 'required',
       'date_fed' => 'required',
       'amount_offered' => 'required',
       'amount_refused' => 'required'
     ]);
     $feeding = ReplacementFeeding::where('id', $request->record_id)->firstOrFail();
-    $feeding->feed_offered = $request->feed_offered;
-    $feeding->feed_refused = $request->feed_refused;
     $feeding->date_fed = $request->date_fed;
     $feeding->amount_offered = $request->amount_offered;
     $feeding->amount_refused = $request->amount_refused;

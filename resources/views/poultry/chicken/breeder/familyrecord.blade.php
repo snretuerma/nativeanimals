@@ -5,19 +5,14 @@
 @endsection
 
 @section('initScriptsAndStyles')
-  {{-- s --}}
 @endsection
 
 @section('content')
-    {{-- <family-record-form :generations="{{$generations}}" lines="{{$lines}}" :pens="{{$pens}}">
-
-    </family-record-form> --}}
-
     <div class="row">
       <div class="col s12 m12 l12">
         <div class="row valign-wrapper">
           <div class="col s1 m1 l1">
-            <a href="{{route('farm.poultry.breeder.familymenu')}}" class="back_button previous round">&#8249;</a>
+            <a href="{{route('farm.poultry.breeder.familymenu')}}" class="back_button previous round tooltipped" data-position="bottom" data-delay="50" data-tooltip="Back to family list">&#8249;</a>
           </div>
           <div class="col s11 m11 l11">
             <h4>New Family Record</h4>
@@ -104,5 +99,9 @@
      <script>
         Materialize.toast('Family Added', 4000)
      </script>
+  @elseif(Session::has('family-fail'))
+    <script>
+        Materialize.toast('Family Creation Failed', 4000)
+    </script>
   @endif
 @endsection

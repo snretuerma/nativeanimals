@@ -37,7 +37,7 @@
               <td>{{$chick->number_eggs_set}}</td>
               <td>{{$chick->week_of_lay}}</td>
               <td>{{$chick->fertile_eggs}}</td>
-              <td>{{$chick->date_hatched}}</td>
+              <td>{{$chick->hatched_eggs}}</td>
               <td>{{$chick->date_hatched}}</td>
               @if ($chick->current_pen_id != NULL)
                  <td>{{$chick->getPen()}}</td>

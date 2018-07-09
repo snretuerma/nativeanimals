@@ -38,25 +38,8 @@
              <div class="row">
                <div class="col s12 m12 l12">
                  <div class="input-field col s12 m6 l6">
-                   <input id="feed_offered" type="text" class="validate" name="feed_offered" placeholder="i.e. Concentrates, Vegetables, Trimmings, etc">
-                   <label for="feed_offered">Feed Offered</label>
-                 </div>
-               </div>
-             </div>
-
-             <div class="row">
-               <div class="col s12 m12 l12">
-                 <div class="input-field col s12 m6 l6">
-                      <input id="feed_refused" type="text" class="validate" name="feed_refused" placeholder="i.e. Concentrates, Vegetables, Trimmings, etc">
-                   <label for="feed_refused">Feed Refused</label>
-                 </div>
-               </div>
-             </div>
-             <div class="row">
-               <div class="col s12 m12 l12">
-                 <div class="input-field col s12 m6 l6">
                    <input id="amount_offered" type="number" min=0 class="validate" name="amount_offered" step="any">
-                   <label for="amount_offered">Amount of Feed Offered (g)</label>
+                   <label for="amount_offered">Amount of Concentrates Offered (g)</label>
                  </div>
                </div>
              </div>
@@ -64,7 +47,7 @@
                <div class="col s12 m12 l12">
                  <div class="input-field col s12 m6 l6">
                    <input id="amount_refused" type="number" min=0 class="validate" name="amount_refused" step="any">
-                   <label for="amount_refused">Amount of Feed Refusal (g)</label>
+                   <label for="amount_refused">Amount of Concentrates Refusal (g)</label>
                  </div>
                </div>
              </div>
@@ -120,8 +103,6 @@
    $(document).ready(function()
    {
      $("#date_fed").val({!! json_encode($feeding->date_fed) !!});
-     $("#feed_offered").val({!! json_encode($feeding->feed_offered) !!});
-     $("#feed_refused").val({!! json_encode($feeding->feed_refused) !!});
      $("#amount_offered").val({!! json_encode($feeding->amount_offered) !!});
      $("#amount_refused").val({!! json_encode($feeding->amount_refused) !!});
      $("#remarks").val({!! json_encode($feeding->remarks) !!});

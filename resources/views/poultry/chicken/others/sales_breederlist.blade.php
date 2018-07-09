@@ -23,8 +23,8 @@
                      @forelse ($familymembers as $member)
                         <div class="row valign-wrapper">
                            <div class="col s12 m5 l5">
-                              <input type="checkbox" class="filled-in" id="{{$member->id}}" name="animal_id[]" value="{{$member->id}}" />
-                              <label for="{{$member->id}}">{{$member->registryid}}</label>
+                              <input type="checkbox" class="filled-in" id="{{$member->getAnimalInstance()->id}}" name="animal_id[]" value="{{$member->getAnimalInstance()->id}}" />
+                              <label for="{{$member->getAnimalInstance()->id}}">{{$member->getAnimalInstance()->registryid}}</label>
                            </div>
                            <div class="input-field col s12 m2 l2">
                               <input id="price" type="number" min="0" name="price[]">

@@ -55,24 +55,8 @@
                    <div class="row">
                      <div class="col s12 m12 l12">
                       <div class="input-field col s12 m6 l6">
-                         <input id="type_offered" type="text" class="validate" name="type_offered" placeholder="i.e. Concentrates, Vegetables, Trimmings, etc" required>
-                         <label for="type_offered">Type of Feed Offered</label>
-                      </div>
-                     </div>
-                   </div>
-                   <div class="row">
-                   <div class="col s12 m12 l12">
-                      <div class="input-field col s12 m6 l6">
-                         <input id="type_refused" type="text" class="validate" name="type_refused" placeholder="i.e. Concentrates, Vegetables, Trimmings, etc" required>
-                         <label for="type_refused">Type of Feed Refused</label>
-                      </div>
-                   </div>
-                   </div>
-                   <div class="row">
-                     <div class="col s12 m12 l12">
-                      <div class="input-field col s12 m6 l6">
                          <input id="amount_offered" type="number" min=0 step="any" class="validate" name="amount_offered" required>
-                         <label for="amount_offered">Amount of Feed Offered (g)</label>
+                         <label for="amount_offered">Amount of Concentrates Offered (g)</label>
                       </div>
                      </div>
                    </div>
@@ -80,7 +64,7 @@
                      <div class="col s12 m12 l12">
                       <div class="input-field col s12 m6 l6">
                          <input id="amount_refused" type="number" min=0 step="any" class="validate" name="amount_refused" required>
-                         <label for="amount_refused">Amount of Feed Refusal (g)</label>
+                         <label for="amount_refused">Amount of Concentrates Refused (g)</label>
                       </div>
                      </div>
                    </div>
@@ -137,8 +121,6 @@
       $(document).ready(function()
       {
         $("#date_collected").val({!! json_encode($feedingrec->date_fed) !!});
-        $("#type_offered").val({!! json_encode($feedingrec->type_offered) !!});
-        $("#type_refused").val({!! json_encode($feedingrec->type_refused) !!});
         $("#amount_offered").val({!! json_encode($feedingrec->amount_offered) !!});
         $("#amount_refused").val({!! json_encode($feedingrec->amount_refused) !!});
         $("#remarks").val({!! json_encode($feedingrec->remarks) !!});
